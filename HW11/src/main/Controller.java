@@ -16,7 +16,19 @@ import roles.Student;
 
 public class Controller {
 	
+	// instance variables
+	/**
+	 * Create the instance of Courses
+	 * which contains
+	 */
+	Courses course = new Courses();
+	
+	
+	
+	
+	
 	public static void main(String[] args) {
+		
 		
 		// when the system is on
 		while(true) {
@@ -71,15 +83,43 @@ public class Controller {
 									System.out.println("----------------------------");
 									System.out.println("Welcome, " + student.getName());
 									System.out.println("----------------------------");
+																	
 									
-									// view course information
-									
-									// add or drop courses
-									
+									System.out.println("1--View all courses");
+									// add courses
+									System.out.println("2--Add courses to your list");
+									// view courses enrolled
+									System.out.println("3--View enrolled courses");
+									// drop courses
+									System.out.println("4--Drop courses in your list");
 									// view grades
+									System.out.println("5--View grades");
+									// return to previous menu
+									System.out.println("6--Return to previous menu");
+									
+									System.out.println("Please enter your option, eg.'1'");
+									
+									// get the user input
+									int inputS = sc.nextInt();
+									// view course information
+									if (inputS == 1) {
+										
+									}
+									
+									
+									
+									
+									
+									
+									
+									
+									
 									Map<String, String> courseMap = new HashMap<String, String>();
 									courseMap = FileInfoReader.getCourses(studentInput);
 								
+									
+									
+									
 									
 									
 								}
@@ -132,10 +172,12 @@ public class Controller {
 				System.out.println("invalid input");
 				continue;
 				}
+			
 			}
-		
+	
 		System.out.println("-------System closed-------");
 		System.out.println("----------------------------");
+		
 		
 		}
 }
