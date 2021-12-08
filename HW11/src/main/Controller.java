@@ -1,6 +1,12 @@
 package main;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Scanner;
+
+import files.FileInfoReader;
+import roles.Student;
 
 /**
  * a student management system
@@ -36,38 +42,63 @@ public class Controller {
 				
 				//1--Login as a student
 				if (userNum == 1) {
+					
 					// log in as students or quit
-					System.out.println("Please enter your username, or typr 'q' to quit");
-					try{
-						String studentInput = sc.next();	
-						if (studentInput.equals("q")) {
-							// if quit, go back to the previous menu
-							continue;
-						}
-						//log in to the student account
-						
-						
-						// view course information
-						
-						
-						// add or drop courses
-						
-						// view grades
-						
-						// return to the previous menu
-						
-						
-					}catch(Exception e) {
-						// prints out the error input and ask for input again
-						System.out.println("invalid input");
+					System.out.println("Please enter your username, or typr 'q' to quit");			
+					String studentInput = sc.next();
+					
+					if (studentInput.equals("q")) {
+						// if quit, go back to the previous menu
 						continue;
+						}
+					else {
+						// get the user name and password in the file as a map
+						Map<String, String> studentLoginInfo = new HashMap<String, String>();
+						studentLoginInfo = FileInfoReader.LoginInfo("studentInfo.txt");
+							
+						// if the input user name exist in the map
+							if(studentLoginInfo.containsKey(studentInput)) {							
+								// if there's matching username in the file, ask for the password
+								System.out.println("Please enter your username, or typr 'q' to quit");
+								String pw = sc.next();
+								// get the password stores in the file
+								String systemPW = studentLoginInfo.get(studentInput);
+								// if the input password is right, successfully log into the student account
+								if(pw.equals(systemPW)) {
+									
+									// create the student instance with the username(input)
+									Student student = new Student(studentInput);
+									System.out.println("----------------------------");
+									System.out.println("Welcome, " + student.getName());
+									System.out.println("----------------------------");
+									
+									// view course information
+									
+									// add or drop courses
+									
+									// view grades
+									Map<String, String> courseMap = new HashMap<String, String>();
+									courseMap = FileInfoReader.getCourses(studentInput);
+								
+									
+									
+								}
+								else {
+									// if the password in not correct, get back to the previous menu
+									System.out.println("Password incorrect.");
+									continue;	
+								}
+								}
+							else {
+								// if the student username is not in the file, get back to the previous menu
+								System.out.println("User not found.");
+								continue;		
+							}
+						}
 						
+					
 					}
 			
-					continue;
-					
-				}
-				
 				
 				//2--Login as a professor
 				if (userNum == 2) {
