@@ -244,5 +244,68 @@ public class FileInfoReader {
 	
 	
 	
+	/**
+	 * get the information for a given course
+	 * returns a string formatted like(a whole line)
+	 * "CIT590; Programming Languages and Techniques; Brandon L Krakowsky; MW; 16:30; 18:00; 110"
+	 * @param courseID to look up
+	 * @return the information of the course from the file courseInfo.txt
+	 */
+	public static String getCourseInfo(String courseID) {
+		// create string to store name
+				String courseInfo = null;
+				// create file
+				File file = new File("courseInfo.txt");
+								
+				FileReader fileReader = null;
+				BufferedReader bufferedReader = null;
+				try {
+							
+					fileReader = new FileReader(file);
+					bufferedReader = new BufferedReader(fileReader);
+							
+					// variable to store each lines
+					String line;
+							
+					// while there is a line to read
+					while((line = bufferedReader.readLine()) != null) {
+								
+				    // string array for each line to store the information
+					String[] cInfo = line.split("; ");
+						
+					// if it is the given course
+					if(courseID.equals(cInfo[0])) {
+						// get the whole line for this course
+						courseInfo = line;
+						break;
+						}
+					} 
+					}catch (FileNotFoundException e) {
+							// print out the name of the file
+							System.out.println("File not found " + file.getName());
+							} 
+						catch (IOException e) {
+							e.printStackTrace();
+						} finally {
+							// close the filereader and the bufferedreader
+							try {
+								fileReader.close();
+								bufferedReader.close();
+							} catch (IOException e) {
+								e.printStackTrace();
+							} 
+						}
+						
+						return courseInfo;
+			}
 
-}
+	}
+
+		
+		
+	}
+	
+	
+	
+
+

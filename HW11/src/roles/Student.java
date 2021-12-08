@@ -36,7 +36,7 @@ public class Student extends User {
 		
 		// call the methods from fileInfoReader to get the detailed information about this student
 		this.name = FileInfoReader.getName(Student.FILENAME, userName);
-		this.id = FileInfoReader.getID(this.FILENAME, userName);
+		this.id = FileInfoReader.getID(Student.FILENAME, userName);
 		this.courses = FileInfoReader.getCourses(userName);
 		
 	}
