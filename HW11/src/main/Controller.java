@@ -59,7 +59,7 @@ public class Controller {
 						// if the input user name exist in the map
 							if(studentLoginInfo.containsKey(studentInput)) {							
 								// if there's matching username in the file, ask for the password
-								System.out.println("Please enter your username, or typr 'q' to quit");
+								System.out.println("Please enter your password, or typr 'q' to quit");
 								String pw = sc.next();
 								// get the password stores in the file
 								String systemPW = studentLoginInfo.get(studentInput);
