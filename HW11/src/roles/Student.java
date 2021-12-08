@@ -15,7 +15,7 @@ public class Student extends User {
 	// instance variables
 	
 	/**
-	 * list of the courses
+	 * map of the courses
 	 */
 	Map<String, String> courses;
 	
