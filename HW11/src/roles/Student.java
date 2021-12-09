@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Map;
 
 import courses.Course;
-import courses.Courses;
 import files.FileInfoReader;
 
 /**
