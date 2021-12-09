@@ -161,12 +161,7 @@ public class Controller {
 							}
 									
 									
-									
-									
-									
-									
-									
-									//Map<String, String> courseMap = new HashMap<String, String>();
+								//Map<String, String> courseMap = new HashMap<String, String>();
 									//courseMap = FileInfoReader.getCourses(studentInput);
 								
 									

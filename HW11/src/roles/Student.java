@@ -144,7 +144,21 @@ public class Student {
 		// initiate enrolled courses arraylist
 		this.addEnrolledCourse();
 		
-		// if the course already exist in the courseMap as a key
+		// to check if the course is in the course list
+		
+		
+		
+		// iterate over the enrolled course arraylist
+		for (int i = 1; i < this.enrolledCourses.size(); i++) {
+			
+			// if the course already exist in the enrolledCourse ArrayList
+			if(this.enrolledCourses.get(i).getId().equals(courseID)) {
+				System.out.println("The course you selected ");
+			}
+			
+		}
+		
+		
 		
 		
 		
