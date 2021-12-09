@@ -70,6 +70,7 @@ public class Student {
 		this.courseMap = courseMap;
 	}
 
+<<<<<<< HEAD
 	// getter and setter
 	/**
 	 * get the student id
@@ -111,43 +112,50 @@ public class Student {
 		return userName;
 	}
 
-
+	/**
+	 * set the student's userName
+	 * @param userName of student
+	 */
 	public void setUserName(String userName) {
 		this.userName = userName;
 	}
 
-
+	/**
+	 * get the student's password
+	 * @return the password of student
+	 */
 	public String getPassword() {
 		return password;
 	}
 
-
+	/**
+	 * set the student's password
+	 * @param password of student
+	 */
 	public void setPassword(String password) {
 		this.password = password;
 	}
 
-
+	/**
+	 * get the student's courseMap
+	 * @return courseMap of student
+	 */
 	public Map<String, String> getCourseMap() {
 		return courseMap;
 	}
 
-
+	/**
+	 * set the student's courseMap 
+	 * @param courseMap of student
+	 */
 	public void setCourseMap(Map<String, String> courseMap) {
 		this.courseMap = courseMap;
 	}
 	
 	
-    
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+   
 
 }
+
+
+
