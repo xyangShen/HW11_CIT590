@@ -8,27 +8,70 @@ import files.FileInfoReader;
  * Represents a professor
  * @author Xinyang Shen
  */
-public class Professor extends User {
+public class Professor {
+	
+	//instance variables
+	
+	/**
+	 * use an ArrayList to contain all the professors in the system
+	 */
+	public static ArrayList<Professor> PROFESSIORS = new ArrayList<Professor>();
+	
+	
+	/**
+	 * professor's name
+	 */
+	private String name;
+	
+	/**
+	 * professor's id
+	 */
+	private String id;
+	
+	/**
+	 * professor's userName
+	 */
+	private String userName;
+	
+	/**
+	 * professor's password
+	 */
+	private String password;
+	
 	
 	// static variable
 	
 	/**
 	 * name of the professor file
 	 */
-	static String FILENAME = "prefInfo.txt";
+	static String FILENAME = "profInfo.txt";
 	
 	
 	// constructor
 	
-	public Professor(String userName) {
-		super(userName);
-		
-		// call methods from the FileInfoReader class to set up the values
-		// reverse the order for the professor class
-		this.id = FileInfoReader.getName(Professor.FILENAME, userName);
-		this.name= FileInfoReader.getID(Professor.FILENAME, userName);
+	/**
+	 * create a professor with his/her given features
+	 * @param name
+	 * @param id
+	 * @param userName
+	 * @param password
+	 */
+	
+	public Professor(String name, String id, String userName, String password) {
+	this.name = name;
+	this.id = id;
+	this.userName = userName;
+	this.password = password;
 	}
+	
     
+	
+	
+	
+	
+	
+	
+	
 	//methods
 	// return the list of given courses names
 	public ArrayList<String> getTeachingCourses(){

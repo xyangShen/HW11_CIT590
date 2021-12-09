@@ -5,9 +5,15 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.Scanner;
+
+import courses.Course;
+import roles.Student;
 
 /**
  * to load the files
@@ -242,7 +248,194 @@ public class FileInfoReader {
 		return courseMap;
 	}
 	
+	/**
+	 * used to view all courses
+	 * @param fileName
+	 * @return all the information of the courses in the given format
+	 */
+	
+	public static ArrayList<String> getAllCoursesInfo(String fileName){
+		
+		// create file
+		File file = new File(fileName);
+		
+		// initialize FR and BR
+		FileReader fileReader = null;
+		BufferedReader bufferedReader = null;
+		
+		//create the ArrayList
+		ArrayList<String> allCoursesInfo = new ArrayList<String>();
+		
+		
+		try {
+			fileReader = new FileReader(file);
+			bufferedReader = new BufferedReader(fileReader);
+			
+			// variable to store each lines
+			String line;
+					
+			// while there is a line to read
+			while((line = bufferedReader.readLine()) != null) {
+				
+				//update the line with the right format
+				String newLine = new String();
+				
+				// string array for each line to store the information
+				String[] userInfo = line.split("; ");
+				
+				// count the number of enrolled students
+				int enrolled = 0;
+				
+				// update the new line
+				newLine = userInfo[0] + "|" + userInfo[1] + ", " + userInfo[4] + "-" + userInfo[5] + " on " + userInfo[3] + ", " + "with course capacity: " + userInfo[6] + ", students: " + enrolled + ", lecturer: Professior " + userInfo[2];                                       
+				name.add(userInfo[0]);		
+				// add all the lines to the ArrayList
+				allCoursesInfo.add(newLine); 
+				}
+			
+		} catch (FileNotFoundException e) {
+		  System.out.println("No File Found");
+			e.printStackTrace();
+		} catch (IOException e) {
+			System.out.println("IOException");
+			e.printStackTrace();
+		}
+		
+		
+		return allCoursesInfo;
+		
+		
+		
+		
+	}
+	
+	/**
+	 * load the file content to the ArrayList of course
+	 * @param fileName
+	 */
+	
+     public static void setCourseInfo(String fileName){
+		
+		// create file
+		File file = new File(fileName);
+		
+		// initialize FR and BR
+		FileReader fileReader = null;
+		BufferedReader bufferedReader = null;
+		
+		//create the ArrayList
+		ArrayList<String> allCoursesInfo = new ArrayList<String>();
+		
+		
+		try {
+			fileReader = new FileReader(file);
+			bufferedReader = new BufferedReader(fileReader);
+			
+			// variable to store each lines
+			String line;
+					
+			// while there is a line to read
+			while((line = bufferedReader.readLine()) != null) {
+				
+				//update the line with the right format
+				String newLine = new String();
+				
+				// string array for each line to store the information
+				String[] courseInfo = line.split("; ");
+				
+				// create the course with given information from file
+				Course c = new Course(courseInfo[0], courseInfo[1], courseInfo[2], courseInfo[3], courseInfo[4], courseInfo[5], courseInfo[6]);
+			
+				// add each course to the ArrayList
+				Course.COURSELIST.add(c); 
+				}
+			
+		} catch (FileNotFoundException e) {
+		  System.out.println("No File Found");
+			e.printStackTrace();
+		} catch (IOException e) {
+			System.out.println("IOException");
+			e.printStackTrace();
+		}
+		
+}
+     
+     /**
+ 	 * load the file content to the ArrayList of students
+ 	 * @param fileName
+ 	 */
+ 	
+      public static void setStudentInfo(String fileName){
+ 		
+ 		// create file
+ 		File file = new File(fileName);
+ 		
+ 		// initialize FR and BR
+ 		FileReader fileReader = null;
+ 		BufferedReader bufferedReader = null;
+ 	
+ 		try {
+ 			fileReader = new FileReader(file);
+ 			bufferedReader = new BufferedReader(fileReader);
+ 			
+ 			// variable to store each lines
+ 			String line;
+ 			
+ 			// variable to be as map
+ 			Map<String, String> map;
+ 					
+ 			// while there is a line to read
+ 			while((line = bufferedReader.readLine()) != null) {
+ 			 	
+ 			    // string array for each line to store the information
+				String[] studentInfo = line.split("; ");
+				
+				// change the string to map
+				//get the course information from the student
+				String courseInfo = studentInfo[4];
+				String[] courses = courseInfo.split(", ");
+				// iterate over each course
+				for(int i = 0; i < courses.length; i++) {
+					String[] eachCourse = courses[i].split(": ");
+					// put the information into the map
+					// keys as the course id, value as the grade
+					map.put(eachCourse[0], eachCourse[1]);
+				}
+				
+ 				// create the student with given information from file
+ 				Student s = new Student(studentInfo[0], studentInfo[1], studentInfo[2], studentInfo[3], map);
+ 			
+ 				// add each student to the ArrayList
+ 				Student.STUDENTS.add(s); 
+ 				}
+ 			
+  		} catch (FileNotFoundException e) {
+ 		  System.out.println("No File Found");
+ 			e.printStackTrace();
+ 		} catch (IOException e) {
+ 			System.out.println("IOException");
+ 			e.printStackTrace();
+ 		}
+
+}
+      }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+}
+	
 	
 	
 
-}

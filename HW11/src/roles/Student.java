@@ -3,6 +3,7 @@ package roles;
 import java.util.ArrayList;
 import java.util.Map;
 
+import courses.Course;
 import courses.Courses;
 import files.FileInfoReader;
 
@@ -10,14 +11,39 @@ import files.FileInfoReader;
  * Represents a student
  * @author Xinyang Shen
  */
-public class Student extends User {
+public class Student {
 	
 	// instance variables
 	
 	/**
-	 * list of the courses
+	 * use an ArrayList to contain all the students in the system
 	 */
-	Map<String, String> courses;
+	public static ArrayList<Student> STUDENTS = new ArrayList<Student>();
+	
+	/**
+	 * student ID
+	 */
+	private String id;
+	
+	/**
+	 * student name
+	 */
+	private String name;
+	
+	/**
+	 * student userName
+	 */
+	private String userName;
+	
+	/**
+	 * student password
+	 */
+	private String password;
+		
+	/**
+	 * the course and its grade
+	 */
+	private Map<String, String> courseMap;
 	
 	
 	// static variables
@@ -28,20 +54,38 @@ public class Student extends User {
 	static String FILENAME = "studentInfo.txt";
 	
 	
-	// constructors
-	
-	public Student(String userName) {
-		// call the constructor from the super class
-		super(userName);
-		
-		// call the methods from fileInfoReader to get the detailed information about this student
-		this.name = FileInfoReader.getName(Student.FILENAME, userName);
-		this.id = FileInfoReader.getID(this.FILENAME, userName);
-		this.courses = FileInfoReader.getCourses(userName);
-		
+	// constructor
+	/**
+	 * create a student with his/her given features
+	 * @param id
+	 * @param name
+	 * @param userName
+	 * @param password
+	 * @param courseMap
+	 */
+	public Student(String id, String name, String userName, String password, Map<String, String> courseMap) {
+		this.id = id;
+		this.name = name;
+		this.userName = userName;
+		this.password = password;
+		this.courseMap = courseMap;
 	}
+	
+	
+		
+	
+	
+	
+	
+	
+	
+	
+	
 
 	//methods
+	public Map<String, String> getCourses() {
+		return this.courses;
+	}
 
 	
 

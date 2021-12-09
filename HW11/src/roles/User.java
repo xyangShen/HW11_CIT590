@@ -61,7 +61,7 @@ public abstract class User {
 	/**
 	 * drop the courses to each user information
 	 */
-	public abstract void dropCourses();
+	// public abstract void dropCourses();
 	
 	
 	

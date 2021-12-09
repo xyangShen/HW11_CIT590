@@ -1,10 +1,17 @@
 package main;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.security.KeyStore.Entry;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 
+import courses.Course;
+import courses.Courses;
 import files.FileInfoReader;
 import roles.Student;
 
@@ -21,7 +28,7 @@ public class Controller {
 	 * Create the instance of Courses
 	 * which contains
 	 */
-	Courses course = new Courses();
+	
 	
 	
 	
@@ -29,7 +36,16 @@ public class Controller {
 	
 	public static void main(String[] args) {
 		
+		/**
+		 * Student st = new Student("testStudent01");
+		//get the courses list
+		Map<String, String> course = st.getCourses();
+		System.out.println(course.keySet());
 		
+		 */
+		
+			
+			
 		// when the system is on
 		while(true) {
 			// when enter the system, select to log in as student/professor/admin/quit the system
@@ -78,6 +94,9 @@ public class Controller {
 								// if the input password is right, successfully log into the student account
 								if(pw.equals(systemPW)) {
 									
+									// create the course instance
+									Courses course = new Courses();
+									
 									// create the student instance with the username(input)
 									Student student = new Student(studentInput);
 									System.out.println("----------------------------");
@@ -86,7 +105,6 @@ public class Controller {
 																	
 									
 									System.out.println("1--View all courses");
-									// add courses
 									System.out.println("2--Add courses to your list");
 									// view courses enrolled
 									System.out.println("3--View enrolled courses");
@@ -103,6 +121,45 @@ public class Controller {
 									int inputS = sc.nextInt();
 									// view course information
 									if (inputS == 1) {
+										List<String> coursesInfo = Courses.getAllCoursesInfo("courseInfo.txt");
+								        // print all the information line by line
+										coursesInfo.forEach(System.out::println);
+		
+									}
+									
+									if (inputS == 2) {
+										// add courses
+										System.out.println("Please select the course ID you want to add to your list, eg. 'CIT590'. "
+												+ "\\r\\nOr enter 'q' to return to the previous menu");
+										
+										studentInput = sc.next();
+										
+										if (studentInput.equals("q")) {
+											// if quit, go back to the previous menu
+											continue;
+											}
+										// course name already existed in the course list
+										else if(student.getCourses().keySet().contains(studentInput)) {
+											System.out.println("The course you selected is already in your list");
+										}
+										// course name is new and in the system
+										else if(Course.COURSELIST.contains(studentInput)){
+											// time conflict
+											if () {
+												
+											}
+											
+										}
+										// course name doesn't exist in the system
+										else {
+											// do nothing
+											continue;
+										}	
+											
+											
+											
+										}	
+										}
 										
 									}
 									
@@ -112,10 +169,8 @@ public class Controller {
 									
 									
 									
-									
-									
-									Map<String, String> courseMap = new HashMap<String, String>();
-									courseMap = FileInfoReader.getCourses(studentInput);
+									//Map<String, String> courseMap = new HashMap<String, String>();
+									//courseMap = FileInfoReader.getCourses(studentInput);
 								
 									
 									
@@ -180,4 +235,8 @@ public class Controller {
 		
 		
 		}
+		
+	
 }
+
+		
