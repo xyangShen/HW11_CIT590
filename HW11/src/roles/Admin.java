@@ -57,5 +57,80 @@ public class Admin{
 		this.password = password;
 		
 	}
+	
+	//getter and setter
+	/**
+	 * get the Admin id
+	 * @return id of Admin
+	 */
+	public String getId() {
+		return id;
+	}
+	
+	/**
+	 * set the Admin id
+	 * @param id of Admin
+	 */
+	public void setId(String id) {
+		this.id = id;
+	}
+	
+	/**
+	 * get the Admin name
+	 * @return name of Admin
+	 */
+	public String getName() {
+		return name;
+	}
+
+	/**
+	 * set the Admin name
+	 * @param name of Admin
+	 */
+	public void setName(String name) {
+		this.name = name;
+	}
+	
+	/**
+	 * get the Admin userName
+	 * @return userName of Admin
+	 */
+	public String getUserName() {
+		return userName;
+	}
+	
+	/**
+	 * set the Admin userName
+	 * @param userName of Admin
+	 */
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
+	
+	/**
+	 * get the Admin password
+	 * @return password of Admin
+	 */
+	public String getPassword() {
+		return password;
+	}
+	
+	/**
+	 * set the Admin password
+	 * @param password of Admin
+	 */
+	public void setPassword(String password) {
+		this.password = password;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 
 }

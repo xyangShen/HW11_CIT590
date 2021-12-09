@@ -15,7 +15,7 @@ public class Professor {
 	/**
 	 * use an ArrayList to contain all the professors in the system
 	 */
-	public static ArrayList<Professor> PROFESSIORS = new ArrayList<Professor>();
+	public static ArrayList<Professor> PROFESSORS = new ArrayList<Professor>();
 	
 	
 	/**
@@ -68,10 +68,6 @@ public class Professor {
 	
 	
 	
-	
-	
-	
-	
 	//methods
 	// return the list of given courses names
 	public ArrayList<String> getTeachingCourses(){
@@ -84,6 +80,93 @@ public class Professor {
 		return null;
 		
 	}
+
+
+
+
+	/**
+	 * get the professor name
+	 * @return professor name
+	 */
+	public String getName() {
+		return name;
+	}
+
+
+
+	/**
+	 * set the professor name
+	 * @param name of professor
+	 */
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+
+
+	/**
+	 * get the professor id
+	 * @return id of professor
+	 */
+
+	public String getId() {
+		return id;
+	}
+
+
+
+	/**
+	 * set the professor id
+	 * @param id of professor
+	 */
+
+	public void setId(String id) {
+		this.id = id;
+	}
+
+
+
+	/**
+	 * get the professor userName
+	 * @return userName of professor
+	 */
+
+	public String getUserName() {
+		return userName;
+	}
+
+
+
+	/**
+	 * set the professor userName
+	 * @param userName of professor
+	 */
+
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
+
+
+	/**
+	 * get the professor password
+	 * @return password of professor
+	 */
+
+	public String getPassword() {
+		return password;
+	}
+
+
+	/**
+	 * set the professor password
+	 * @param password of professor
+	 */
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+	
 	
 	
 	

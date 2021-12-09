@@ -11,7 +11,6 @@ import java.util.Map;
 import java.util.Scanner;
 
 import courses.Course;
-import courses.Courses;
 import files.FileInfoReader;
 import roles.Student;
 
@@ -94,11 +93,26 @@ public class Controller {
 								// if the input password is right, successfully log into the student account
 								if(pw.equals(systemPW)) {
 									
-									// create the course instance
-									Courses course = new Courses();
+									// get the student in the student ArrayList
+									for (int i = 0; i < Student.STUDENTS.size(); i++) {
+										if (Student.STUDENTS.get(i).getUserName().equals(studentInput)) {
+											// create the student instance
+											Student student = new Student(
+													  Student.STUDENTS.get(i).getId(),
+													  Student.STUDENTS.get(i).getName(),
+													  Student.STUDENTS.get(i).getUserName(),
+													  Student.STUDENTS.get(i).getPassword(),
+													  Student.STUDENTS.get(i).getCourseMap());
+										}
+										
+										
+										
+									}
 									
-									// create the student instance with the username(input)
-									Student student = new Student(studentInput);
+									
+									
+									
+									
 									System.out.println("----------------------------");
 									System.out.println("Welcome, " + student.getName());
 									System.out.println("----------------------------");
@@ -195,8 +209,60 @@ public class Controller {
 						
 				//2--Login as a professor
 				if (userNum == 2) {
-					System.out.println("2");
+				// log in as professor or quit
+				System.out.println("Please enter your username, or typr 'q' to quit");			
+				String profInput = sc.next();
+				
+				if (profInput.equals("q")) {
+					// if quit, go back to the previous menu
 					continue;
+					}
+				else {
+					// get the user name and password in the file as a map
+					Map<String, String> profLoginInfo = new HashMap<String, String>();
+					profLoginInfo = FileInfoReader.LoginInfo("profInfo.txt");
+						
+					// if the input user name exist in the map
+						if(profLoginInfo.containsKey(profInput)) {							
+							// if there's matching username in the file, ask for the password
+							System.out.println("Please enter your password, or typr 'q' to quit");
+							String pw = sc.next();
+							// get the password stores in the file
+							String systemPW = profLoginInfo.get(profInput);
+							// if the input password is right, successfully log into the professor account
+							if(pw.equals(systemPW)) {
+								
+								// get the professor in the professor ArrayList
+								for (int i = 0; i < Professor.PROFESSORS.size(); i++) {
+									if (Professor.PROFESSORS.get(i).getUserName().equals(profInput)) {
+										// create the professor instance
+										Professor professor = new Student(
+												  Student.STUDENTS.get(i).getId(),
+												  Student.STUDENTS.get(i).getName(),
+												  Student.STUDENTS.get(i).getUserName(),
+												  Student.STUDENTS.get(i).getPassword(),
+												  Student.STUDENTS.get(i).getCourseMap());
+									}
+									
+									
+									
+								}
+									
+									
+									
+									
+									
+									System.out.println("----------------------------");
+									System.out.println("Welcome, " + student.getName());
+									System.out.println("----------------------------");
+																	
+									
+									System.out.println("1--View all courses");
+					
+					
+					
+					
+					
 					
 				}
 				
