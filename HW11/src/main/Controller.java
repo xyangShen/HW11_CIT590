@@ -138,7 +138,8 @@ public class Controller {
 											// if quit, go back to the previous menu
 											continue;
 											}
-										// course name already existed in the course list
+										// course name already existed in the student course list
+										Student.STUDENTS.contains(studentInput)
 										else if(student.getCourses().keySet().contains(studentInput)) {
 											System.out.println("The course you selected is already in your list");
 										}
