@@ -377,7 +377,7 @@ public class FileInfoReader {
  			String line;
  			
  			// variable to be as map
- 			Map<String, String> map = null;
+ 			Map<String, String> map = new HashMap<String, String>();
  					
  			// while there is a line to read
  			while((line = bufferedReader.readLine()) != null) {

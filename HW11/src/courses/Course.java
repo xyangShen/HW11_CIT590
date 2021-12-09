@@ -57,7 +57,12 @@ public class Course {
 	/**
 	 * capacity
 	 */
-	private String capacity;	
+	private String capacity;
+	
+	/**
+	 * the enrolled number
+	 */
+	private int enrolledNum = 0;
 
 	// constructor
 	/**
@@ -257,7 +262,21 @@ public class Course {
 	}
 	
 	
-	
+	/**
+	 * get the enrolled number of the course
+	 * @return course's enrolledNum
+	 */
+	public int getEnrolledNum() {
+		return enrolledNum;
+	}
+
+	/**
+	 * set the enrolled number of the course
+	 * @param enrolledNum course's enrolledNum increased when student get enrolledNum
+	 */
+	public void addEnrolledNum() {
+		this.enrolledNum ++;
+	}
 	
 	
 	
