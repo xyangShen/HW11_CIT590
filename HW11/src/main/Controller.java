@@ -94,11 +94,26 @@ public class Controller {
 								// if the input password is right, successfully log into the student account
 								if(pw.equals(systemPW)) {
 									
-									// create the course instance
-									Courses course = new Courses();
+									// get the student in the student ArrayList
+									for (int i = 0; i < Student.STUDENTS.size(); i++) {
+										if (Student.STUDENTS.get(i).getUserName().equals(studentInput)) {
+											// create the student instance
+											Student student = new Student(
+													  Student.STUDENTS.get(i).getId(),
+													  Student.STUDENTS.get(i).getName(),
+													  Student.STUDENTS.get(i).getUserName(),
+													  Student.STUDENTS.get(i).getPassword(),
+													  Student.STUDENTS.get(i).getCourseMap());
+										}
+										
+										
+										
+									}
 									
-									// create the student instance with the username(input)
-									Student student = new Student(studentInput);
+									
+									
+									
+									
 									System.out.println("----------------------------");
 									System.out.println("Welcome, " + student.getName());
 									System.out.println("----------------------------");

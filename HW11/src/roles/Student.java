@@ -69,6 +69,38 @@ public class Student {
 		this.password = password;
 		this.courseMap = courseMap;
 	}
-	
+
+
+	public String getId() {
+		return id;
+	}
+
+
+	public String getName() {
+		return name;
+	}
+
+
+
+	public String getUserName() {
+		return userName;
+	}
+
+
+
+	public String getPassword() {
+		return password;
+	}
+
+
+
+	public Map<String, String> getCourseMap() {
+		return courseMap;
+	}
+
+
 
 }
+
+
+
