@@ -418,22 +418,7 @@ public class FileInfoReader {
  		}
 
 }
-      }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+      
 }
 	
 	

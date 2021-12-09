@@ -16,11 +16,7 @@ public class Student {
 	// instance variables
 	
 	/**
-<<<<<<< HEAD
 	 * use an ArrayList to contain all the students in the system
-=======
-	 * map of the courses
->>>>>>> refs/remotes/origin/main
 	 */
 	public static ArrayList<Student> STUDENTS = new ArrayList<Student>();
 	
@@ -74,31 +70,6 @@ public class Student {
 		this.password = password;
 		this.courseMap = courseMap;
 	}
-	
-	
-		
-<<<<<<< HEAD
-	
-	
-	
-	
-	
-	
-	
-	
-
-	//methods
-	public Map<String, String> getCourses() {
-		return this.courses;
-=======
-		// call the methods from fileInfoReader to get the detailed information about this student
-		this.name = FileInfoReader.getName(Student.FILENAME, userName);
-		this.id = FileInfoReader.getID(Student.FILENAME, userName);
-		this.courses = FileInfoReader.getCourses(userName);
-		
->>>>>>> refs/remotes/origin/main
-	}
-
 	
 
 }
