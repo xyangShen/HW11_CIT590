@@ -131,6 +131,7 @@ public class Course {
 	public static boolean compareName(String addName, ArrayList<Course> COURSELIST) {
 		
 		if (COURSELIST.contains(addName)){
+			return null;
 			
 		}
 		
