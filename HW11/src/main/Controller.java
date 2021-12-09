@@ -94,89 +94,71 @@ public class Controller {
 								// if the input password is right, successfully log into the student account
 								if(pw.equals(systemPW)) {
 									
+									// create student instance 
+									Student student;
+									
 									// get the student in the student ArrayList
 									for (int i = 0; i < Student.STUDENTS.size(); i++) {
 										if (Student.STUDENTS.get(i).getUserName().equals(studentInput)) {
 											// create the student instance
-											Student student = new Student(
-													  Student.STUDENTS.get(i).getId(),
-													  Student.STUDENTS.get(i).getName(),
-													  Student.STUDENTS.get(i).getUserName(),
-													  Student.STUDENTS.get(i).getPassword(),
-													  Student.STUDENTS.get(i).getCourseMap());
-										}
-										
-										
-										
+											student = Student.STUDENTS.get(i);
+											break;
+													
+										}										
 									}
 									
-									
-									
-									
-									
+									// prints out information
 									System.out.println("----------------------------");
 									System.out.println("Welcome, " + student.getName());
 									System.out.println("----------------------------");
-																	
-									
 									System.out.println("1--View all courses");
 									System.out.println("2--Add courses to your list");
-									// view courses enrolled
 									System.out.println("3--View enrolled courses");
-									// drop courses
 									System.out.println("4--Drop courses in your list");
-									// view grades
 									System.out.println("5--View grades");
-									// return to previous menu
 									System.out.println("6--Return to previous menu");
-									
-									System.out.println("Please enter your option, eg.'1'");
-									
+									System.out.println("Please enter your option, eg.'1'");																		
 									// get the user input
 									int inputS = sc.nextInt();
+									
+									
 									// view course information
 									if (inputS == 1) {
-										List<String> coursesInfo = Courses.getAllCoursesInfo("courseInfo.txt");
+										
+										List<String> coursesInfo = FileInfoReader.getAllCoursesInfo();
+										
 								        // print all the information line by line
 										coursesInfo.forEach(System.out::println);
 		
 									}
 									
+									// Add courses to your list
 									if (inputS == 2) {
-										// add courses
+										
+										// ask for the student to input courses which needed to be added
 										System.out.println("Please select the course ID you want to add to your list, eg. 'CIT590'. "
 												+ "\\r\\nOr enter 'q' to return to the previous menu");
+										String inputCourse = sc.next();
 										
-										studentInput = sc.next();
 										
 										if (studentInput.equals("q")) {
 											// if quit, go back to the previous menu
 											continue;
 											}
-										// course name already existed in the course list
-										else if(student.getCourses().keySet().contains(studentInput)) {
-											System.out.println("The course you selected is already in your list");
-										}
-										// course name is new and in the system
-										else if(Course.COURSELIST.contains(studentInput)){
-											// time conflict
-											if () {
-												
-											}
-											
-										}
-										// course name doesn't exist in the system
-										else {
-											// do nothing
-											continue;
-										}	
-											
-											
-											
-										}	
-										}
 										
+										
+										// course name already existed in the course list
+										else {
+											
+											// call the add course method in the student class
+											student.addCourse(inputCourse);
+											
+											continue;
+											}
+										}	
 									}
+										
+							}
 									
 									
 									
