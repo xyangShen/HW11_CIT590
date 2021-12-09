@@ -12,6 +12,8 @@ import java.util.Scanner;
 
 import courses.Course;
 import files.FileInfoReader;
+import roles.Admin;
+import roles.Professor;
 import roles.Student;
 
 /**
@@ -93,65 +95,59 @@ public class Controller {
 								// if the input password is right, successfully log into the student account
 								if(pw.equals(systemPW)) {
 									
+									// create student instance 
+									Student student;
+									
 									// get the student in the student ArrayList
 									for (int i = 0; i < Student.STUDENTS.size(); i++) {
 										if (Student.STUDENTS.get(i).getUserName().equals(studentInput)) {
 											// create the student instance
-											Student student = new Student(
-													  Student.STUDENTS.get(i).getId(),
-													  Student.STUDENTS.get(i).getName(),
-													  Student.STUDENTS.get(i).getUserName(),
-													  Student.STUDENTS.get(i).getPassword(),
-													  Student.STUDENTS.get(i).getCourseMap());
-										}
-										
-										
-										
+											student = Student.STUDENTS.get(i);
+											break;
+													
+										}										
 									}
 									
-									
-									
-									
-									
+									// prints out information
 									System.out.println("----------------------------");
 									System.out.println("Welcome, " + student.getName());
 									System.out.println("----------------------------");
-																	
-									
 									System.out.println("1--View all courses");
 									System.out.println("2--Add courses to your list");
-									// view courses enrolled
 									System.out.println("3--View enrolled courses");
-									// drop courses
 									System.out.println("4--Drop courses in your list");
-									// view grades
 									System.out.println("5--View grades");
-									// return to previous menu
 									System.out.println("6--Return to previous menu");
-									
-									System.out.println("Please enter your option, eg.'1'");
-									
+									System.out.println();
+									System.out.println("Please enter your option, eg.'1'");																		
 									// get the user input
 									int inputS = sc.nextInt();
+									
+									
 									// view course information
 									if (inputS == 1) {
-										List<String> coursesInfo = Courses.getAllCoursesInfo("courseInfo.txt");
+										
+										List<String> coursesInfo = FileInfoReader.getAllCoursesInfo();
+										
 								        // print all the information line by line
 										coursesInfo.forEach(System.out::println);
 		
 									}
 									
+									// Add courses to your list
 									if (inputS == 2) {
-										// add courses
+										
+										// ask for the student to input courses which needed to be added
 										System.out.println("Please select the course ID you want to add to your list, eg. 'CIT590'. "
 												+ "\\r\\nOr enter 'q' to return to the previous menu");
+										String inputCourse = sc.next();
 										
-										studentInput = sc.next();
 										
 										if (studentInput.equals("q")) {
 											// if quit, go back to the previous menu
 											continue;
 											}
+<<<<<<< HEAD
 										// course name already existed in the student course list
 										Student.STUDENTS.contains(studentInput)
 										else if(student.getCourses().keySet().contains(studentInput)) {
@@ -175,8 +171,22 @@ public class Controller {
 											
 										}	
 										}
+=======
+>>>>>>> branch 'main' of https://github.com/xyangShen/HW11_CIT590.git
 										
+										
+										// course name already existed in the course list
+										else {
+											
+											// call the add course method in the student class
+											student.addCourse(inputCourse);
+											
+											continue;
+											}
+										}	
 									}
+										
+							}
 									
 									
 									
@@ -232,47 +242,99 @@ public class Controller {
 							// if the input password is right, successfully log into the professor account
 							if(pw.equals(systemPW)) {
 								
+								// create professor instance 
+								Professor professor;
+								
 								// get the professor in the professor ArrayList
 								for (int i = 0; i < Professor.PROFESSORS.size(); i++) {
 									if (Professor.PROFESSORS.get(i).getUserName().equals(profInput)) {
 										// create the professor instance
-										Professor professor = new Student(
-												  Student.STUDENTS.get(i).getId(),
-												  Student.STUDENTS.get(i).getName(),
-												  Student.STUDENTS.get(i).getUserName(),
-												  Student.STUDENTS.get(i).getPassword(),
-												  Student.STUDENTS.get(i).getCourseMap());
-									}
-									
-									
-									
-								}
-									
+										professor = Professor.PROFESSORS.get(i);
+										break;
+												
+									}			
 									
 									
 									
 									
 									System.out.println("----------------------------");
-									System.out.println("Welcome, " + student.getName());
+									System.out.println("Welcome, " + professor.getName());
 									System.out.println("----------------------------");
 																	
+									System.out.println("1--View given courses");
+									System.out.println("2--View student list of the given course");
+									System.out.println("3--Return to the previous menu");
+									System.out.println();
+									System.out.println("Please enter your option, eg.'1'");
+									// get the professor input
+									int inputP = sc.nextInt();
 									
-									System.out.println("1--View all courses");
-					
-					
-					
-					
+									
+									
 					
 					
 				}
 				
 				//3--Login as an admin
 				if(userNum == 3) {
-					System.out.println("3");
-					continue;
-					
-				}
+				// log in as admin or quit
+				System.out.println("Please enter your username, or typr 'q' to quit");			
+				String adminInput = sc.next();
 				
+				if (adminInput.equals("q")) {
+					// if quit, go back to the previous menu
+					continue;
+					}
+				else {
+					// get the user name and password in the file as a map
+					Map<String, String> adminLoginInfo = new HashMap<String, String>();
+					adminLoginInfo = FileInfoReader.LoginInfo("adminInfo.txt");
+						
+					// if the input user name exist in the map
+						if(adminLoginInfo.containsKey(adminInput)) {							
+							// if there's matching userName in the file, ask for the password
+							System.out.println("Please enter your password, or typr 'q' to quit");
+							String pw = sc.next();
+							// get the password stores in the file
+							String systemPW = adminLoginInfo.get(adminInput);
+							// if the input password is right, successfully log into the admin account
+							if(pw.equals(systemPW)) {
+								
+								// create admin instance 
+								Admin admin;
+								
+								// get the admin in the admin ArrayList
+								for (int i = 0; i < Admin.ADMINS.size(); i++) {
+									if (Admin.ADMINS.get(i).getUserName().equals(adminInput)) {
+										// create the admin instance
+										admin = Admin.ADMINS.get(i);
+										break;
+												
+									}			
+									
+									
+									
+									
+									System.out.println("----------------------------");
+									System.out.println("Welcome, " + admin.getName());
+									System.out.println("----------------------------");
+																	
+									System.out.println("1--View all courses");
+									System.out.println("2--Add new courses");
+									System.out.println("3--Delete courses");
+									System.out.println("4--Add new professor");
+									System.out.println("5--Delete professor");
+									System.out.println("6--Add new student");
+									System.out.println("7--Delete student");
+									System.out.println("8--Return to the previous menu");
+									System.out.println();
+									System.out.println("Please enter your option, eg.'1'");	
+									// get the admin input
+									int inputA = sc.nextInt();	
+						
+						
+					}
+					
 				// 4--Quit the system
 				if (userNum == 4) {
 					// break the while loop
