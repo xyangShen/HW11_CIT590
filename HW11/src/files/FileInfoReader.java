@@ -273,7 +273,7 @@ public class FileInfoReader {
 				    // string array for each line to store the information
 					String[] cInfo = line.split("; ");
 						
-					// if it is the given course
+					// if it is the given course with the given id
 					if(courseID.equals(cInfo[0])) {
 						// get the whole line for this course
 						courseInfo = line;
