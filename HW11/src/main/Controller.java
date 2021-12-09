@@ -191,10 +191,7 @@ public class Controller {
 							}
 						}
 						
-					
-					}
-			
-				
+						
 				//2--Login as a professor
 				if (userNum == 2) {
 					System.out.println("2");
@@ -214,29 +211,27 @@ public class Controller {
 					// break the while loop
 					break;
 				} 
-				
+						
 				// if the input is integers but not 1, 2, 3, 4
 				else {
 					System.out.println("invalid input");
 					continue;
 				}
-				
+						
 				// if the input is not integers
 			}catch(Exception e) {
 				// prints out the error input and ask for input again
 				System.out.println("invalid input");
 				continue;
-				}
-			
 			}
-	
+	}			
+			
 		System.out.println("-------System closed-------");
 		System.out.println("----------------------------");
 		
 		
-		}
+}
 		
 	
-}
 
 		

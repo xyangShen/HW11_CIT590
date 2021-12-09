@@ -131,12 +131,146 @@ public class Course {
 	public static boolean compareName(String addName, ArrayList<Course> COURSELIST) {
 		
 		if (COURSELIST.contains(addName)){
-			return null;
+			return false;
 			
 		}
+		return false;
 		
 		
 		
 	}
+
+	// getter and setter methods
+	
+	/**
+	 * get the course id
+	 * @return course id
+	 */
+	public String getId() {
+		return id;
+	}
+
+	/**
+	 * set the course id
+	 * @param id course id from file or input
+	 */
+	public void setId(String id) {
+		this.id = id;
+	}
+
+	/**
+	 * get the course name
+	 * @return course name
+	 */
+	public String getName() {
+		return name;
+	}
+
+	/**
+	 * set the course name
+	 * @param name course name from file or input
+	 */
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	/**
+	 * get the course lecturer
+	 * @return course lecturer
+	 */
+	public String getLecturer() {
+		return lecturer;
+	}
+
+	/**
+	 * set the course lecturer
+	 * @param lecturer the course lecturer from file or input
+	 */
+	public void setLecturer(String lecturer) {
+		this.lecturer = lecturer;
+	}
+
+
+	/**
+	 * get the course days
+	 * @return course days
+	 */
+	public String getDays() {
+		return days;
+	}
+
+	/**
+	 * set the course days
+	 * @param days the course days from file or input
+	 */
+	public void setDays(String days) {
+		this.days = days;
+	}
+
+	/**
+	 * get the startTime of the course
+	 * @return the course's startTime
+	 */
+	public String getStartTime() {
+		return startTime;
+	}
+
+	/**
+	 * set the startTime of the course
+	 * @param startTime the course's startTime from file or input
+	 */
+	public void setStartTime(String startTime) {
+		this.startTime = startTime;
+	}
+
+	/**
+	 * get the endTime of the course
+	 * @return the course's endTime
+	 */
+	public String getEndTime() {
+		return endTime;
+	}
+
+	
+	/**
+	 * set the endTime of the course
+	 * @param endTime the course's endTime from file or input
+	 */
+	public void setEndTime(String endTime) {
+		this.endTime = endTime;
+	}
+
+	/**
+	 * get the capacity of the course
+	 * @return course's capacity
+	 */
+	public String getCapacity() {
+		return capacity;
+	}
+
+	/**
+	 * set the capacity of the course
+	 * @param capacity course's capacity from file or input
+	 */
+	public void setCapacity(String capacity) {
+		this.capacity = capacity;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 
 }

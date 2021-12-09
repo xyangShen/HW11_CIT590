@@ -277,20 +277,27 @@ public class FileInfoReader {
 			// while there is a line to read
 			while((line = bufferedReader.readLine()) != null) {
 				
-				//update the line with the right format
-				String newLine = new String();
+				// iterate over each course
+				for(int i = 0; i < Course.COURSELIST.size(); i++) {
+					
 				
-				// string array for each line to store the information
-				String[] userInfo = line.split("; ");
+				//update the line with the right format
+				String newLine = new String();	
 				
 				// count the number of enrolled students
 				int enrolled = 0;
 				
+				// get the instance of course(i)
+				Course c = Course.COURSELIST.get(i);
+				
 				// update the new line
-				newLine = userInfo[0] + "|" + userInfo[1] + ", " + userInfo[4] + "-" + userInfo[5] + " on " + userInfo[3] + ", " + "with course capacity: " + userInfo[6] + ", students: " + enrolled + ", lecturer: Professior " + userInfo[2];                                       
-				name.add(userInfo[0]);		
+				newLine = c.getId()  + "|" + c.getName() + ", " + c.getStartTime() + "-" + c.getEndTime() + " on " + c.getDays() + ", " + "with course capacity: " + c.getCapacity() + ", students: " + enrolled + ", lecturer: Professior " + c.getLecturer(); 
+				
 				// add all the lines to the ArrayList
 				allCoursesInfo.add(newLine); 
+				
+				
+				}
 				}
 			
 		} catch (FileNotFoundException e) {
@@ -303,9 +310,6 @@ public class FileInfoReader {
 		
 		
 		return allCoursesInfo;
-		
-		
-		
 		
 	}
 	
@@ -382,7 +386,7 @@ public class FileInfoReader {
  			String line;
  			
  			// variable to be as map
- 			Map<String, String> map;
+ 			Map<String, String> map = null;
  					
  			// while there is a line to read
  			while((line = bufferedReader.readLine()) != null) {
