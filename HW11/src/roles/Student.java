@@ -74,30 +74,76 @@ public class Student {
 		this.courseMap = courseMap;
 	}
 
-
+<<<<<<< HEAD
+	// getter and setter
+	/**
+	 * get the student id
+	 * @return student id
+	 */
 	public String getId() {
 		return id;
 	}
 
+	/**
+	 * set the student id
+	 * @param id
+	 */
+	public void setId(String id) {
+		this.id = id;
+	}
 
+	/**
+	 * get the student name
+	 * @return student's name
+	 */
 	public String getName() {
 		return name;
 	}
 
+	/**
+	 * set the student name
+	 * @param name of student
+	 */
+	public void setName(String name) {
+		this.name = name;
+	}
 
-
+	/**
+	 * get the student's userName
+	 * @return userName of student
+	 */
 	public String getUserName() {
 		return userName;
 	}
 
+	/**
+	 * set the student's userName
+	 * @param userName of student
+	 */
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
 
-
+	/**
+	 * get the student's password
+	 * @return the password of student
+	 */
 	public String getPassword() {
 		return password;
 	}
 
+	/**
+	 * set the student's password
+	 * @param password of student
+	 */
+	public void setPassword(String password) {
+		this.password = password;
+	}
 
-
+	/**
+	 * get the student's courseMap
+	 * @return courseMap of student
+	 */
 	public Map<String, String> getCourseMap() {
 		return courseMap;
 	}
@@ -164,7 +210,16 @@ public class Student {
 		
 	}
 
-
+	/**
+	 * set the student's courseMap 
+	 * @param courseMap of student
+	 */
+	public void setCourseMap(Map<String, String> courseMap) {
+		this.courseMap = courseMap;
+	}
+	
+	
+   
 
 }
 

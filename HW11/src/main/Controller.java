@@ -11,8 +11,9 @@ import java.util.Map;
 import java.util.Scanner;
 
 import courses.Course;
-import courses.Courses;
 import files.FileInfoReader;
+import roles.Admin;
+import roles.Professor;
 import roles.Student;
 
 /**
@@ -117,6 +118,7 @@ public class Controller {
 									System.out.println("4--Drop courses in your list");
 									System.out.println("5--View grades");
 									System.out.println("6--Return to previous menu");
+									System.out.println();
 									System.out.println("Please enter your option, eg.'1'");																		
 									// get the user input
 									int inputS = sc.nextInt();
@@ -145,6 +147,32 @@ public class Controller {
 											// if quit, go back to the previous menu
 											continue;
 											}
+<<<<<<< HEAD
+										// course name already existed in the student course list
+										Student.STUDENTS.contains(studentInput)
+										else if(student.getCourses().keySet().contains(studentInput)) {
+											System.out.println("The course you selected is already in your list");
+										}
+										// course name is new and in the system
+										else if(Course.COURSELIST.contains(studentInput)){
+											// time conflict
+											if () {
+												
+											}
+											
+										}
+										// course name doesn't exist in the system
+										else {
+											// do nothing
+											continue;
+										}	
+											
+											
+											
+										}	
+										}
+=======
+>>>>>>> branch 'main' of https://github.com/xyangShen/HW11_CIT590.git
 										
 										
 										// course name already existed in the course list
@@ -186,18 +214,122 @@ public class Controller {
 						
 				//2--Login as a professor
 				if (userNum == 2) {
-					System.out.println("2");
+				// log in as professor or quit
+				System.out.println("Please enter your username, or typr 'q' to quit");			
+				String profInput = sc.next();
+				
+				if (profInput.equals("q")) {
+					// if quit, go back to the previous menu
 					continue;
+					}
+				else {
+					// get the user name and password in the file as a map
+					Map<String, String> profLoginInfo = new HashMap<String, String>();
+					profLoginInfo = FileInfoReader.LoginInfo("profInfo.txt");
+						
+					// if the input user name exist in the map
+						if(profLoginInfo.containsKey(profInput)) {							
+							// if there's matching username in the file, ask for the password
+							System.out.println("Please enter your password, or typr 'q' to quit");
+							String pw = sc.next();
+							// get the password stores in the file
+							String systemPW = profLoginInfo.get(profInput);
+							// if the input password is right, successfully log into the professor account
+							if(pw.equals(systemPW)) {
+								
+								// create professor instance 
+								Professor professor;
+								
+								// get the professor in the professor ArrayList
+								for (int i = 0; i < Professor.PROFESSORS.size(); i++) {
+									if (Professor.PROFESSORS.get(i).getUserName().equals(profInput)) {
+										// create the professor instance
+										professor = Professor.PROFESSORS.get(i);
+										break;
+												
+									}			
+									
+									
+									
+									
+									System.out.println("----------------------------");
+									System.out.println("Welcome, " + professor.getName());
+									System.out.println("----------------------------");
+																	
+									System.out.println("1--View given courses");
+									System.out.println("2--View student list of the given course");
+									System.out.println("3--Return to the previous menu");
+									System.out.println();
+									System.out.println("Please enter your option, eg.'1'");
+									// get the professor input
+									int inputP = sc.nextInt();
+									
+									
+									
+					
 					
 				}
 				
 				//3--Login as an admin
 				if(userNum == 3) {
-					System.out.println("3");
-					continue;
-					
-				}
+				// log in as admin or quit
+				System.out.println("Please enter your username, or typr 'q' to quit");			
+				String adminInput = sc.next();
 				
+				if (adminInput.equals("q")) {
+					// if quit, go back to the previous menu
+					continue;
+					}
+				else {
+					// get the user name and password in the file as a map
+					Map<String, String> adminLoginInfo = new HashMap<String, String>();
+					adminLoginInfo = FileInfoReader.LoginInfo("adminInfo.txt");
+						
+					// if the input user name exist in the map
+						if(adminLoginInfo.containsKey(adminInput)) {							
+							// if there's matching userName in the file, ask for the password
+							System.out.println("Please enter your password, or typr 'q' to quit");
+							String pw = sc.next();
+							// get the password stores in the file
+							String systemPW = adminLoginInfo.get(adminInput);
+							// if the input password is right, successfully log into the admin account
+							if(pw.equals(systemPW)) {
+								
+								// create admin instance 
+								Admin admin;
+								
+								// get the admin in the admin ArrayList
+								for (int i = 0; i < Admin.ADMINS.size(); i++) {
+									if (Admin.ADMINS.get(i).getUserName().equals(adminInput)) {
+										// create the admin instance
+										admin = Admin.ADMINS.get(i);
+										break;
+												
+									}			
+									
+									
+									
+									
+									System.out.println("----------------------------");
+									System.out.println("Welcome, " + admin.getName());
+									System.out.println("----------------------------");
+																	
+									System.out.println("1--View all courses");
+									System.out.println("2--Add new courses");
+									System.out.println("3--Delete courses");
+									System.out.println("4--Add new professor");
+									System.out.println("5--Delete professor");
+									System.out.println("6--Add new student");
+									System.out.println("7--Delete student");
+									System.out.println("8--Return to the previous menu");
+									System.out.println();
+									System.out.println("Please enter your option, eg.'1'");	
+									// get the admin input
+									int inputA = sc.nextInt();	
+						
+						
+					}
+					
 				// 4--Quit the system
 				if (userNum == 4) {
 					// break the while loop
