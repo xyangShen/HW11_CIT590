@@ -10,6 +10,8 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
+import roles.Student;
+
 /**
  * Represents courses in the system
  * @author Xinyang Shen
@@ -63,6 +65,13 @@ public class Course {
 	 * the enrolled number
 	 */
 	private int enrolledNum = 0;
+	
+	/**
+	 * the arrayList of students who get enrolled in the class
+	 */
+	public ArrayList<Student> addStudent = new ArrayList<Student>();
+	
+	
 
 	// constructor
 	/**
@@ -87,51 +96,7 @@ public class Course {
 	}
 
 	
-	// methods
-	/**
-	 * compare the course time
-	 * @param addCourse means the course user wants to add
-	 * @param enrolledCourses means the user's enrolled course
-	 * @return if there is no time conflict, returns true; else returns false;
-	 */
-	public static boolean compareTime(Course addCourse, ArrayList<Course> enrolledCourses) {
-		//create a dateFormatTranslator
-		SimpleDateFormat sdf=new SimpleDateFormat("hh:mm");
-		
-		try {
-			//change the start_time string to the date
-			Date x = sdf.parse(addCourse.startTime);
-			//change the end_time string to the date
-			Date y = sdf.parse(addCourse.endTime);
-			
-			for(int i = 0;i < enrolledCourses.size(); i ++){
-	            Course course = enrolledCourses.get(i);
-	            //change the start_time string to the date
-	            Date a = sdf.parse(course.startTime);
-				//change the end_time string to the date
-				Date b= sdf.parse(course.endTime);
-				
-				//change the date to millisecond and compare
-				// this condition means time conflicts
-				if(!(x.getTime()-b.getTime() >= 0 || a.getTime()-y.getTime() >= 0))
-					return false;
-				else
-					continue;   
-	            
-	            
-	        }
-			// if can pass the for-loop meaning that no time conflict
-			return true;
-						
-		} catch (ParseException e) {
-			
-			e.printStackTrace();
-		}
-		return false;
-		
-	
-	}	
-	
+
 	
 	public static boolean compareName(String addName, ArrayList<Course> COURSELIST) {
 		
@@ -277,6 +242,116 @@ public class Course {
 	public void addEnrolledNum() {
 		this.enrolledNum ++;
 	}
+	
+	
+	// other method
+
+	
+		/**
+		 * compare the course time
+		 * @param addCourse means the course user wants to add
+		 * @param enrolledCourses means the user's enrolled course
+		 * @return if there is no time conflict, returns true; else returns false;
+		 */
+		public boolean noTimeConflict(Student student, Course addCourse, ArrayList<Course> enrolledCourses) {
+			
+			// get all the course in the same day
+			ArrayList<Course> sameDayCourse = new ArrayList<Course>();
+			
+
+			// iterate over the enrolledCourses list, gets the lecture day for each course and compare with the add Course
+			for(int i = 0; i < student.getEnrolledCourses().size(); i++) {
+				
+				if(student.getEnrolledCourses().get(i).getDays().equals(addCourse.getDays())){
+					
+					// if on the same day, then add to the list
+					sameDayCourse.add(student.getEnrolledCourses().get(i));
+				
+				}	
+			}
+			
+	
+			// then compare the start time and end time for those course in the same day
+			
+			//create a dateFormatTranslator
+			SimpleDateFormat sdf=new SimpleDateFormat("hh:mm");
+			
+			try {
+				
+				//change the start_time string to the date
+				Date x = sdf.parse(addCourse.startTime);
+				
+				//change the end_time string to the date
+				Date y = sdf.parse(addCourse.endTime);
+				
+				for(int i = 0;i < sameDayCourse.size(); i ++){
+					
+		            Course course = sameDayCourse.get(i);
+		            
+		            //change the start_time string to the date
+		            Date a = sdf.parse(course.startTime);
+		            
+					//change the end_time string to the date
+					Date b= sdf.parse(course.endTime);
+					
+					//change the date to millisecond and compare
+					
+					// this condition means time conflicts
+					if(!(x.getTime()-b.getTime() >= 0 || a.getTime()-y.getTime() >= 0))
+						return false;
+					else
+						continue;   
+		            
+		            
+		        }
+				
+				// if can pass the for-loop meaning that no time conflict
+				return true;
+							
+			} catch (ParseException e) {
+				
+				e.printStackTrace();
+				return false;
+				
+			}
+			
+		
+		}
+		
+        
+		/**
+		 * get the arrayList of enrolled students
+		 * @return a list of enrolled students
+		 */
+		public ArrayList<Student> getAddStudent() {
+			return addStudent;
+		}
+
+		
+		/**
+		 * updates the arrayList
+		 * @param addStudent the list of enrolled students
+		 */
+		public void setAddStudent(ArrayList<Student> addStudent) {
+			this.addStudent = addStudent;
+		}
+
+		
+			//if (!this.addStudent.contains(student)) {
+			//	this.addStudent.add(student);}
+		
+
+		/**
+		 * print the course with given format
+		 */
+
+		public String toString() {
+			return this.getId()  + "|" + this.getName() + ", " + this.getStartTime() + "-" + this.getEndTime() + " on " + this.getDays() + ", " + "with course capacity: " + this.getCapacity() + ", students: " + this.getEnrolledNum() + ", lecturer: Professior " + this.getLecturer(); 
+			
+		}
+
+		
+		
 	
 	
 	

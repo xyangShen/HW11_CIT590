@@ -49,15 +49,10 @@ public class Student {
 	 */
 	private ArrayList<Course> enrolledCourses = new ArrayList<Course>();
 	
-	// static variables
-	
-	/**
-	 * name of the student file
-	 */
-	static String FILENAME = "studentInfo.txt";
 	
 	
 	// constructor
+	
 	/**
 	 * create a student with his/her given features
 	 * @param id
@@ -74,7 +69,7 @@ public class Student {
 		this.courseMap = courseMap;
 	}
 
-<<<<<<< HEAD
+
 	// getter and setter
 	/**
 	 * get the student id
@@ -148,8 +143,37 @@ public class Student {
 		return courseMap;
 	}
 	
+	/**
+	 * set the student's courseMap 
+	 * @param courseMap of student
+	 */
+	public void setCourseMap(Map<String, String> courseMap) {
+		this.courseMap = courseMap;
+	}
+	
+	
+
+	
+	/**
+	 * get student's enrolled courses list
+	 * @return
+	 */
+	public ArrayList<Course> getEnrolledCourses() {
+		return enrolledCourses;
+	}
+	
 	
 	// other method
+
+
+	/**
+	 * view the enrolled course information of a student
+	 */
+	public void viewEnrolledCourses() {
+		
+		// it
+		
+	}
 	
 	
 	/**
@@ -190,22 +214,51 @@ public class Student {
 		// initiate enrolled courses arraylist
 		this.addEnrolledCourse();
 		
-		// if the course already exist in the courseMap as a key
+		boolean isCourseExist = false;
 		
-		
+		// iterate over all course list to check if the course is in the course list
+		for(int i = 0; i < Course.COURSELIST.size(); i++) {
+			
+			if(Course.COURSELIST.get(i).getId().equals(courseID)) {
+				
+				Course addCourse = Course.COURSELIST.get(i);
+				
+				// change the isCourseExist value to true
+				isCourseExist = true;
+				
+				// iterate over the enrolled course arraylist to check if the course has been enrolled before
+				for (int j = 1; j < this.enrolledCourses.size(); j++) {
+					
+					// if the course already exist in the enrolledCourse ArrayList
+					if(this.enrolledCourses.get(j).getId().equals(courseID)) {
+						System.out.println("The course you selected is already in your list");
+					}
+					
+					// if this course has not been chosen before
+					else {
+						
+						// check if there's a time conflict with other course					
+						if (addCourse.noTimeConflict(this, addCourse, this.enrolledCourses) == false) {
+							System.out.println();
+							
+						}
+						else {
+							// if there's no time conflict
+						}
+													
+					}					
+				}
+				
+			} 			
+		}
+			
+		// if the course does not exist, print out message
+		if(isCourseExist == false) {
+			System.out.println("Course not found.");
+		}
 		
 	}
 
-	/**
-	 * set the student's courseMap 
-	 * @param courseMap of student
-	 */
-	public void setCourseMap(Map<String, String> courseMap) {
-		this.courseMap = courseMap;
-	}
-	
-	
-   
 
 }
 

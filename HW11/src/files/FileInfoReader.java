@@ -13,6 +13,7 @@ import java.util.Map;
 import java.util.Scanner;
 
 import courses.Course;
+import roles.Admin;
 import roles.Professor;
 import roles.Student;
 
@@ -356,6 +357,7 @@ public class FileInfoReader {
 		
 }
      
+     
      /**
  	  * load the file content to the ArrayList of students
  	  * @param fileName
@@ -414,6 +416,7 @@ public class FileInfoReader {
  		}
       
      
+      
       /**
        * load the file content to the ArrayList of professors
        */
@@ -440,10 +443,10 @@ public class FileInfoReader {
   				// string array for each line to store the information
   				String[] proInfo = line.split("; ");
   				
-  				// create the course with given information from file
+  				// create the professor with given information from file
   				Professor p = new Professor(proInfo[0], proInfo[1], proInfo[2], proInfo[3]);
   			
-  				// add each course to the ArrayList
+  				// add each professor to the ArrayList
   				Professor.PROFESSORS.add(p);
   				}
   			
@@ -456,6 +459,7 @@ public class FileInfoReader {
   		}
   		
   }
+       
        
        /**
         * load the file content to the ArrayList of admins
@@ -483,11 +487,10 @@ public class FileInfoReader {
      				// string array for each line to store the information
      				String[] adminInfo = line.split("; ");
      				
-     				// create the course with given information from file
-     				Professor p = new Professor(adminInfo[0], adminInfo[1], adminInfo[2], adminInfo[3]);
-     			
-     				// add each course to the ArrayList
-     				Professor.PROFESSORS.add(p);
+     				// create the admin with given information from file
+     				Admin a = new Admin(adminInfo[0], adminInfo[1], adminInfo[2], adminInfo[3]);
+     				// add each admin to the ArrayList
+     				Admin.ADMINS.add(a);
      				}
      			
      		} catch (FileNotFoundException e) {
@@ -496,13 +499,8 @@ public class FileInfoReader {
      		} catch (IOException e) {
      			System.out.println("IOException");
      			e.printStackTrace();
-     		}
-     		
-     }
-       
-       
-       
-      
+     		}     		
+     } 
       
 }
 	

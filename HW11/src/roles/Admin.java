@@ -37,10 +37,6 @@ public class Admin{
 	private String password;
 	
 	
-	// static variable
-	
-	static String FILENAME = "adminInfo";
-
 	// constructor
 	/**
 	 * create an admin with its given features
