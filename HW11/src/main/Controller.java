@@ -81,6 +81,9 @@ public class Controller {
 									// create student instance 
 									Student student;
 									
+									// initiate enrolled courses arraylist
+									student.addEnrolledCourse(student);
+									
 									// get the student in the student ArrayList
 									for (int i = 0; i < Student.STUDENTS.size(); i++) {
 										if (Student.STUDENTS.get(i).getUserName().equals(studentInput)) {
@@ -161,23 +164,33 @@ public class Controller {
 										
 										else {
 											// call the add course method in the student class
-											student.addCourse(inputCourse);								
+											student.dropCourse(inputCourse);								
 											continue;
-											}
+											}		
+									}
+
+
+									// "5--View grades"
+									if(inputS == 5) {
+										System.out.println("Here are the courses you already taken, with your grade in letter format");
+										student.viewGrade();
 										
 									}
+									
+									// 6--Return to previous menu
+									if(inputS == 6) {
+										continue;
 										
-									
-										
-									
-									
-							
-								}
+									}
+								
+									}
 								else {
 									// if the password in not correct, get back to the previous menu
 									System.out.println("Password incorrect.");
 									continue;	
 								}
+							
+				
 								}
 							else {
 								// if the student username is not in the file, get back to the previous menu
@@ -187,7 +200,9 @@ public class Controller {
 						}
 				}
 						
-						
+	
+			
+			
 				//2--Login as a professor
 				if (userNum == 2) {
 				// log in as professor or quit

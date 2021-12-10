@@ -1,6 +1,7 @@
 package roles;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.Map;
 
 import courses.Course;
@@ -166,21 +167,13 @@ public class Student {
 	// other method
 
 
-	/**
-	 * view the enrolled course information of a student
-	 */
-	public void viewEnrolledCourses() {
-		
-		// it
-		
-	}
-	
+
 	
 	/**
 	 * add the enrolled courses from the hashmap into arraylist 
 	 * convert string to course
 	 */
-	private void addEnrolledCourse() {
+	public void addEnrolledCourse(Student student) {
 		
 		//iterate over all the keys in the courseMap
 		for (Map.Entry<String, String> set: courseMap.entrySet()) {
@@ -205,15 +198,12 @@ public class Student {
 	
 	
 	/**
-	 * add a course in the student's course list
-	 * 
-	 * @param courseID
+	 * add a course in the student's course list(enrolled courses list)
+	 * @param courseID, the id of a course to add
 	 */
 	public void addCourse(String courseID) {
-		
-		// initiate enrolled courses arraylist
-		this.addEnrolledCourse();
-		
+	
+		// set a boolean value to track if a course exist or not
 		boolean isCourseExist = false;
 		
 		// iterate over all course list to check if the course is in the course list
@@ -230,7 +220,7 @@ public class Student {
 				for (int j = 1; j < this.enrolledCourses.size(); j++) {
 					
 					// if the course already exist in the enrolledCourse ArrayList
-					if(this.enrolledCourses.get(j).getId().equals(courseID)) {
+					if(this.enrolledCourses.get(j).equals(addCourse)) {
 						System.out.println("The course you selected is already in your list");
 					}
 					
@@ -239,11 +229,17 @@ public class Student {
 						
 						// check if there's a time conflict with other course					
 						if (addCourse.noTimeConflict(this, addCourse, this.enrolledCourses) == false) {
-							System.out.println();
+							System.out.println("The course you selected has time conflict with other courses: ");
 							
+							// iterate over time conflict courses and print the course id and name
+							for(int a = 0; a < addCourse.getConflictCourses().size(); a++) {
+								System.out.println(addCourse.getConflictCourses().get(a).getId() + addCourse.getConflictCourses().get(a).getName());
+							}			
 						}
+						
 						else {
 							// if there's no time conflict
+							this.enrolledCourses.add(addCourse);
 						}
 													
 					}					
@@ -255,6 +251,82 @@ public class Student {
 		// if the course does not exist, print out message
 		if(isCourseExist == false) {
 			System.out.println("Course not found.");
+		}
+		
+	}
+	
+	/**
+	 * view the enrolled course information of a student
+	 */
+	public void viewEnrolledCourses() {
+		
+		// iterate over the enrolled courses list and print out each course
+		for(int i = 0; i < this.enrolledCourses.size(); i++) {
+			
+			// print out the information for each course
+			System.out.println(this.enrolledCourses.get(i));
+		}
+		
+	}
+	
+	/**
+	 * delete a course from the student course list (enrolled courses list)
+	 * @param courseID, the id of a course to drop
+	 */
+	public void dropCourse(String courseID) {
+		
+		// set a boolean value to track if a course exist or not
+		boolean isCourseExist = false;
+		
+		// iterate over all course list to check if the course is in the course list
+		for(int i = 0; i < Course.COURSELIST.size(); i++) {
+			
+			if(Course.COURSELIST.get(i).getId().equals(courseID)) {
+				
+				Course dropCourse = Course.COURSELIST.get(i);
+				
+				// change the isCourseExist value to true
+				isCourseExist = true;
+				
+				// iterate over the enrolled course arraylist to check if the course has been enrolled before
+				for (int j = 1; j < this.enrolledCourses.size(); j++) {
+					
+					// if the course already exist in the enrolledCourse ArrayList
+					if(this.enrolledCourses.get(j).equals(dropCourse)) {
+						// drop the course
+						this.enrolledCourses.remove(j);
+					}
+					
+					// if this course has not been chosen before
+					else {
+						// can't drop the course
+						System.out.println("Course not on schedule, can not be dropped.");
+						}
+					}
+				}					
+				
+			} 			
+			
+		// if the course does not exist, print out message
+		if(isCourseExist == false) {
+			System.out.println("Course not found.");
+		}
+		
+	}
+	
+	
+	/**
+	 * print out the grades for the student
+	 */
+	public void viewGrade() {
+		
+		// creates an iterator
+		Iterator iterator = this.courseMap.entrySet().iterator();
+		
+		// iterate through the courseMap
+		while(iterator.hasNext()) {
+			Map.Entry mapElement = (Map.Entry) iterator.next();
+			System.out.println("Grade of" + mapElement.getKey() + ": " + mapElement.getValue());
 		}
 		
 	}

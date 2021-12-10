@@ -65,6 +65,15 @@ public class Course {
 	 * the enrolled number
 	 */
 	private int enrolledNum = 0;
+	
+	/**
+	 * lists of conflict courses
+	 * should be cleared every time when trying to add a new course
+	 */
+	private ArrayList<Course> conflictCourses;
+	
+	
+
 
 	// constructor
 	/**
@@ -104,6 +113,24 @@ public class Course {
 	}
 
 	// getter and setter methods
+	
+	
+	/**
+	 * @return the list of conflict courses
+	 */
+	public ArrayList<Course> getConflictCourses() {
+		return conflictCourses;
+	}
+
+
+	/**
+	 * sets the list of conflict courses
+	 * @param conflictCourses
+	 */
+	public void setConflictCourses(ArrayList<Course> conflictCourses) {
+		this.conflictCourses = conflictCourses;
+	}
+
 	
 	/**
 	 * get the course id
@@ -228,6 +255,11 @@ public class Course {
 		return enrolledNum;
 	}
 
+	
+	
+	
+	// other method
+	
 	/**
 	 * set the enrolled number of the course
 	 * @param enrolledNum course's enrolledNum increased when student get enrolledNum
@@ -235,71 +267,66 @@ public class Course {
 	public void addEnrolledNum() {
 		this.enrolledNum ++;
 	}
-	
-	
-	// other method
 
 	
-		/**
-		 * compare the course time
-		 * @param addCourse means the course user wants to add
-		 * @param enrolledCourses means the user's enrolled course
-		 * @return if there is no time conflict, returns true; else returns false;
-		 */
-		public boolean noTimeConflict(Student student, Course addCourse, ArrayList<Course> enrolledCourses) {
+	/**
+	 * compare the course time
+	 * @param addCourse means the course user wants to add
+	 * @param enrolledCourses means the user's enrolled course
+	 * @return if there is no time conflict, returns true; else returns false;
+	 */
+	public boolean noTimeConflict(Student student, Course addCourse, ArrayList<Course> enrolledCourses) {
+		
+		// set the conflict courses list to an empty list
+		this.conflictCourses = null;
 			
-			// get all the course in the same day
-			ArrayList<Course> sameDayCourse = new ArrayList<Course>();
+		// get all the course in the same day
+		ArrayList<Course> sameDayCourse = new ArrayList<Course>();
 			
 
-			// iterate over the enrolledCourses list, gets the lecture day for each course and compare with the add Course
-			for(int i = 0; i < student.getEnrolledCourses().size(); i++) {
+		// iterate over the enrolledCourses list, gets the lecture day for each course and compare with the add Course
+		for(int i = 0; i < student.getEnrolledCourses().size(); i++) {
 				
-				if(student.getEnrolledCourses().get(i).getDays().equals(addCourse.getDays())){
+			if(student.getEnrolledCourses().get(i).getDays().equals(addCourse.getDays())){
 					
-					// if on the same day, then add to the list
-					sameDayCourse.add(student.getEnrolledCourses().get(i));
+				// if on the same day, then add to the list
+				sameDayCourse.add(student.getEnrolledCourses().get(i));
 				
-				}	
-			}
+			}	
+		}
 			
 	
-			// then compare the start time and end time for those course in the same day
+		// then compare the start time and end time for those course in the same day
 			
-			//create a dateFormatTranslator
-			SimpleDateFormat sdf=new SimpleDateFormat("hh:mm");
+		//create a dateFormatTranslator
+		SimpleDateFormat sdf=new SimpleDateFormat("hh:mm");
 			
-			try {
+		try {
 				
-				//change the start_time string to the date
-				Date x = sdf.parse(addCourse.startTime);
+			//change the start_time string to the date
+			Date x = sdf.parse(addCourse.startTime);
 				
+			//change the end_time string to the date
+			Date y = sdf.parse(addCourse.endTime);
+				
+			for(int i = 0;i < sameDayCourse.size(); i ++){
+				
+				Course course = sameDayCourse.get(i);
+		            
+		        //change the start_time string to the date
+		        Date a = sdf.parse(course.startTime);
+		            
 				//change the end_time string to the date
-				Date y = sdf.parse(addCourse.endTime);
-				
-				for(int i = 0;i < sameDayCourse.size(); i ++){
+				Date b= sdf.parse(course.endTime);
 					
-		            Course course = sameDayCourse.get(i);
-		            
-		            //change the start_time string to the date
-		            Date a = sdf.parse(course.startTime);
-		            
-					//change the end_time string to the date
-					Date b= sdf.parse(course.endTime);
+				//change the date to millisecond and compare
 					
-					//change the date to millisecond and compare
-					
-					// this condition means time conflicts
-					if(!(x.getTime()-b.getTime() >= 0 || a.getTime()-y.getTime() >= 0))
-						return false;
-					else
-						continue;   
-		            
-		            
-		        }
-				
-				// if can pass the for-loop meaning that no time conflict
-				return true;
+				// this condition means time conflicts
+				if(!(x.getTime()-b.getTime() >= 0 || a.getTime()-y.getTime() >= 0)) {
+					this.conflictCourses.add(course);
+					return false;	
+				}		
+			}
 							
 			} catch (ParseException e) {
 				
@@ -307,6 +334,9 @@ public class Course {
 				return false;
 				
 			}
+		
+		// if can pass the for-loop meaning that no time conflict
+		return true;
 			
 		
 		}
