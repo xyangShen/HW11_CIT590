@@ -25,7 +25,7 @@ public class FileInfoReader {
 	/**
 	 * get the login information(username and password) from a file
 	 * @param fileName to read
-	 * @return a hashmap has keys as username and values as password
+	 * @return a hashmap has Ss as username and values as password
 	 */
 	public static Map<String, String> LoginInfo(String fileName) {
 		
@@ -444,7 +444,7 @@ public class FileInfoReader {
   				Professor p = new Professor(proInfo[0], proInfo[1], proInfo[2], proInfo[3]);
   			
   				// add each course to the ArrayList
-  				Professor.PROFESSIORS.add(p);
+  				Professor.PROFESSORS.add(p);
   				}
   			
   		} catch (FileNotFoundException e) {
@@ -487,7 +487,7 @@ public class FileInfoReader {
      				Professor p = new Professor(adminInfo[0], adminInfo[1], adminInfo[2], adminInfo[3]);
      			
      				// add each course to the ArrayList
-     				Professor.PROFESSIORS.add(p);
+     				Professor.PROFESSORS.add(p);
      				}
      			
      		} catch (FileNotFoundException e) {

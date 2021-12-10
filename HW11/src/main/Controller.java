@@ -219,6 +219,8 @@ public class Controller {
 						
 				//2--Login as a professor
 				if (userNum == 2) {
+				// create a scanner
+				Scanner sc = new Scanner(System.in);
 				// log in as professor or quit
 				System.out.println("Please enter your username, or typr 'q' to quit");			
 				String profInput = sc.next();
@@ -241,22 +243,23 @@ public class Controller {
 							String systemPW = profLoginInfo.get(profInput);
 							// if the input password is right, successfully log into the professor account
 							if(pw.equals(systemPW)) {
-								
-								// create professor instance 
-								Professor professor;
+						
 								
 								// get the professor in the professor ArrayList
 								for (int i = 0; i < Professor.PROFESSORS.size(); i++) {
 									if (Professor.PROFESSORS.get(i).getUserName().equals(profInput)) {
 										// create the professor instance
-										professor = Professor.PROFESSORS.get(i);
+										Professor professor = Professor.PROFESSORS.get(i);
 										break;
 												
-									}			
-									
-									
-									
-									
+									}
+										}			
+									}else {
+										// if the password in not correct, get back to the previous menu
+										System.out.println("Password incorrect.");
+										continue;	
+									}
+																
 									System.out.println("----------------------------");
 									System.out.println("Welcome, " + professor.getName());
 									System.out.println("----------------------------");
@@ -269,7 +272,19 @@ public class Controller {
 									// get the professor input
 									int inputP = sc.nextInt();
 									
-									
+						if (inputP == 1) {
+							for (int i = 0; i < Course.COURSELIST.size(); i++) {
+								  // get each professor
+								  String prof = Course.COURSELIST.get(i).getLecturer();
+								  if (professor.)
+							
+							
+							}
+							}
+							
+						}
+							}			
+						}
 									
 					
 					
