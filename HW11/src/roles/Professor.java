@@ -38,14 +38,7 @@ public class Professor {
 	 */
 	private String password;
 	
-	
-	// static variable
-	
-	/**
-	 * name of the professor file
-	 */
-	static String FILENAME = "profInfo.txt";
-	
+
 	
 	// constructor
 	

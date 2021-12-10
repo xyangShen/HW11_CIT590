@@ -16,36 +16,19 @@ import roles.Admin;
 import roles.Professor;
 import roles.Student;
 
+
 /**
  * a student management system
  * control the main logic flow of the entire system
  * @author Xinyang Shen, Jiahao He
  */
-
 public class Controller {
-	
-	// instance variables
-	/**
-	 * Create the instance of Courses
-	 * which contains
-	 */
-	
-	
-	
 	
 	
 	
 	public static void main(String[] args) {
 		
-		/**
-		 * Student st = new Student("testStudent01");
-		//get the courses list
-		Map<String, String> course = st.getCourses();
-		System.out.println(course.keySet());
 		
-		 */
-		
-			
 			
 		// when the system is on
 		while(true) {
@@ -103,8 +86,7 @@ public class Controller {
 										if (Student.STUDENTS.get(i).getUserName().equals(studentInput)) {
 											// create the student instance
 											student = Student.STUDENTS.get(i);
-											break;
-													
+											break;		
 										}										
 									}
 									
@@ -147,56 +129,49 @@ public class Controller {
 											// if quit, go back to the previous menu
 											continue;
 											}
-<<<<<<< HEAD
-										// course name already existed in the student course list
-										Student.STUDENTS.contains(studentInput)
-										else if(student.getCourses().keySet().contains(studentInput)) {
-											System.out.println("The course you selected is already in your list");
-										}
-										// course name is new and in the system
-										else if(Course.COURSELIST.contains(studentInput)){
-											// time conflict
-											if () {
-												
-											}
-											
-										}
-										// course name doesn't exist in the system
+								
 										else {
-											// do nothing
-											continue;
-										}	
-											
-											
-											
-										}	
-										}
-=======
->>>>>>> branch 'main' of https://github.com/xyangShen/HW11_CIT590.git
-										
-										
-										// course name already existed in the course list
-										else {
-											
 											// call the add course method in the student class
-											student.addCourse(inputCourse);
-											
+											student.addCourse(inputCourse);								
 											continue;
 											}
-										}	
+										}
+									
+									//3--View enrolled courses
+									if(inputS == 3) {
+										
+										// call method from the student class
+										student.viewEnrolledCourses();
+										continue;
+						
+									}
+									
+									// 4--Drop courses in your list
+									if(inputS == 4) {
+										
+										// ask for the student to input courses which needed to be dropped
+										System.out.println("Please select the course ID you want to drop, eg. 'CIT590'. "
+												+ "\\r\\nOr enter 'q' to return to the previous menu");
+										String inputCourse = sc.next();
+										
+										if (studentInput.equals("q")) {
+											// if quit, go back to the previous menu
+											continue;
+											}
+										
+										else {
+											// call the add course method in the student class
+											student.addCourse(inputCourse);								
+											continue;
+											}
+										
 									}
 										
-							}
+									
+										
 									
 									
-								//Map<String, String> courseMap = new HashMap<String, String>();
-									//courseMap = FileInfoReader.getCourses(studentInput);
-								
-									
-									
-									
-									
-									
+							
 								}
 								else {
 									// if the password in not correct, get back to the previous menu
@@ -210,6 +185,7 @@ public class Controller {
 								continue;		
 							}
 						}
+				}
 						
 						
 				//2--Login as a professor
@@ -270,6 +246,7 @@ public class Controller {
 					
 				}
 				
+								
 				//3--Login as an admin
 				if(userNum == 3) {
 				// log in as admin or quit
@@ -326,9 +303,12 @@ public class Controller {
 									System.out.println("Please enter your option, eg.'1'");	
 									// get the admin input
 									int inputA = sc.nextInt();	
-						
-						
-					}
+									}
+							}
+						}
+				}
+				}
+								
 					
 				// 4--Quit the system
 				if (userNum == 4) {
@@ -352,9 +332,8 @@ public class Controller {
 			
 		System.out.println("-------System closed-------");
 		System.out.println("----------------------------");
-		
-		
-}
+		}
+				}
 		
 	
 
