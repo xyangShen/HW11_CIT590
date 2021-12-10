@@ -241,8 +241,9 @@ public class Student {
 							// if there's no time conflict
 							this.enrolledCourses.add(addCourse);
 							//update the enrolled students number
-							
+							addCourse.addEnrolledNum();
 							//update the AddStudent arrayList
+							
 							
 						}
 													

@@ -98,6 +98,10 @@ public class Controller {
 										}										
 									}
 									
+									boolean flag = true;
+									
+									while(flag) {
+									
 									// prints out information
 									System.out.println("----------------------------");
 									System.out.println("Welcome, " + student.getName());
@@ -110,6 +114,7 @@ public class Controller {
 									System.out.println("6--Return to previous menu");
 									System.out.println();
 									System.out.println("Please enter your option, eg.'1'");																		
+									
 									// get the user input
 									int inputS = sc.nextInt();
 									
@@ -117,11 +122,8 @@ public class Controller {
 									// view course information
 									if (inputS == 1) {
 										
-										List<String> coursesInfo = FileInfoReader.getAllCoursesInfo();
-										
 								        // print all the information line by line
-										coursesInfo.forEach(System.out::println);
-		
+										Course.COURSELIST.forEach(System.out::println);
 									}
 									
 									// Add courses to your list
@@ -139,9 +141,23 @@ public class Controller {
 											}
 								
 										else {
+											// create an instance
+											Course courseToAdd = null;
 											// call the add course method in the student class
 											student.addCourse(inputCourse);
-											
+																						
+											for (int c = 0; c < student.getEnrolledCourses().size(); c++) {
+												if (inputCourse.equals(student.getEnrolledCourses().get(c))) {
+											    // convert the string to course class
+											    courseToAdd = student.getEnrolledCourses().get(c);
+													}
+											}
+											// if the student is not in the arrayList
+											if (!courseToAdd.addStudent.contains(student)) {
+												courseToAdd.addStudent.add(student);
+												// update the arrayList
+												courseToAdd.setAddStudent(courseToAdd.addStudent);
+											}
 											continue;
 											}
 										}
@@ -180,16 +196,18 @@ public class Controller {
 									if(inputS == 5) {
 										System.out.println("Here are the courses you already taken, with your grade in letter format");
 										student.viewGrade();
+										continue;
 										
 									}
 									
 									// 6--Return to previous menu
 									if(inputS == 6) {
+										flag = false;
 										continue;
 										
 									}
 								
-									}
+									}}
 								else {
 									// if the password in not correct, get back to the previous menu
 									System.out.println("Password incorrect.");
@@ -206,7 +224,7 @@ public class Controller {
 						}
 				}
 						
-	
+				
 			
 			
 				//2--Login as a professor
@@ -396,10 +414,143 @@ public class Controller {
 								// View all courses
 								if (inputA == 1) {
 									
+									// print all the information line by line
+									Course.COURSELIST.forEach(System.out::println);
 									
-								}			
+								}	
+								
+								// add new courses
+								if (inputA == 2) {
+								//If an admin wants to add a course that already exists in the system,
+									
+								//If the lecturer of the course we want to add does not exist in the system
+								
+							    //the program needs to check if the course has a time conflict with all of the lecturer¡¯s other courses.
+								
+							    // After adding a new course, we can see the newly added course CIT900 in the system.
+									
+									
+									// create the local variable
+									String id;
+									String name;
+									String startTime;
+									String endTime;
+									String date;
+									String capacity;
+									String lecturerId;
+									String profName;
+																
+									String IdInput = sc.next();
+									
+									//get new course ID
+									System.out.println("Please enter the course ID, or type 'q' to end.");
+									if (IdInput.equals("q")) {
+										// if quit, go back to the previous menu
+										continue;
+										}
+									else {
+									// get the course ID
+									id = IdInput;																		
+									}
+									
+									String NameInput = sc.next();
+									// get new course name
+									System.out.println("Please enter the course name, or type 'q' to end.");
+									if (NameInput.equals("q")) {
+										// if quit, go back to the previous menu
+										continue;
+										}
+									else {
+									// get the course name
+									name = NameInput;																		
+									}
+									
+													
+									String StartInput = sc.next();
+									//get new course start time
+									System.out.println("Please enter the course start time, or type 'q' to end. eg. '19:00'");
+									if (StartInput.equals("q")) {
+										// if quit, go back to the previous menu
+										continue;
+										}
+									else {
+									// get the course startTime
+									startTime = StartInput;																		
+									}
+									
+									
+									String EndInput = sc.next();
+									//get new course end time
+									System.out.println("Please enter the course end time, or type 'q' to end. eg. '20:00'");
+									if (EndInput.equals("q")) {
+										// if quit, go back to the previous menu
+										continue;
+										}
+									else {
+									// get the course endTime
+									endTime = EndInput;																		
+									}
+									
+												
+									String DateInput = sc.next();
+									//get new course date
+									System.out.println("Please enter the course date, or type 'q' to end. 'MW'");
+									if (DateInput.equals("q")) {
+										// if quit, go back to the previous menu
+										continue;
+										}
+									else {
+									// get the course date
+									date = DateInput;																		
+									}
+									
+								
+									String CapacityInput = sc.next();
+									//get new course capacity
+									System.out.println("Please enter the course capacity, or type 'q' to end. eg. '72'");
+									if (CapacityInput.equals("q")) {
+										// if quit, go back to the previous menu
+										continue;
+										}
+									else {
+									// get the course capacity
+									capacity = CapacityInput;																		
+									}
+									
+									
+									
+									String lectureIdInput = sc.next();
+									//get new course lecturer's id
+									System.out.println("Please enter the course lecturer's id, or type 'q' to end. eg. '001'");
+									if (lectureIdInput.equals("q")) {
+										// if quit, go back to the previous menu
+										continue;
+										}
+									else {
+									// get the course lecturer id
+								    lecturerId = lectureIdInput;																		
+									}
+									
+								// get the lecture name with the lecturerId
+								for (int i = 0; i < Professor.PROFESSORS.size(); i++) {
+									// get the i professor
+									Professor p = Professor.PROFESSORS.get(i);
+									if (p.getId().equals(lecturerId)) {
+										//get the professor name
+										profName = p.getName();
+									}
+										}	
+								
+								// create a new course with the given information	
+								Course newCourse = new Course(id, name, profName, date, startTime, endTime, capacity);
+								// print the course
+								System.out.println(newCourse);
+								System.out.println("------------------------------");																
+								}
 								
 								
+								
+								if (inputA == 3) {
 								
 															
 							}
