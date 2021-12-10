@@ -75,7 +75,7 @@ public class Course {
 	 * lists of conflict courses
 	 * should be cleared every time when trying to add a new course
 	 */
-	private ArrayList<Course> conflictCourses;
+	private ArrayList<Course> conflictCourses = new ArrayList<Course>();
 	
 
 
@@ -280,9 +280,7 @@ public class Course {
 	 * @return if there is no time conflict, returns true; else returns false;
 	 */
 	public boolean noTimeConflict(Student student, Course addCourse, ArrayList<Course> enrolledCourses) {
-		
-		// set the conflict courses list to an empty list
-		this.conflictCourses = null;
+	
 			
 		// get all the course in the same day
 		ArrayList<Course> sameDayCourse = new ArrayList<Course>();

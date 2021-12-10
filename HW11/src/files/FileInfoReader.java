@@ -378,11 +378,12 @@ public class FileInfoReader {
  			// variable to store each lines
  			String line;
  			
- 			// variable to be as map
- 			Map<String, String> map = new HashMap<String, String>();
  					
  			// while there is a line to read
  			while((line = bufferedReader.readLine()) != null) {
+ 				
+ 				// variable to be as map
+ 	 			Map<String, String> map = new HashMap<String, String>();
  			 	
  			    // string array for each line to store the information
 				String[] studentInfo = line.split("; ");
