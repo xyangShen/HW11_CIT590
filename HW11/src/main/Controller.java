@@ -28,8 +28,13 @@ public class Controller {
 	
 	public static void main(String[] args) {
 		
+		// load the file into the arrayLists of students/courses/professors/admin
+		FileInfoReader.setStudentInfo();
+		FileInfoReader.setCourseInfo();
+		FileInfoReader.setProfessorInfo();
+		FileInfoReader.setAdminInfo();
 		
-			
+	
 		// when the system is on
 		while(true) {
 			// when enter the system, select to log in as student/professor/admin/quit the system
@@ -79,13 +84,16 @@ public class Controller {
 								if(pw.equals(systemPW)) {
 									
 									// create student instance 
-									Student student;
+									Student student = null;
 									
 									// get the student in the student ArrayList
 									for (int i = 0; i < Student.STUDENTS.size(); i++) {
 										if (Student.STUDENTS.get(i).getUserName().equals(studentInput)) {
 											// create the student instance
 											student = Student.STUDENTS.get(i);
+											
+											// initiate enrolled courses arraylist
+											student.addEnrolledCourse(student);
 											break;		
 										}										
 									}
@@ -132,7 +140,8 @@ public class Controller {
 								
 										else {
 											// call the add course method in the student class
-											student.addCourse(inputCourse);								
+											student.addCourse(inputCourse);
+											
 											continue;
 											}
 										}
@@ -161,23 +170,33 @@ public class Controller {
 										
 										else {
 											// call the add course method in the student class
-											student.addCourse(inputCourse);								
+											student.dropCourse(inputCourse);								
 											continue;
-											}
+											}		
+									}
+
+
+									// "5--View grades"
+									if(inputS == 5) {
+										System.out.println("Here are the courses you already taken, with your grade in letter format");
+										student.viewGrade();
 										
 									}
+									
+									// 6--Return to previous menu
+									if(inputS == 6) {
+										continue;
 										
-									
-										
-									
-									
-							
-								}
+									}
+								
+									}
 								else {
 									// if the password in not correct, get back to the previous menu
 									System.out.println("Password incorrect.");
 									continue;	
 								}
+							
+				
 								}
 							else {
 								// if the student username is not in the file, get back to the previous menu
@@ -187,11 +206,11 @@ public class Controller {
 						}
 				}
 						
-						
+	
+			
+			
 				//2--Login as a professor
 				if (userNum == 2) {
-				// create a scanner
-				Scanner sc = new Scanner(System.in);
 				// log in as professor or quit
 				System.out.println("Please enter your username, or typr 'q' to quit");			
 				String profInput = sc.next();
@@ -216,7 +235,7 @@ public class Controller {
 							if(pw.equals(systemPW)) {
 						
 								// create professor instance 
-								Professor professor;
+								Professor professor = null;
 								
 								// get the professor in the professor ArrayList
 								for (int i = 0; i < Professor.PROFESSORS.size(); i++) {
@@ -226,7 +245,7 @@ public class Controller {
 										break;
 												
 									}		
-																
+								}
 									System.out.println("----------------------------");
 									System.out.println("Welcome, " + professor.getName());
 									System.out.println("----------------------------");
@@ -252,13 +271,15 @@ public class Controller {
 									  courseList.add(givenCourse);
 								  }
 							
-								  // print the couseList
-								  System.out.println("-----------The course list---------------");
-								  for (int n = 0; n < courseList.size(); n++) {
-									  System.out.println(courseList.get(n));
-								  }						     								  
+								  
+								  }	
+							// print the couseList
+					  		System.out.println("-----------The course list---------------");
+					  		for (int n = 0; n < courseList.size(); n++) {
+						    System.out.println(courseList.get(n));
 								  }
 								
+
 							}
 						
 						if (inputP == 2) {
@@ -282,6 +303,7 @@ public class Controller {
 								  System.out.println(courseList.get(n));
 							  }						
 							//ask the professor to enter the input course name
+							System.out.println();
 							System.out.println("Please enter the course ID, eg. 'CIS519'.");
 							System.out.println("Or type 'q' to quit.");
 							//get the professor input
@@ -313,10 +335,6 @@ public class Controller {
 						}
 							}			
 						}
-									
-					
-					
-				}
 				
 								
 				//3--Login as an admin
@@ -345,7 +363,7 @@ public class Controller {
 							if(pw.equals(systemPW)) {
 								
 								// create admin instance 
-								Admin admin;
+								Admin admin = null;
 								
 								// get the admin in the admin ArrayList
 								for (int i = 0; i < Admin.ADMINS.size(); i++) {
