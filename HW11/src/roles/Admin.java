@@ -120,6 +120,46 @@ public class Admin{
 	}
 	
 	
+	// other method
+	/**
+	 * add the new professor into the system
+	 * @param professor to add
+	 */
+	public static void addProfessor(Professor professor) {
+		
+		
+		
+	}
+	
+	/**
+	 * delete the given professor 
+	 * check if the professor is in the list
+	 * @param proID to delete
+	 */
+	public static void delProfessor(String proID) {
+		
+	}
+	
+	/**
+	 * add the new student into the system
+	 * @param student to add
+	 */
+	public static void addStudent(Student student) {
+		
+	}
+	
+	
+	/**
+	 * delete the student in the system
+	 * check if the student is in the list
+	 * @param studentID to delete
+	 * @return
+	 */
+	public static coid delStudent(String studentID) {
+		
+	}
+	
+
 	
 	
 	

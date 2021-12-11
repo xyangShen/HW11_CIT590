@@ -178,7 +178,7 @@ public class Controller {
 										
 										// ask for the student to input courses which needed to be dropped
 										System.out.println("Please select the course ID you want to drop, eg. 'CIT590'. "
-												+ "\\r\\nOr enter 'q' to return to the previous menu");
+												+ "Or enter 'q' to return to the previous menu");
 										String inputCourse = sc.next();
 										
 										if (studentInput.equals("q")) {
@@ -550,13 +550,13 @@ public class Controller {
 									//get the professor name
 									profName = p.getName();
 									break;
-								}
-									}	
+									}
+								}	
 							
 							// create a new course with the given information	
 							Course newCourse = new Course(id, name, profName, date, startTime, endTime, capacity);
 							
-							//the program needs to check if the course has a time conflict with all of the lecturer¡¯s other courses.
+							//the program needs to check if the course has a time conflict with all of the lecturerï¿½ï¿½s other courses.
 							// check if there's a time conflict with other course					
 							if (newCourse.noTimeConflict(p, newCourse, p.getCourseList()) == false) {
 								System.out.println("The course you selected has time conflict with other courses: ");
@@ -585,8 +585,11 @@ public class Controller {
 							}
 							
 							
-							
+							// 
 							if (inputA == 3) {
+								
+								
+							}
 							
 							
 							
@@ -594,6 +597,134 @@ public class Controller {
 							
 														
 						}
+							// 4--Add new professor
+							if(inputA == 4) {
+								
+								// get the next token as the id of the professor
+								System.out.println("Please enter the professor's ID, or type 'q' to quit");
+								
+								String proID = sc.next();
+								
+				                // use this string to store the final professor ID
+								String professorID;
+								
+								if(proID.equals("q")) {
+									
+									continue;
+									
+								} else {
+									
+									// check if the id is occupied
+									boolean isIDOccupied = Professor.isIDOccupied(proID);
+									
+									if(isIDOccupied == true) {
+										
+										// use a boolean value to see if the id is valid
+										boolean isIDValid = false;
+										
+										while(isIDValid == false) {
+											
+											System.out.println("The ID already exists.");
+											System.out.println("Please enter the professor's ID");
+											String proID2 = sc.next();
+											
+											// check again
+											boolean isIDOccupied2 = Professor.isIDOccupied(proID);
+											
+											if(isIDOccupied2 == false){
+												// set the final professor ID
+												professorID = proID2;
+												
+												isIDValid = true;
+											}
+											
+										}
+										
+									}
+									else {
+										// if the ID is not occupied, sets the professor ID
+										professorID = proID;
+										}
+									}
+								
+								
+								// get the next token as the professor's name
+								System.out.println("Please enter the professor's ID, or type 'q' to quit");		
+								String proName = sc.next();
+								
+								if(proName.equals("q")) {
+									continue;	
+								}
+								
+								// get the next token as the user name
+								System.out.println("Please enter a username, or type 'q' to quit");
+								String proUN = sc.next();
+								if(proUN.equals("q")) {
+									continue;	
+								}
+								else {
+									
+									// check if the id is occupied
+									boolean isUNOccupied = Professor.isUNOccupied(proID);
+									
+									if(isUNOccupied == true) {
+										
+										// use a boolean value to see if the id is valid
+										boolean isIDValid = false;
+										
+										while(isIDValid == false) {
+											
+											System.out.println("The user name already exists.");
+											System.out.println("Please enter an username");
+											String proUN2 = sc.next();
+											
+											// check again
+											boolean isUNOccupied2 = Professor.isUNOccupied(proID);
+											
+											if(isUNOccupied2 == false){
+												// set the final professor ID
+												proUN = proUN2;
+												
+												isUNValid = true;
+											}
+											
+										}
+										
+									}
+									else {
+										// if the ID is not occupied, sets the professor ID
+										professorID = proID;
+										}
+									}
+								
+								
+								
+								
+								}
+									
+									
+							
+							
+							//5--delete professor
+							if(inputA == 5) {
+								
+							}
+							
+							//6--add new student
+							if(inputA == 6) {
+								
+							}
+							
+							//7--delete student
+							if(inputA == 7) {
+								
+							}
+							
+							//8--return to the previous menu
+							if(inputA == 8) {
+								
+								continue;
+							}
 	
 			}
 							
@@ -602,6 +733,12 @@ public class Controller {
 			
 			// 4--Quit the system
 			if (userNum == 4) {
+				
+				
+				
+				
+				
+			}
 				// break the while loop
 				break;
 			} 

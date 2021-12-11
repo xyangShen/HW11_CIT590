@@ -181,6 +181,32 @@ public class Professor {
 	return courseList;	  
 		  }	
 	
+	
+	/**
+	 * to check if a professor id is already in the list
+	 * @param proID to check
+	 * @return true if the id is occupied, otherwise false
+	 */
+	public static boolean isIDOccupied(String proID) {
+		
+		// sets the initial value to be false
+		boolean isIDOccupied = false;
+		
+		// iterate over the professor list
+		for (int i = 0; i < Professor.PROFESSORS.size(); i++) {
+			
+			if(Professor.PROFESSORS.get(i).getId().equals(proID)) {
+				
+				// if the id is occupied
+				isIDOccupied = true;
+				break;
+			}
+		}
+
+		return isIDOccupied;
+		
+	}
+	
 
 	
 	
