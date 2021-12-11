@@ -132,7 +132,7 @@ public class Controller {
 										
 										// ask for the student to input courses which needed to be added
 										System.out.println("Please select the course ID you want to add to your list, eg. 'CIT590'. "
-												+ "\\r\\nOr enter 'q' to return to the previous menu");
+												+ "Or enter 'q' to return to the previous menu");
 
 										String inputCourse = sc.next();
 										
@@ -615,7 +615,7 @@ public class Controller {
 	System.out.println("-------System closed-------");
 	System.out.println("----------------------------");
 	}
-			}}}}
+			}}
 	
 
 

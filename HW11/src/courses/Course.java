@@ -289,12 +289,31 @@ public class Course {
 
 		// iterate over the enrolledCourses list, gets the lecture day for each course and compare with the add Course
 		for(int i = 0; i < student.getEnrolledCourses().size(); i++) {
+			
+			// there are situations where some lecture only have 1 day, where others have several days
+			// split the string into characters
+			
+			// for example, split MW into M W
+			String [] enrolledCourseDays = student.getEnrolledCourses().get(i).getDays().split("");
+			
+			// also split the days for the course needed to add
+			// for example: M
+			String [] addCourseDays = addCourse.getDays().split("");
+			
+			// iterate over these 2 list and compare if they have the same day
+			for(int a = 0; a < enrolledCourseDays.length; a++){
 				
-			if(student.getEnrolledCourses().get(i).getDays().equals(addCourse.getDays())){
+				for(int b = 0; b < addCourseDays.length; b++) {
 					
-				// if on the same day, then add to the list
-				sameDayCourse.add(student.getEnrolledCourses().get(i));
-				
+					// if they have the same day
+					if(enrolledCourseDays[a].equals(addCourseDays[b])) {
+						
+						// if on the same day, then add to the list
+						sameDayCourse.add(student.getEnrolledCourses().get(i));
+						break;
+						
+					}
+				}			
 			}	
 		}
 			
@@ -326,8 +345,8 @@ public class Course {
 					
 				// this condition means time conflicts
 				if(!(x.getTime()-b.getTime() >= 0 || a.getTime()-y.getTime() >= 0)) {
+					// add this course in the conflictCourses list
 					this.conflictCourses.add(course);
-					return false;	
 				}		
 			}
 							
@@ -337,9 +356,16 @@ public class Course {
 				return false;
 				
 			}
-		
-		// if can pass the for-loop meaning that no time conflict
-		return true;
+		if(conflictCourses.size() > 0) {
+			
+			// if there are courses in the conflict courses list
+			return false;
+			
+		} 
+		else {
+			// if the conflict courses list is empty
+			return true;
+		}
 			
 		
 		}

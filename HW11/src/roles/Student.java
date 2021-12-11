@@ -218,27 +218,38 @@ public class Student {
 				// change the isCourseExist value to true
 				isCourseExist = true;
 				
+				// use a boolean value to track if the course had already been takes
+				boolean isCourseTaken = false;
+				
 				// iterate over the enrolled course arraylist to check if the course has been enrolled before
 				for (int j = 0; j < this.enrolledCourses.size(); j++) {
 					
 					// if the course already exist in the enrolledCourse ArrayList
 					if(this.enrolledCourses.get(j).getId().equals(courseID)) {
+						
 						System.out.println("The course you selected is already in your list.");
+						
+						// change the boolean value isCourseTaken to true
+						// break out the loop
+						isCourseTaken = true;
 						break;
 					}
+				}
+				
+				
+				// if this course has not been chosen before
+				if(isCourseTaken == false) {
 					
-					// if this course has not been chosen before
-					else {
+					// check if there's a time conflict with other course					
+					if (addCourse.noTimeConflict(this, addCourse, this.enrolledCourses) == false) {
+						System.out.println("The course you selected has time conflict with other courses: ");
 						
-						// check if there's a time conflict with other course					
-						if (addCourse.noTimeConflict(this, addCourse, this.enrolledCourses) == false) {
-							System.out.println("The course you selected has time conflict with other courses: ");
-							
-							// iterate over time conflict courses and print the course id and name
-							for(int a = 0; a < addCourse.getConflictCourses().size(); a++) {
-								System.out.println(addCourse.getConflictCourses().get(a).getId() + addCourse.getConflictCourses().get(a).getName());
-							}			
-						}
+						// iterate over time conflict courses and print the course id and name
+						for(int a = 0; a < addCourse.getConflictCourses().size(); a++) {
+							System.out.println(addCourse.getConflictCourses().get(a).getId() + addCourse.getConflictCourses().get(a).getName());
+						}			
+					}
+					
 						
 						else {
 							// if there's no time conflict
@@ -255,12 +266,15 @@ public class Student {
 							break;
 
 						}
+				
+						
+					}
 													
-					}					
+					}		
 				}
 				
-			} 			
-		}
+					
+		
 			
 		// if the course does not exist, print out message
 		if(isCourseExist == false) {
@@ -302,21 +316,46 @@ public class Student {
 				// change the isCourseExist value to true
 				isCourseExist = true;
 				
+				// use a boolean value to track if a course have been selected 
+				boolean isCourseTaken = false;
+				
 				// iterate over the enrolled course arraylist to check if the course has been enrolled before
 				for (int j = 1; j < this.enrolledCourses.size(); j++) {
 					
 					// if the course already exist in the enrolledCourse ArrayList
 					if(this.enrolledCourses.get(j).getId().equals(courseID)) {
-						// drop the course
+						
+						System.out.println("Course dropped successfully.");
+						
+						//change the isCourseTaken value to true
+						isCourseTaken = true;
+						
+						// delete this course from the enrolled course list
 						this.enrolledCourses.remove(j);
-					}
-					
-					// if this course has not been chosen before
-					else {
-						// can't drop the course
-						System.out.println("Course not on schedule, can not be dropped.");
+						
+						// remove the keys and value from the map
+						
+						// creates an iterator
+						Iterator iterator = this.courseMap.entrySet().iterator();
+						
+						// iterate through the courseMap
+						while(iterator.hasNext()) {
+							Map.Entry mapElement = (Map.Entry) iterator.next();
+							
+							if(mapElement.getKey().equals(courseID)) {
+								iterator.remove();
+							}
 						}
+						}
+						
 					}
+				// if this course has not been chosen before
+				if(isCourseTaken == false) {
+					
+					// can't drop the course
+					System.out.println("Course not on schedule, can not be dropped.");
+				}
+				
 				}					
 				
 			} 			
