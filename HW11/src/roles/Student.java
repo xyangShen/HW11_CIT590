@@ -173,10 +173,11 @@ public class Student {
 	 * add the enrolled courses from the hashmap into arraylist 
 	 * convert string to course
 	 */
-	public void addEnrolledCourse(Student student) {
+	public void addEnrolledCourse() {
+		
 		
 		//iterate over all the keys in the courseMap
-		for (Map.Entry<String, String> set: courseMap.entrySet()) {
+		for (Map.Entry<String, String> set: this.courseMap.entrySet()) {
 			
 			// key value as the course ID
 			String cID = set.getKey();
@@ -203,6 +204,7 @@ public class Student {
 	 */
 	public void addCourse(String courseID) {
 	
+	
 		// set a boolean value to track if a course exist or not
 		boolean isCourseExist = false;
 		
@@ -217,11 +219,12 @@ public class Student {
 				isCourseExist = true;
 				
 				// iterate over the enrolled course arraylist to check if the course has been enrolled before
-				for (int j = 1; j < this.enrolledCourses.size(); j++) {
+				for (int j = 0; j < this.enrolledCourses.size(); j++) {
 					
 					// if the course already exist in the enrolledCourse ArrayList
-					if(this.enrolledCourses.get(j).equals(addCourse)) {
-						System.out.println("The course you selected is already in your list");
+					if(this.enrolledCourses.get(j).getId().equals(courseID)) {
+						System.out.println("The course you selected is already in your list.");
+						break;
 					}
 					
 					// if this course has not been chosen before
@@ -239,12 +242,18 @@ public class Student {
 						
 						else {
 							// if there's no time conflict
+							System.out.println("Course added successfully.");
+							
 							this.enrolledCourses.add(addCourse);
+							
+							// update the courseMap
+							this.courseMap.put(courseID, null);
 							//update the enrolled students number
 							addCourse.addEnrolledNum();
 							//update the AddStudent arrayList
-							
-							
+						
+							break;
+
 						}
 													
 					}					
@@ -297,7 +306,7 @@ public class Student {
 				for (int j = 1; j < this.enrolledCourses.size(); j++) {
 					
 					// if the course already exist in the enrolledCourse ArrayList
-					if(this.enrolledCourses.get(j).equals(dropCourse)) {
+					if(this.enrolledCourses.get(j).getId().equals(courseID)) {
 						// drop the course
 						this.enrolledCourses.remove(j);
 					}
@@ -331,7 +340,7 @@ public class Student {
 		// iterate through the courseMap
 		while(iterator.hasNext()) {
 			Map.Entry mapElement = (Map.Entry) iterator.next();
-			System.out.println("Grade of" + mapElement.getKey() + ": " + mapElement.getValue());
+			System.out.println("Grade of " + mapElement.getKey() + ": " + mapElement.getValue());
 		}
 		
 	}

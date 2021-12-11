@@ -2,6 +2,7 @@ package roles;
 
 import java.util.ArrayList;
 
+import courses.Course;
 import files.FileInfoReader;
 
 /**
@@ -159,6 +160,26 @@ public class Professor {
 	public void setPassword(String password) {
 		this.password = password;
 	}
+	
+	
+	
+	public ArrayList<Course> getCourseList() {
+	
+	//create an arrayList of given courses
+	ArrayList<Course> courseList = new ArrayList<Course>();
+	
+	for (int j = 0; j < Course.COURSELIST.size(); j++) {
+		  // get each professor
+		  String prof = Course.COURSELIST.get(j).getLecturer();
+		  // if professor name is in the courseList, get the course
+		  if (this.getName().equals(prof)) {
+			  Course givenCourse = Course.COURSELIST.get(j);
+			  courseList.add(givenCourse);
+		  }
+	
+	}
+	return courseList;	  
+		  }	
 	
 
 	

@@ -10,6 +10,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
+import roles.Professor;
 import roles.Student;
 
 /**
@@ -75,7 +76,7 @@ public class Course {
 	 * lists of conflict courses
 	 * should be cleared every time when trying to add a new course
 	 */
-	private ArrayList<Course> conflictCourses;
+	private ArrayList<Course> conflictCourses = new ArrayList<Course>();
 	
 
 
@@ -280,9 +281,7 @@ public class Course {
 	 * @return if there is no time conflict, returns true; else returns false;
 	 */
 	public boolean noTimeConflict(Student student, Course addCourse, ArrayList<Course> enrolledCourses) {
-		
-		// set the conflict courses list to an empty list
-		this.conflictCourses = null;
+	
 			
 		// get all the course in the same day
 		ArrayList<Course> sameDayCourse = new ArrayList<Course>();
@@ -375,6 +374,75 @@ public class Course {
 		public String toString() {
 			return this.getId()  + "|" + this.getName() + ", " + this.getStartTime() + "-" + this.getEndTime() + " on " + this.getDays() + ", " + "with course capacity: " + this.getCapacity() + ", students: " + this.getEnrolledNum() + ", lecturer: Professior " + this.getLecturer(); 
 			
+		}
+
+
+		/**
+		 * compare the time between new course and professor given courses
+		 * @param newCourse means the course user wants to add
+		 * @param courseList means the professor's given course
+		 * @return if there is no time conflict, returns true; else returns false;
+		 */
+		
+
+		public boolean noTimeConflict(Professor p, Course newCourse, ArrayList<Course> courseList) {
+			// get all the course in the same day
+			ArrayList<Course> sameDayCourse = new ArrayList<Course>();
+				
+
+			// iterate over the courseList, gets the lecture day for each course and compare with the new Course
+			for(int i = 0; i < p.getCourseList().size(); i++) {
+					
+				if(p.getCourseList().get(i).getDays().equals(newCourse.getDays())){
+						
+					// if on the same day, then add to the list
+					sameDayCourse.add(p.getCourseList().get(i));
+					
+				}	
+			}
+				
+		
+			// then compare the start time and end time for those course in the same day
+				
+			//create a dateFormatTranslator
+			SimpleDateFormat sdf=new SimpleDateFormat("hh:mm");
+				
+			try {
+					
+				//change the start_time string to the date
+				Date x = sdf.parse(newCourse.startTime);
+					
+				//change the end_time string to the date
+				Date y = sdf.parse(newCourse.endTime);
+					
+				for(int i = 0;i < sameDayCourse.size(); i ++){
+					
+					Course course = sameDayCourse.get(i);
+			            
+			        //change the start_time string to the date
+			        Date a = sdf.parse(course.startTime);
+			            
+					//change the end_time string to the date
+					Date b= sdf.parse(course.endTime);
+						
+					//change the date to millisecond and compare
+					// this condition means time conflicts
+					if(!(x.getTime()-b.getTime() >= 0 || a.getTime()-y.getTime() >= 0)) {
+						this.conflictCourses.add(course);
+						return false;	
+					}		
+				}
+								
+				} catch (ParseException e) {
+					
+					e.printStackTrace();
+					return false;
+					
+				}
+			
+			// if can pass the for-loop meaning that no time conflict
+			return true;
+				
 		}
 
 		
