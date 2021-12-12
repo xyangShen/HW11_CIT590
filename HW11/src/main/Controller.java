@@ -149,7 +149,7 @@ public class Controller {
 											student.addCourse(inputCourse);
 																						
 											for (int c = 0; c < student.getEnrolledCourses().size(); c++) {
-												if (inputCourse.equals(student.getEnrolledCourses().get(c))) {
+												if (inputCourse.equals(student.getEnrolledCourses().get(c).getId())) {
 											    // convert the string to course class
 											    courseToAdd = student.getEnrolledCourses().get(c);
 													}
@@ -266,6 +266,12 @@ public class Controller {
 												
 									}		
 								}
+								
+									// use a boolean value to keep the login status of the user
+									boolean isQuit = false;
+									
+									while(isQuit == false) {
+														
 									System.out.println("----------------------------");
 									System.out.println("Welcome, " + professor.getName());
 									System.out.println("----------------------------");
@@ -316,14 +322,21 @@ public class Controller {
 					                         System.out.println("Students in your course " + profInput + " " + professor.getCourseList().get(n).getName() + ":");	   
 					                         // print the arrayList of Students
 					                         for (int m = 0; m < professor.getCourseList().get(n).getAddStudent().size(); m++) {
-					                        	 System.out.println(professor.getCourseList().get(n).getAddStudent().get(m));
+					                        	 System.out.println(professor.getCourseList().get(n).getAddStudent().get(m).getId() + " " + professor.getCourseList().get(n).getAddStudent().get(m).getName() );
 					                         }				           
 											}
 											}
 										}
-										}									
+										}	
 									
-								}
+									// 3--Return to previous menu
+									if(inputP == 3) {
+										// change the isQuit value
+										isQuit = true;
+									}
+									
+									
+								}}
 									
 							else {
 								// if the password in not correct, get back to the previous menu
@@ -337,6 +350,8 @@ public class Controller {
 							System.out.println("User not found.");
 							continue;		
 						}
+				}
+				}
 								
 							
 			//3--Login as an admin
@@ -378,6 +393,12 @@ public class Controller {
 																
 								}
 							
+							// use a boolean value to keep the login status of the user
+							boolean isQuit = false;
+							
+							while(isQuit == false) {
+							
+							
 							System.out.println("----------------------------");
 							System.out.println("Welcome, " + admin.getName());
 							System.out.println("----------------------------");
@@ -406,46 +427,49 @@ public class Controller {
 							// add new courses
 							if (inputA == 2) {
 						
-								// create the local variable
+								// create the local variable for the part adding new courses
 								String id = null;
 								String name = null;
-								String startTime;
-								String endTime;
-								String date;
-								String capacity;
+								String startTime = null;
+								String endTime = null;
+								String date = null;
+								String capacity = null;
 								String lecturerId = null;
 								String profName = null;
 								Professor p = null;			
-								String idInput;
+								String idInput = null;
 								
 								//check whether the new course is already in the system
 								boolean flag = false;
 								
 								while (!flag) {
-									idInput = sc.next();
 									//get new course ID
 									System.out.println("Please enter the course ID, or type 'q' to end.");
-								
+									idInput = sc.next();
+									
 								if (idInput == "q")	{
 									break;
 								}else {
 					
 								for (int b = 0; b < Course.COURSELIST.size(); b++) {
-									if (Course.COURSELIST.get(b).getId().equals(idInput)) {
+									if (!Course.COURSELIST.get(b).getId().equals(idInput)) {
+										// the course doesn't exist in the system and leave the loop
+										id = idInput;
+									    flag = true;
+									}else {
+										flag = false;
+										System.out.println("The course already exist");
 										break;
 									}
 								}
-								   // the course doesn't exist in the system and leave the loop
-								    id = idInput;
-								    flag = true;
-								
+								   
 								}		
 								}
 													
-								
-								String nameInput = sc.next();
+
 								// get new course name
 								System.out.println("Please enter the course name, or type 'q' to end.");
+								String nameInput = sc.next();
 								
 								if (nameInput.equals("q")) {
 									// if quit, go back to the previous menu
@@ -458,9 +482,10 @@ public class Controller {
 								}
 								
 												
-								String startInput = sc.next();
 								//get new course start time
 								System.out.println("Please enter the course start time, or type 'q' to end. eg. '19:00'");
+								String startInput = sc.next();
+								
 								if (startInput.equals("q")) {
 									// if quit, go back to the previous menu
 									continue;
@@ -469,11 +494,11 @@ public class Controller {
 								// get the course startTime
 								startTime = startInput;																		
 								}
-								
-								
-								String endInput = sc.next();
+											
 								//get new course end time
 								System.out.println("Please enter the course end time, or type 'q' to end. eg. '20:00'");
+								String endInput = sc.next();
+								
 								if (endInput.equals("q")) {
 									// if quit, go back to the previous menu
 									continue;
@@ -484,9 +509,10 @@ public class Controller {
 								}
 								
 											
-								String dateInput = sc.next();
 								//get new course date
 								System.out.println("Please enter the course date, or type 'q' to end. 'MW'");
+								String dateInput = sc.next();
+								
 								if (dateInput.equals("q")) {
 									// if quit, go back to the previous menu
 									continue;
@@ -496,10 +522,11 @@ public class Controller {
 								date = dateInput;																		
 								}
 								
-							
-								String capacityInput = sc.next();
+				
 								//get new course capacity
 								System.out.println("Please enter the course capacity, or type 'q' to end. eg. '72'");
+								String capacityInput = sc.next();
+								
 								if (capacityInput.equals("q")) {
 									// if quit, go back to the previous menu
 									continue;
@@ -509,54 +536,90 @@ public class Controller {
 								capacity = capacityInput;																		
 								}
 								
-									
-								String lectureIdInput = sc.next();
+													
 								//get new course lecturer's id
 								System.out.println("Please enter the course lecturer's id, or type 'q' to end. eg. '001'");
+								String lectureIdInput = sc.next();
+								
+								// create the variable for the part adding new professor
+								String input = null;
+								String pId = null;
+								String pName = null;
+								String pUserName = null;
+								String pPassword = null;
+								
 								if (lectureIdInput.equals("q")) {
 									// if quit, go back to the previous menu
 									continue;
 									}
 								
+								else if (admin.checkProfessorId(lectureIdInput)) {
+									// get the course lecturer id
+								    lecturerId = lectureIdInput;
+								}
+								
+								
 								//If the lecturer of the course we want to add does not exist in the system
 								//we add the new lecturer to the arrayList
-								else if (!admin.checkProfessorId(lecturerId)) {
+								else if (!admin.checkProfessorId(lectureIdInput)) {
 									System.out.println("The professor isn't in the system, please add this professor first");
+									
+									
+									if (endInput.equals("q")) {
+										// if quit, go back to the previous menu
+										continue;
+										}
+									else {
 									//get the professor id
 									System.out.println("Please enter the professor's ID, or type 'q' to quit");
-									String input = sc.next();
-									String pId = input;
+									input = sc.next();
+									pId = input;
+									}
 									
+									
+									if (endInput.equals("q")) {
+										// if quit, go back to the previous menu
+										continue;
+										}
+									else {
 									//get the professor name
 									System.out.println("Please enter professor's name, or type 'q' to quit");
 									input = sc.next();
-									String pName = input;
+									pName = input;
+									}
 									
+									
+									if (endInput.equals("q")) {
+										// if quit, go back to the previous menu
+										continue;
+										}
+									else {
 									//get the professor userName
 									System.out.println("Please enter a userName");
 									input = sc.next();
-									String pUserName = input;
+									pUserName = input;
+									}
 									
+									if (endInput.equals("q")) {
+										// if quit, go back to the previous menu
+										continue;
+										}
+									else {
 									//get the professor password
 									System.out.println("Please enter a password");
 									input = sc.next();
-									String pPassword = input;
+									pPassword = input;
+									}
 									
 									//create a professor and put him into the arrayList
 									Professor newP = new Professor(pName, pId, pUserName, pPassword);
 									Professor.PROFESSORS.add(newP);
-									System.out.println("Successfully added the new professor: ");
-									System.out.print(newP.getId() + newP.getName());
+									System.out.println("Successfully added the new professor: " + newP.getId() + " " + newP.getName());
 									// get the course lecturer id
 								    lecturerId = lectureIdInput;	
 									
 								}
 								
-								else {
-								// get the course lecturer id
-							    lecturerId = lectureIdInput;																		
-								}
-										
 								
 							// get the lecture name with the lecturerId
 							for (int i = 0; i < Professor.PROFESSORS.size(); i++) {
@@ -572,25 +635,21 @@ public class Controller {
 							// create a new course with the given information	
 							Course newCourse = new Course(id, name, profName, date, startTime, endTime, capacity);
 							
-							//the program needs to check if the course has a time conflict with all of the lecturer��s other courses.
+							//the program needs to check if the course has a time conflict with all of the lecturers other courses.
 							// check if there's a time conflict with other course					
-							if (newCourse.noTimeConflict(p, newCourse, p.getCourseList()) == false) {
-								System.out.println("The course you selected has time conflict with other courses: ");
-								
+							if (newCourse.noTimeConflict(p, newCourse, p.getCourseList()) == false) {							
 								// iterate over time conflict courses and print the conflict course(s)
 								for(int a = 0; a < newCourse.getConflictCourses().size(); a++) {
-									System.out.print(newCourse.getConflictCourses().get(a));
+									System.out.print("The course you selected has time conflict with other courses: " +newCourse.getConflictCourses().get(a));
 									// print the unable-new course
-									System.out.println("Unable to add new course: ");
-									System.out.print(newCourse);
+									System.out.println("Unable to add new course: " + newCourse);
 								}			
 							}else {	
 								// After adding a new course, we can see the newly added course in the system.
 								Course.COURSELIST.add(newCourse);
 								// print the course
-								System.out.println("Successfully added the course: ");
-								System.out.print(newCourse);
-								System.out.println("------------------------------");	
+								System.out.println("Successfully added the course: " + newCourse);
+
 								
 							}	
 																			
@@ -605,8 +664,7 @@ public class Controller {
 							}
 							
 							
-																
-						}
+						/**									
 							// 4--Add new professor
 							if(inputA == 4) {
 								
@@ -712,7 +770,7 @@ public class Controller {
 								
 								}
 									
-									
+							*/		
 							
 							
 							//5--delete professor
@@ -735,11 +793,30 @@ public class Controller {
 								
 								continue;
 							}
+							
+						}}
+					
+					else {
+						// if the password in not correct, get back to the previous menu
+						System.out.println("Password incorrect.");
+						continue;	
+					}
+				
+		}
+				else {
+					// if the student username is not in the file, get back to the previous menu
+					System.out.println("User not found.");
+					continue;		
+				}		
+							
+							
 	
 			}
 							
 				
 			}
+		
+		
 			
 			// 4--Quit the system
 			if (userNum == 4) {
@@ -752,17 +829,12 @@ public class Controller {
 				// break the while loop
 				break;
 			} 
-					
-			}		
-					
-			
-		}
-			
+							
 		
 	System.out.println("-------System closed-------");
 	System.out.println("----------------------------");
 	}
-			}}}}
+			}
 	
 
 

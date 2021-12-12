@@ -412,64 +412,91 @@ public class Course {
 		
 
 		public boolean noTimeConflict(Professor p, Course newCourse, ArrayList<Course> courseList) {
-			// get all the course in the same day
-			ArrayList<Course> sameDayCourse = new ArrayList<Course>();
-				
-
-			// iterate over the courseList, gets the lecture day for each course and compare with the new Course
-			for(int i = 0; i < p.getCourseList().size(); i++) {
+				// get all the course in the same day
+				ArrayList<Course> sameDayCourse = new ArrayList<Course>();
 					
-				if(p.getCourseList().get(i).getDays().equals(newCourse.getDays())){
+				// iterate over the professor courseList, gets the lecture day for each course and compare with the newCourse
+				for(int i = 0; i < p.getCourseList().size(); i++) {
+					
+					// there are situations where some lecture only have 1 day, where others have several days
+					// split the string into characters
+					
+					// for example, split MW into M W
+					String [] enrolledCourseDays = p.getCourseList().get(i).getDays().split("");
+					
+					// also split the days for the course needed to add
+					// for example: M
+					String [] addCourseDays = newCourse.getDays().split("");
+					
+					// iterate over these 2 list and compare if they have the same day
+					for(int a = 0; a < enrolledCourseDays.length; a++){
 						
-					// if on the same day, then add to the list
-					sameDayCourse.add(p.getCourseList().get(i));
-					
-				}	
-			}
-				
-		
-			// then compare the start time and end time for those course in the same day
-				
-			//create a dateFormatTranslator
-			SimpleDateFormat sdf=new SimpleDateFormat("hh:mm");
-				
-			try {
-					
-				//change the start_time string to the date
-				Date x = sdf.parse(newCourse.startTime);
-					
-				//change the end_time string to the date
-				Date y = sdf.parse(newCourse.endTime);
-					
-				for(int i = 0;i < sameDayCourse.size(); i ++){
-					
-					Course course = sameDayCourse.get(i);
-			            
-			        //change the start_time string to the date
-			        Date a = sdf.parse(course.startTime);
-			            
-					//change the end_time string to the date
-					Date b= sdf.parse(course.endTime);
-						
-					//change the date to millisecond and compare
-					// this condition means time conflicts
-					if(!(x.getTime()-b.getTime() >= 0 || a.getTime()-y.getTime() >= 0)) {
-						this.conflictCourses.add(course);
-						return false;	
-					}		
-				}
+						for(int b = 0; b < addCourseDays.length; b++) {
+							
+							// if they have the same day
+							if(enrolledCourseDays[a].equals(addCourseDays[b])) {
 								
-				} catch (ParseException e) {
+								// if on the same day, then add to the list
+								sameDayCourse.add(p.getCourseList().get(i));
+								break;
+								
+							}
+						}			
+					}	
+				}
 					
-					e.printStackTrace();
+			
+				// then compare the start time and end time for those course in the same day
+					
+				//create a dateFormatTranslator
+				SimpleDateFormat sdf=new SimpleDateFormat("hh:mm");
+					
+				try {
+						
+					//change the start_time string to the date
+					Date x = sdf.parse(newCourse.startTime);
+						
+					//change the end_time string to the date
+					Date y = sdf.parse(newCourse.endTime);
+						
+					for(int i = 0;i < sameDayCourse.size(); i ++){
+						
+						Course course = sameDayCourse.get(i);
+				            
+				        //change the start_time string to the date
+				        Date a = sdf.parse(course.startTime);
+				            
+						//change the end_time string to the date
+						Date b= sdf.parse(course.endTime);
+							
+						//change the date to millisecond and compare
+							
+						// this condition means time conflicts
+						if(!(x.getTime()-b.getTime() >= 0 || a.getTime()-y.getTime() >= 0)) {
+							// add this course in the conflictCourses list
+							this.conflictCourses.add(course);
+						}		
+					}
+									
+					} catch (ParseException e) {
+						
+						e.printStackTrace();
+						return false;
+						
+					}
+				if(conflictCourses.size() > 0) {
+					
+					// if there are courses in the conflict courses list
 					return false;
 					
+				} 
+				else {
+					// if the conflict courses list is empty
+					return true;
 				}
-			
-			// if can pass the for-loop meaning that no time conflict
-			return true;
+					
 				
-		}
+				}
 
 		
 		
