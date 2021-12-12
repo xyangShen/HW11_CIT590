@@ -472,6 +472,30 @@ public class Course {
 		}
 
 		
+		/**
+		 * to check if a given course is in the course list
+		 * @param CourseID to check
+		 * @return true if the course is in list, otherwise false
+		 */
+		public static boolean isCourseInList(String CourseID) {
+			
+			boolean isCourseInList = false;
+			
+			// iterate over the course list
+			for(int i = 0; i < Course.COURSELIST.size(); i++) {
+				
+				if(Course.COURSELIST.get(i).getId().equals(CourseID)) {
+					
+					isCourseInList = true;
+					break;
+					
+				}
+			}
+			
+			return isCourseInList;
+			
+		}
+		
 		
 	
 	

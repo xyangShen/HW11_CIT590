@@ -127,24 +127,42 @@ public class Admin{
 	 */
 	public static void addProfessor(Professor professor) {
 		
+		System.out.println("Sucessfully add the professor: " + professor.getId() + professor.getName());
 		
+		Professor.PROFESSORS.add(professor);
 		
 	}
 	
+	
 	/**
-	 * delete the given professor 
-	 * check if the professor is in the list
+	 * delete the given professor with given id
 	 * @param proID to delete
 	 */
 	public static void delProfessor(String proID) {
 		
+		// iterate over the professor list 
+		for(int i = 0; i < Professor.PROFESSORS.size(); i++) {
+			
+			// find the professor by id
+			if(Professor.PROFESSORS.get(i).getId().equals(proID)) {
+				
+				System.out.println("Sucessfully remove the professor: " + Professor.PROFESSORS.get(i).getId() + Professor.PROFESSORS.get(i).getName());
+				
+				// remove this professor
+				Professor.PROFESSORS.remove(i);
+			}
+		}
+		
 	}
 	
 	/**
-	 * add the new student into the system
+	 * take the given student and add to the list
 	 * @param student to add
 	 */
 	public static void addStudent(Student student) {
+		
+		System.out.println("You have successfully add the student:" + student.getId() + student.getName());
+		Student.STUDENTS.add(student);
 		
 	}
 	
@@ -155,7 +173,19 @@ public class Admin{
 	 * @param studentID to delete
 	 * @return
 	 */
-	public static coid delStudent(String studentID) {
+	public static void delStudent(String studentID) {
+		// iterate over the student list 
+		for(int i = 0; i < Student.STUDENTS.size(); i++) {
+				
+			// find the student by id
+				if(Student.STUDENTS.get(i).getId().equals(studentID)) {
+					
+					System.out.println("Sucessfully remove the student: " + Student.STUDENTS.get(i).getId() + Student.STUDENTS.get(i).getName());
+					
+					// remove this student
+					Student.STUDENTS.remove(i);
+				}
+			}
 		
 	}
 	

@@ -383,6 +383,60 @@ public class Student {
 		}
 		
 	}
+	
+	/**
+	 * to check if a student id is already in the list
+	 * @param stuID to check
+	 * @return true if the id is occupied, otherwise false
+	 */
+	public static boolean isIDOccupied(String stuID) {
+		
+		// sets the initial value to be false
+		boolean isIDOccupied = false;
+		
+		// iterate over the professor list
+		for (int i = 0; i < Student.STUDENTS.size(); i++) {
+			
+			if(Student.STUDENTS.get(i).getId().equals(stuID)) {
+				
+				// if the id is occupied
+				isIDOccupied = true;
+				break;
+			}
+		}
+
+		return isIDOccupied;
+		
+	}
+	
+	/**
+	 * to check if a student user name is already in the list
+	 * @param stuUN to check
+	 * @return true if the username is occupied, otherwise false
+	 */
+	public static boolean isUserNameOccupied(String stuUN) {
+		
+		// sets the initial value to be false
+		boolean isUserNameOccupied = false;
+		
+		// iterate over the professor list
+				for (int i = 0; i < Student.STUDENTS.size(); i++) {
+					
+					if(Student.STUDENTS.get(i).getUserName().equals(stuUN)) {
+						
+						// if the id is occupied
+						isUserNameOccupied = true;
+						break;
+					}
+				}
+
+				return isUserNameOccupied;	
+	}
+	
+
+	
+	
+	
 
 
 }
