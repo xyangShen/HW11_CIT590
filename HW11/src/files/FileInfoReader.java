@@ -5,12 +5,9 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
-import java.util.Scanner;
 
 import courses.Course;
 import roles.Admin;
@@ -268,13 +265,14 @@ public class FileInfoReader {
 		ArrayList<String> allCoursesInfo = new ArrayList<String>();
 		
 		
+		
 		try {
 			fileReader = new FileReader(file);
 			bufferedReader = new BufferedReader(fileReader);
 			
 			// variable to store each lines
 			String line;
-					
+			
 			// while there is a line to read
 			while((line = bufferedReader.readLine()) != null) {
 				

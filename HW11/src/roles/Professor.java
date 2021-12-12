@@ -1,9 +1,7 @@
 package roles;
 
 import java.util.ArrayList;
-
 import courses.Course;
-import files.FileInfoReader;
 
 /**
  * Represents a professor
@@ -205,6 +203,30 @@ public class Professor {
 
 		return isIDOccupied;
 		
+	}
+	
+	/**
+	 * to check if a professor user name is already in the list
+	 * @param proUN to check
+	 * @return true if the username is occupied, otherwise false
+	 */
+	public static boolean isUserNameOccupied(String proUN) {
+		
+		// sets the initial value to be false
+		boolean isUserNameOccupied = false;
+		
+		// iterate over the professor list
+				for (int i = 0; i < Professor.PROFESSORS.size(); i++) {
+					
+					if(Professor.PROFESSORS.get(i).getUserName().equals(proUN)) {
+						
+						// if the id is occupied
+						isUserNameOccupied = true;
+						break;
+					}
+				}
+
+				return isUserNameOccupied;	
 	}
 	
 

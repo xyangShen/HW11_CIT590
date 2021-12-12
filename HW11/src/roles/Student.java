@@ -3,9 +3,9 @@ package roles;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Map;
-
+import java.util.Map.Entry;
 import courses.Course;
-import files.FileInfoReader;
+
 
 /**
  * Represents a student
@@ -310,9 +310,7 @@ public class Student {
 		for(int i = 0; i < Course.COURSELIST.size(); i++) {
 			
 			if(Course.COURSELIST.get(i).getId().equals(courseID)) {
-				
-				Course dropCourse = Course.COURSELIST.get(i);
-				
+								
 				// change the isCourseExist value to true
 				isCourseExist = true;
 				
@@ -336,11 +334,11 @@ public class Student {
 						// remove the keys and value from the map
 						
 						// creates an iterator
-						Iterator iterator = this.courseMap.entrySet().iterator();
+						Iterator<Entry<String, String>> iterator = this.courseMap.entrySet().iterator();
 						
 						// iterate through the courseMap
 						while(iterator.hasNext()) {
-							Map.Entry mapElement = (Map.Entry) iterator.next();
+							Map.Entry<String, String> mapElement = (Map.Entry<String, String>) iterator.next();
 							
 							if(mapElement.getKey().equals(courseID)) {
 								iterator.remove();
@@ -374,15 +372,69 @@ public class Student {
 	public void viewGrade() {
 		
 		// creates an iterator
-		Iterator iterator = this.courseMap.entrySet().iterator();
+		Iterator<Entry<String, String>> iterator = this.courseMap.entrySet().iterator();
 		
 		// iterate through the courseMap
 		while(iterator.hasNext()) {
-			Map.Entry mapElement = (Map.Entry) iterator.next();
+			Map.Entry<String, String> mapElement = (Map.Entry<String, String>) iterator.next();
 			System.out.println("Grade of " + mapElement.getKey() + ": " + mapElement.getValue());
 		}
 		
 	}
+	
+	/**
+	 * to check if a student id is already in the list
+	 * @param stuID to check
+	 * @return true if the id is occupied, otherwise false
+	 */
+	public static boolean isIDOccupied(String stuID) {
+		
+		// sets the initial value to be false
+		boolean isIDOccupied = false;
+		
+		// iterate over the professor list
+		for (int i = 0; i < Student.STUDENTS.size(); i++) {
+			
+			if(Student.STUDENTS.get(i).getId().equals(stuID)) {
+				
+				// if the id is occupied
+				isIDOccupied = true;
+				break;
+			}
+		}
+
+		return isIDOccupied;
+		
+	}
+	
+	/**
+	 * to check if a student user name is already in the list
+	 * @param stuUN to check
+	 * @return true if the username is occupied, otherwise false
+	 */
+	public static boolean isUserNameOccupied(String stuUN) {
+		
+		// sets the initial value to be false
+		boolean isUserNameOccupied = false;
+		
+		// iterate over the professor list
+				for (int i = 0; i < Student.STUDENTS.size(); i++) {
+					
+					if(Student.STUDENTS.get(i).getUserName().equals(stuUN)) {
+						
+						// if the id is occupied
+						isUserNameOccupied = true;
+						break;
+					}
+				}
+
+				return isUserNameOccupied;	
+	}
+	
+
+	
+	
+	
 
 
 }

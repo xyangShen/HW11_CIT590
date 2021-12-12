@@ -1,15 +1,8 @@
 package main;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.security.KeyStore.Entry;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
-
 import courses.Course;
 import files.FileInfoReader;
 import roles.Admin;
@@ -34,7 +27,9 @@ public class Controller {
 		FileInfoReader.setProfessorInfo();
 		FileInfoReader.setAdminInfo();
 		
-	
+		// creates scanner
+		Scanner sc = new Scanner(System.in);
+		
 		// when the system is on
 		while(true) {
 			// when enter the system, select to log in as student/professor/admin/quit the system
@@ -48,8 +43,6 @@ public class Controller {
 			System.out.println();
 			
 			// get user input
-			// creates scanner
-			Scanner sc = new Scanner(System.in);
 			System.out.println("Please enter your option, eg.'1'");
 			
 			
@@ -684,128 +677,289 @@ public class Controller {
 								
 							}
 							
-							
-						/**									
+															
 							// 4--Add new professor
 							if(inputA == 4) {
 								
-								// get the next token as the id of the professor
-								System.out.println("Please enter the professor's ID, or type 'q' to quit");
+								// string to store the id of the professor
+								String professorID = null;
 								
-								String proID = sc.next();
+								// use a boolean value to track is the id is invalid
+								boolean isIDValid = false;
 								
-				                // use this string to store the final professor ID
-								String professorID;
-								
-								if(proID.equals("q")) {
+							
+								while(isIDValid == false) {
 									
-									continue;
+									// get the next token as the id of the professor
+									System.out.println("Please enter the professor's ID, or type 'q' to quit");
 									
-								} else {
+									String proID = sc.next();
 									
-									// check if the id is occupied
-									boolean isIDOccupied = Professor.isIDOccupied(proID);
-									
-									if(isIDOccupied == true) {
-										
-										// use a boolean value to see if the id is valid
-										boolean isIDValid = false;
-										
-										while(isIDValid == false) {
-											
-											System.out.println("The ID already exists.");
-											System.out.println("Please enter the professor's ID");
-											String proID2 = sc.next();
-											
-											// check again
-											boolean isIDOccupied2 = Professor.isIDOccupied(proID);
-											
-											if(isIDOccupied2 == false){
-												// set the final professor ID
-												professorID = proID2;
-												
-												isIDValid = true;
-											}
-											
-										}
-										
+									if(proID.equals("q")) {
+										continue;
 									}
 									else {
-										// if the ID is not occupied, sets the professor ID
-										professorID = proID;
+										
+										// check if the id is in the system
+										if(Professor.isIDOccupied(proID) == false) {
+											
+											// if the id is valid, set the professorID to proID
+											professorID = proID;
+											
+											// change the boolean value and break the loop
+											isIDValid = true;
+										}						
 										}
-									}
+								}
+								
 								
 								
 								// get the next token as the professor's name
 								System.out.println("Please enter the professor's ID, or type 'q' to quit");		
-								String proName = sc.next();
+								String professorName = sc.next();
 								
-								if(proName.equals("q")) {
+								if(professorName.equals("q")) {
 									continue;	
 								}
 								
-								// get the next token as the user name
-								System.out.println("Please enter a username, or type 'q' to quit");
-								String proUN = sc.next();
-								if(proUN.equals("q")) {
-									continue;	
-								}
-								else {
+								
+								
+								// String to store the username for this professor
+								String professorUsername = null;
+								
+								// boolean value to track if the user name is valid
+								boolean isUsernameValid = false;
+								
+								while(isUsernameValid == false) {
 									
-									// check if the id is occupied
-									boolean isUNOccupied = Professor.isUNOccupied(proID);
+									System.out.println("Please enter a username, or type 'q' to quit");
+									String proUN = sc.next();
 									
-									if(isUNOccupied == true) {
-										
-										// use a boolean value to see if the id is valid
-										boolean isIDValid = false;
-										
-										while(isIDValid == false) {
-											
-											System.out.println("The user name already exists.");
-											System.out.println("Please enter an username");
-											String proUN2 = sc.next();
-											
-											// check again
-											boolean isUNOccupied2 = Professor.isUNOccupied(proID);
-											
-											if(isUNOccupied2 == false){
-												// set the final professor ID
-												proUN = proUN2;
-												
-												isUNValid = true;
-											}
-											
-										}
-										
+									if(proUN.equals("q")) {
+										continue;
 									}
 									else {
-										// if the ID is not occupied, sets the professor ID
-										professorID = proID;
+										
+										// check is the username is in the system
+										if(Professor.isUserNameOccupied(proUN)== false) {
+											
+											// if the user name is valid
+											professorUsername = proUN;
+											
+											isUsernameValid = true;
 										}
-									}
-								
-								
-								
-								
+										
+										}
 								}
 									
-							*/		
-							
+									// get the next token as the professor's password
+									System.out.println("Please enter a password, or type 'q' to quit");		
+									String professorPW = sc.next();
+									
+									if(professorPW.equals("q")) {
+										continue;	
+									}
+									
+									// create the new professor
+									Professor addProfessor = new Professor(professorName, professorID, professorUsername, professorPW);
+									
+									// add this professor into the professor list
+									Admin.addProfessor(addProfessor);
+									
+		
+								}
+					
 							
 							//5--delete professor
 							if(inputA == 5) {
 								
+								// use a boolean value to see if the professor is in the list
+								boolean isProInList = false;
+								boolean okToExit = false;
+								
+								while(isProInList == false && !okToExit) {
+									
+									System.out.println("Please enter the professor ID to delete, or type 'q' to quit");
+									String proID = sc.next();
+									
+									if(proID.equals("q")) {
+										okToExit = true;
+										continue;
+									}
+									else {
+										
+										// if the professor is in the list
+										if(Professor.isIDOccupied(proID) == true) {
+											
+											// delete this professor
+											Admin.delProfessor(proID);	
+										}
+									}
+								
+							     }
+								
 							}
+							
+							
 							
 							//6--add new student
 							if(inputA == 6) {
 								
-							}
+								// string to store the id of the student
+								String studentID = null;
+								
+								// use a boolean value to track is the id is invalid
+								boolean isIDValid = false;
+								
+							
+								while(isIDValid == false) {
+									
+									// get the next token as the id of the professor
+									System.out.println("Please enter the student's ID, or type 'q' to quit");
+									
+									String stuID = sc.next();
+									
+									if(stuID.equals("q")) {
+										continue;
+									}
+									else {
+										
+										// check if the id is in the system
+										if(Student.isIDOccupied(stuID) == false) {
+											
+											// if the id is valid, set the professorID to proID
+											studentID = stuID;
+											
+											// change the boolean value and break the loop
+											isIDValid = true;
+										}						
+										}
+								}
+								
+								
+								
+								// get the next token as the student's name
+								System.out.println("Please enter the student's ID, or type 'q' to quit");		
+								String studentName = sc.next();
+								
+								if(studentName.equals("q")) {
+									continue;	
+								}
+								
+								
+								
+								// String to store the username for this student
+								String studentUsername = null;
+								
+								// boolean value to track if the user name is valid
+								boolean isUsernameValid = false;
+								
+								while(isUsernameValid == false) {
+									
+									System.out.println("Please enter a username, or type 'q' to quit");
+									String stuUN = sc.next();
+									
+									if(stuUN.equals("q")) {
+										continue;
+									}
+									else {
+										
+										// check is the username is in the system
+										if(Student.isUserNameOccupied(stuUN)== false) {
+											
+											// if the user name is valid
+											studentUsername = stuUN;
+											
+											isUsernameValid = true;
+										}
+										
+										}
+								}
+									
+									// get the next token as the student's password
+									System.out.println("Please enter a password, or type 'q' to quit");		
+									String studentPW = sc.next();
+									
+									if(studentPW.equals("q")) {
+										continue;	
+									}
+									
+									// get the information about the student's enrolled courses
+									Map<String, String> addCourseList = new HashMap<String, String>();
+									
+									// use boolean value to check is all courses are added
+									boolean isAddCourseOver = false;
+									
+									while(isAddCourseOver == false) {
+										
+										System.out.println("Please enter ID of a course which this student already took, one in a time");
+										System.out.println("Type 'q' to quit, type 'n' to stop adding");
+										
+										String courseID = sc.next();
+										
+										// check if the course is in the list
+										
+										if(courseID.equals("q")) {
+											continue;
+										}else {
+											
+											// check if the course is in list
+											if(Course.isCourseInList(courseID) == true) {
+												// if the course is valid
+									            System.out.println("Please enter the grade, eg 'A'");
+									            String courseGrade = sc.next();
+									
+									            // put the course and the grade in the map
+									            addCourseList.put(courseID, courseGrade);
+											
+											
+										      }
+											else {
+												break;
+										}
+											
+											
+										}	
+									}
+									
+									// create the new student
+									Student addStudent = new Student(studentID, studentName, studentUsername, studentPW, addCourseList);
+									
+									Admin.addStudent(addStudent);
+																			
+									}
+									
+									
 							
 							//7--delete student
 							if(inputA == 7) {
+								
+								// use a boolean value to see if the student is in the list
+								boolean isStuInList = false;
+								boolean okToExit = false;
+								
+								while(isStuInList == false && !okToExit) {
+									
+									System.out.println("Please enter the student ID to delete, or type 'q' to quit");
+									String stuID = sc.next();
+									
+									if(stuID.equals("q")) {
+										okToExit = true;
+										continue;
+									}
+									else {
+										
+										// if the student is in the list
+										if(Student.isIDOccupied(stuID) == true) {
+											
+											// delete this professor
+											Admin.delStudent(stuID);	
+										}
+									}
+								
+							     }
+								
+								
 								
 							}
 							
@@ -842,18 +996,19 @@ public class Controller {
 			// 4--Quit the system
 			if (userNum == 4) {
 				
-				
-				
-				
-				
+				// break the while loop
+				break;				
 			}
 				// break the while loop
 				break;
 			} 
-							
+												
+			
+			
 		
 	System.out.println("-------System closed-------");
 	System.out.println("----------------------------");
+	sc.close();
 	}
 			}
 	

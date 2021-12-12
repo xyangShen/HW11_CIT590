@@ -1,10 +1,5 @@
 package courses;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -102,20 +97,6 @@ public class Course {
 		this.capacity = capacity;     
 	}
 
-	
-
-	
-	public static boolean compareName(String addName, ArrayList<Course> COURSELIST) {
-		
-		if (COURSELIST.contains(addName)){
-			return false;
-			
-		}
-		return false;
-		
-		
-		
-	}
 
 	// getter and setter methods
 	
@@ -523,17 +504,32 @@ public class Course {
 			return isIDOccupied;
 			
 		}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+		
+		/**
+		 * to check if a given course is in the course list
+		 * @param CourseID to check
+		 * @return true if the course is in list, otherwise false
+		 */
+		public static boolean isCourseInList(String CourseID) {
+			
+			boolean isCourseInList = false;
+			
+			// iterate over the course list
+			for(int i = 0; i < Course.COURSELIST.size(); i++) {
+				
+				if(Course.COURSELIST.get(i).getId().equals(CourseID)) {
+					
+					isCourseInList = true;
+					break;
+					
+				}
+			}
+			
+			return isCourseInList;
+			
+		}
+		
+		
 	
 	
 	

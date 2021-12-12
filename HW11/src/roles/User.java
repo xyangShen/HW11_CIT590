@@ -47,24 +47,6 @@ public abstract class User {
 	}
 
 
-	// abstract methods
-	/**
-	 * view the courses with the given ID
-	 */
-	public abstract void viewCourses();
-	
-	/**
-	 * add the courses to each user information
-	 */
-	public abstract void addCourses();
-	
-	/**
-	 * drop the courses to each user information
-	 */
-	// public abstract void dropCourses();
-	
-	
-	
 	
 	
 	
