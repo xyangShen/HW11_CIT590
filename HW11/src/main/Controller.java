@@ -650,7 +650,6 @@ public class Controller {
 								// print the course
 								System.out.println("Successfully added the course: " + newCourse);
 
-								
 							}	
 																			
 							}
