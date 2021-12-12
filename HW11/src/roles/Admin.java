@@ -121,7 +121,25 @@ public class Admin{
 	
 	
 	
-	
+	public boolean checkProfessorId(String lecturerId){
+		// get the lecture name with the lecturerId
+		for (int i = 0; i < Professor.PROFESSORS.size(); i++) {
+			// get the i professor
+			Professor p = Professor.PROFESSORS.get(i);
+			if (p.getId().equals(lecturerId)) {
+				//get the professor name
+				String profName = p.getName();
+				break;
+			}else {
+				return false;
+			}
+				}return true;
+		
+		
+		
+		
+		
+	}
 	
 	
 	

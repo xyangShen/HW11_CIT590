@@ -413,7 +413,7 @@ public class Controller {
 								String endTime;
 								String date;
 								String capacity;
-								String lecturerId;
+								String lecturerId = null;
 								String profName = null;
 								Professor p = null;			
 								String idInput;
@@ -519,28 +519,44 @@ public class Controller {
 									}
 								
 								//If the lecturer of the course we want to add does not exist in the system
-								
-								// check whether the professor id is in the system
-								
-								// if not, 
-								System.out.println("The professor isn't in the system, please add this professor first");
-								System.out.println("Please enter the professor's ID, or type 'q' to quit");
-								
-								System.out.println("Please enter professor's name, or type 'q' to quit");
-								
-								System.out.println("Please enter a userName");
-								
-								System.out.println("Please enter a password");
-								
-								
-								
-								
-								
+								//we add the new lecturer to the arrayList
+								else if (!admin.checkProfessorId(lecturerId)) {
+									System.out.println("The professor isn't in the system, please add this professor first");
+									//get the professor id
+									System.out.println("Please enter the professor's ID, or type 'q' to quit");
+									String input = sc.next();
+									String pId = input;
+									
+									//get the professor name
+									System.out.println("Please enter professor's name, or type 'q' to quit");
+									input = sc.next();
+									String pName = input;
+									
+									//get the professor userName
+									System.out.println("Please enter a userName");
+									input = sc.next();
+									String pUserName = input;
+									
+									//get the professor password
+									System.out.println("Please enter a password");
+									input = sc.next();
+									String pPassword = input;
+									
+									//create a professor and put him into the arrayList
+									Professor newP = new Professor(pName, pId, pUserName, pPassword);
+									Professor.PROFESSORS.add(newP);
+									System.out.println("Successfully added the new professor: ");
+									System.out.print(newP.getId() + newP.getName());
+									// get the course lecturer id
+								    lecturerId = lectureIdInput;	
+									
+								}
 								
 								else {
 								// get the course lecturer id
 							    lecturerId = lectureIdInput;																		
 								}
+										
 								
 							// get the lecture name with the lecturerId
 							for (int i = 0; i < Professor.PROFESSORS.size(); i++) {
@@ -572,27 +588,20 @@ public class Controller {
 								// After adding a new course, we can see the newly added course in the system.
 								Course.COURSELIST.add(newCourse);
 								// print the course
-								System.out.println(newCourse);
+								System.out.println("Successfully added the course: ");
+								System.out.print(newCourse);
 								System.out.println("------------------------------");	
 								
-							}
-							
-							
-							
-							
-							
+							}	
 																			
 							}
 							
 							
-							
+							//delter
 							if (inputA == 3) {
 							
 							
-							
-							
-							
-														
+																
 						}
 	
 			}
@@ -615,7 +624,7 @@ public class Controller {
 	System.out.println("-------System closed-------");
 	System.out.println("----------------------------");
 	}
-			}}
+			}}}}
 	
 
 
