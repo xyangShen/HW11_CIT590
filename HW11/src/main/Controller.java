@@ -597,7 +597,7 @@ public class Controller {
 							}
 							
 							
-							//delter
+							//delete
 							if (inputA == 3) {
 							
 							
