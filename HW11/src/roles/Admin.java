@@ -2,6 +2,7 @@ package roles;
 
 import java.util.ArrayList;
 
+import courses.Course;
 import files.FileInfoReader;
 
 /**
@@ -182,6 +183,31 @@ public class Admin{
 		
 		
 	}
+	
+	/**
+	 * delete the course in the system
+	 * check if the course is in the list
+	 * @param courseID to delete
+	 * @return
+	 */
+	public static void delCourse(String courseID) {
+		// iterate over the course list 
+		for(int i = 0; i < Course.COURSELIST.size(); i++) {
+				
+			// find the course by id
+				if(Course.COURSELIST.get(i).getId().equals(courseID)) {
+					
+					System.out.println("Sucessfully remove the course: " + Course.COURSELIST.get(i).getId() + Course.COURSELIST.get(i).getName());
+					
+					// remove this course
+					Course.COURSELIST.remove(i);
+				}
+			}
+		
+	}
+	
+	
+	
 	
 	
 	

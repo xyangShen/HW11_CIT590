@@ -499,7 +499,30 @@ public class Course {
 				}
 
 		
-		
+		/**
+		 * to check if a course id is already in the list
+		 * @param courID to check
+		 * @return true if the id is occupied, otherwise false
+		 */
+		public static boolean isIDOccupied(String courID) {
+			
+			// sets the initial value to be false
+			boolean isIDOccupied = false;
+			
+			// iterate over the course list
+			for (int i = 0; i < Course.COURSELIST.size(); i++) {
+				
+				if(Course.COURSELIST.get(i).getId().equals(courID)) {
+					
+					// if the id is occupied
+					isIDOccupied = true;
+					break;
+				}
+			}
+
+			return isIDOccupied;
+			
+		}
 	
 	
 	

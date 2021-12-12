@@ -655,10 +655,32 @@ public class Controller {
 							}
 							
 							
-
 							//delete
 							if (inputA == 3) {
+								// use a boolean value to see if the course is in the list
+								boolean isCourInList = false;
+								boolean okToExit = false;
 								
+								while(isCourInList == false && !okToExit) {
+									
+									System.out.println("Please enter the course ID to delete, or type 'q' to quit");
+									String courseID = sc.next();
+									
+									if(courseID.equals("q")) {
+										okToExit = true;
+										continue;
+									}
+									else {
+										
+										// if the course is in the list
+										if(Course.isIDOccupied(courseID) == true) {
+											
+											// delete this course
+											Admin.delCourse(courseID);	
+										}
+									}
+								
+							     }
 								
 							}
 							
