@@ -715,7 +715,7 @@ public class Controller {
 								
 								
 								// get the next token as the professor's name
-								System.out.println("Please enter the professor's ID, or type 'q' to quit");		
+								System.out.println("Please enter the professor's name, or type 'q' to quit");		
 								String professorName = sc.next();
 								
 								if(professorName.equals("q")) {
@@ -839,7 +839,7 @@ public class Controller {
 								
 								
 								// get the next token as the student's name
-								System.out.println("Please enter the student's ID, or type 'q' to quit");		
+								System.out.println("Please enter the student's name, or type 'q' to quit");		
 								String studentName = sc.next();
 								
 								if(studentName.equals("q")) {
