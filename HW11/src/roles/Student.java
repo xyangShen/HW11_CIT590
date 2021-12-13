@@ -71,7 +71,8 @@ public class Student {
 	}
 
 
-	// getter and setter
+	// getter methods
+	
 	/**
 	 * get the student id
 	 * @return student id
@@ -80,14 +81,7 @@ public class Student {
 		return id;
 	}
 
-	/**
-	 * set the student id
-	 * @param id
-	 */
-	public void setId(String id) {
-		this.id = id;
-	}
-
+	
 	/**
 	 * get the student name
 	 * @return student's name
@@ -96,13 +90,6 @@ public class Student {
 		return this.name;
 	}
 
-	/**
-	 * set the student name
-	 * @param name of student
-	 */
-	public void setName(String name) {
-		this.name = name;
-	}
 
 	/**
 	 * get the student's userName
@@ -112,13 +99,6 @@ public class Student {
 		return userName;
 	}
 
-	/**
-	 * set the student's userName
-	 * @param userName of student
-	 */
-	public void setUserName(String userName) {
-		this.userName = userName;
-	}
 
 	/**
 	 * get the student's password
@@ -128,13 +108,6 @@ public class Student {
 		return password;
 	}
 
-	/**
-	 * set the student's password
-	 * @param password of student
-	 */
-	public void setPassword(String password) {
-		this.password = password;
-	}
 
 	/**
 	 * get the student's courseMap
@@ -143,15 +116,6 @@ public class Student {
 	public Map<String, String> getCourseMap() {
 		return courseMap;
 	}
-	
-	/**
-	 * set the student's courseMap 
-	 * @param courseMap of student
-	 */
-	public void setCourseMap(Map<String, String> courseMap) {
-		this.courseMap = courseMap;
-	}
-	
 	
 
 	
@@ -164,9 +128,8 @@ public class Student {
 	}
 	
 	
+	
 	// other method
-
-
 
 	
 	/**
@@ -430,10 +393,6 @@ public class Student {
 
 				return isUserNameOccupied;	
 	}
-	
-
-	
-	
 	
 
 
