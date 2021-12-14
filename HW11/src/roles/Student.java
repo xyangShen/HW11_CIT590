@@ -281,7 +281,7 @@ public class Student {
 				boolean isCourseTaken = false;
 				
 				// iterate over the enrolled course arraylist to check if the course has been enrolled before
-				for (int j = 1; j < this.enrolledCourses.size(); j++) {
+				for (int j = 0; j < this.enrolledCourses.size(); j++) {
 					
 					// if the course already exist in the enrolledCourse ArrayList
 					if(this.enrolledCourses.get(j).getId().equals(courseID)) {
