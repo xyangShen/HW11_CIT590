@@ -2,6 +2,7 @@ package roles;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -11,55 +12,79 @@ import org.junit.jupiter.api.Test;
 import courses.Course;
 import files.FileInfoReader;
 
+
+
 class StudentTest {
+
 	
-	Student student1;
+	Student student;
 	
-	Student student2;
-	
-	
-	@BeforeEach
-	void setUp() throws Exception {
+	 @BeforeEach
+	    void setUp() throws Exception {
 		
-		Map<String, String> studentCourse1 = new HashMap<String, String>();
-		Map<String, String> studentCourse2 = new HashMap<String, String>();
+		 FileInfoReader.setAdminInfo();
+		 FileInfoReader.setCourseInfo();
+		 FileInfoReader.setStudentInfo();
+		 FileInfoReader.setProfessorInfo();
+	      
+	    }
+	 
+	 
+
+	@Test
+	void addEnrolledCourse() {
 		
 		
-		studentCourse1.put("CIT590", "A+");
-		studentCourse2.put("CIS545", "A+");
+		Map<String, String> courseList = new HashMap<String, String>();
 		
-		student1 = new Student("003", "StudentName3", "testStudent03", "password590", studentCourse1);
+		courseList.put("CIS545", "A+");
 		
-		student2 = new Student("003", "StudentName3", "testStudent03", "password590", studentCourse2);
+		courseList.put("CBE554", "A+");
 		
+		Student newStudent = new Student("003", "student03", "teststudent03", "012345", courseList);
+		
+		// can not put course which are not in the list into the enrolled list (eg."CBE554")
+		// can add course like "CIS545" which is on the course list
+		newStudent.addEnrolledCourse();
+		assertEquals(1, newStudent.getEnrolledCourses().size());	
+		
+		
+		
+		Student.STUDENTS.clear();
+		Professor.PROFESSORS.clear();
+		Admin.ADMINS.clear();
+		Course.COURSELIST.clear();
 		
 	}
+	 
 	
 
 	@Test
 	void testAddCourse() {
 		
-		FileInfoReader.setAdminInfo();
-		FileInfoReader.setCourseInfo();
-		FileInfoReader.setStudentInfo();
+		
+		student = Student.STUDENTS.get(0);
 
-		student1.addEnrolledCourse();
+
+		student.addEnrolledCourse();
 		
 		
 		// add a course which had been selected before, should not get enrolled
-		student1.addCourse("CIS590");
-		assertEquals(1, student1.getEnrolledCourses().size());
-		System.out.println(student1.getEnrolledCourses().size());
+		student.addCourse("CIS191");
+		assertEquals(2, student.getEnrolledCourses().size());
 		
 		//add a course that dose not exist, should not get enrolled
-		student1.addCourse("CBE554");
-		assertEquals(1, student1.getEnrolledCourses().size());
-		System.out.println(student1.getEnrolledCourses().size());
-		
+		student.addCourse("CBE554");
+		assertEquals(2, student.getEnrolledCourses().size());
+
 		// add a course and successful
-		student1.addCourse("CIT592");
-		assertEquals(2, student1.getEnrolledCourses().size());
-		System.out.println(student1.getEnrolledCourses().size());
+		student.addCourse("CIT592");
+		assertEquals(3, student.getEnrolledCourses().size());
+		
+		Student.STUDENTS.clear();
+		Professor.PROFESSORS.clear();
+		Admin.ADMINS.clear();
+		Course.COURSELIST.clear();
 		
 		
 	}
@@ -67,37 +92,68 @@ class StudentTest {
 	@Test
 	void testDropCourse() {
 		
-		FileInfoReader.setAdminInfo();
-		FileInfoReader.setCourseInfo();
-		FileInfoReader.setStudentInfo();
 		
-		student2.addEnrolledCourse();
+		student = Student.STUDENTS.get(1);
+
+		student.addEnrolledCourse();
+		
 		
 		// drop a course which had not been selected before, should not get dropped
-		student2.dropCourse("CIT592");
-		assertEquals(1, student2.getEnrolledCourses().size());
-		System.out.println(student2.getEnrolledCourses().size());
+		student.dropCourse("CIS191");
+		assertEquals(2, student.getEnrolledCourses().size());
+		
 		
 		// drop a course that dose not exist, should not get dropped
-		student2.dropCourse("CBE554");
-		assertEquals(1, student2.getEnrolledCourses().size());
-		System.out.println(student2.getEnrolledCourses().size());
+		student.dropCourse("CBE554");
+		assertEquals(2, student.getEnrolledCourses().size());
+		
 		
 		// drop a course and successful
-		student2.dropCourse("CIS545");
-		assertEquals(0, student2.getEnrolledCourses().size());
-		System.out.println(student2.getEnrolledCourses().size());
+		student.dropCourse("CIT592");
+		assertEquals(1, student.getEnrolledCourses().size());
+		
+		
+		Student.STUDENTS.clear();
+		Professor.PROFESSORS.clear();
+		Admin.ADMINS.clear();
+		Course.COURSELIST.clear();
+		
 		
 	}
+	
+	
 
 	@Test
 	void testIsIDOccupied() {
-		fail("Not yet implemented");
+		
+	
+		// 001 is occupied
+		assertTrue(Student.isIDOccupied("001"));
+		
+		
+		// 12345 is not occupied
+		assertFalse(Student.isIDOccupied("12345"));
+		
+		Student.STUDENTS.clear();
+		Professor.PROFESSORS.clear();
+		Admin.ADMINS.clear();
+		Course.COURSELIST.clear();
+		
 	}
 
 	@Test
 	void testIsUserNameOccupied() {
-		fail("Not yet implemented");
+		
+		// testStudent01 is occupied
+		assertTrue(Student.isUserNameOccupied("testStudent01"));
+		
+		// xinyangs is not occupied
+		assertFalse(Student.isUserNameOccupied("xinyangs"));
+		
+		Student.STUDENTS.clear();
+		Professor.PROFESSORS.clear();
+		Admin.ADMINS.clear();
+		Course.COURSELIST.clear();
 	}
 
 }
