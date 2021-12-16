@@ -242,7 +242,7 @@ public class Student {
 							//update the AddStudent arrayList
 							
 							// if the student is not in the arrayList
-							if (addCourse.addStudent.contains(this)) {
+							if (!addCourse.addStudent.contains(this)) {
 								addCourse.addStudent.add(this);
 								// update the arrayList
 								addCourse.setAddStudent(addCourse.addStudent);

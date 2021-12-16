@@ -2,7 +2,6 @@ package roles;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -70,16 +69,49 @@ class StudentTest {
 		
 		
 		// add a course which had been selected before, should not get enrolled
+		
+		System.out.println(Course.COURSELIST.get(12).getAddStudent().size());
 		student.addCourse("CIS191");
 		assertEquals(2, student.getEnrolledCourses().size());
+		
+		// test whether the list of enrolled student is +1
+		
 		
 		//add a course that dose not exist, should not get enrolled
 		student.addCourse("CBE554");
 		assertEquals(2, student.getEnrolledCourses().size());
 
 		// add a course and successful
-		student.addCourse("CIT592");
+		student.addCourse("CIT594");
 		assertEquals(3, student.getEnrolledCourses().size());
+		
+		// then get the add course and check the enrolledNum
+		Course firstClass = student.getEnrolledCourses().get(2);
+		assertEquals(1, firstClass.getEnrolledNum());
+		
+		// check the course's student list
+		assertEquals(1, firstClass.addStudent.size());
+		
+		// and check the capacity
+		assertEquals("72", firstClass.getCapacity());
+		// make the course full and then check whether the student can add the course
+		for (int i = 0; i < 71; i++) {
+			firstClass.addEnrolledNum();
+		}
+		assertEquals(72, firstClass.getEnrolledNum());
+		
+		// then another student add the course, which should be failed
+		Student student2 = Student.STUDENTS.get(1);
+		student2.addEnrolledCourse();
+		//load the enrolled courses to the list of enrolledCourses
+		assertEquals(2, student2.getEnrolledCourses().size());
+		student2.addCourse("CIT594");
+		// nothing changes
+		assertEquals(2, student2.getEnrolledCourses().size());
+		
+		
+		
+		
 		
 		Student.STUDENTS.clear();
 		Professor.PROFESSORS.clear();

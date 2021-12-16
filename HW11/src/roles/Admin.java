@@ -129,8 +129,8 @@ public class Admin{
 	 * @param professor to add
 	 */
 	public static void addProfessor(Professor professor) {
-		
-		System.out.println("Sucessfully add the professor: " + professor.getId() + " " + professor.getName());
+		// this only considers the legal situation, the other illegal ones will be excluded in the Controller
+		System.out.println("Successfully add the professor: " + professor.getId() + " " + professor.getName());
 		
 		Professor.PROFESSORS.add(professor);
 		
@@ -149,7 +149,7 @@ public class Admin{
 			// find the professor by id
 			if(Professor.PROFESSORS.get(i).getId().equals(proID)){
 				
-				System.out.println("Sucessfully remove the professor: " + Professor.PROFESSORS.get(i).getId() + " " + Professor.PROFESSORS.get(i).getName());
+				System.out.println("Successfully remove the professor: " + Professor.PROFESSORS.get(i).getId() + " " + Professor.PROFESSORS.get(i).getName());
 				
 				// remove this professor
 				Professor.PROFESSORS.remove(i);
@@ -163,8 +163,8 @@ public class Admin{
 	 * @param student to add
 	 */
 	public static void addStudent(Student student) {
-		
-		System.out.println("You have successfully add the student:" + student.getId() + student.getName());
+		// this only considers the legal situation, the other illegal ones will be excluded in the Controller
+		System.out.println("Successfully add the student: " + student.getId() + student.getName());
 		Student.STUDENTS.add(student);
 		
 	}
@@ -183,7 +183,7 @@ public class Admin{
 			// find the student by id
 				if(Student.STUDENTS.get(i).getId().equals(studentID)) {
 					
-					System.out.println("Sucessfully remove the student: " + Student.STUDENTS.get(i).getId() + " " + Student.STUDENTS.get(i).getName());
+					System.out.println("Successfully remove the student: " + Student.STUDENTS.get(i).getId() + " " + Student.STUDENTS.get(i).getName());
 					
 					// remove this student
 					Student.STUDENTS.remove(i);
@@ -192,7 +192,18 @@ public class Admin{
 		
 	}
 	
-
+	
+	
+	/**
+	 * add the new course to the list
+	 * @param course to add
+	 */
+	public static void addCourse(Course course) {
+		// this only considers the legal situation, the other illegal ones will be excluded in the Controller
+		System.out.println("Successfully added the course: " + course);
+		Course.COURSELIST.add(course);
+		
+	}
 	
 	
 	/**
@@ -208,7 +219,7 @@ public class Admin{
 			// find the course by id
 				if(Course.COURSELIST.get(i).getId().equals(courseID)) {
 					
-					System.out.println("Sucessfully remove the course: " + Course.COURSELIST.get(i).getId() + " " + Course.COURSELIST.get(i).getName());
+					System.out.println("Successfully remove the course: " + Course.COURSELIST.get(i).getId() + " " + Course.COURSELIST.get(i).getName());
 					
 					// remove this course
 					Course.COURSELIST.remove(i);

@@ -2,6 +2,8 @@ package roles;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.util.ArrayList;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -10,7 +12,6 @@ import files.FileInfoReader;
 
 class ProfessorTest {
 	
-	Professor professor; 
 
 	@BeforeEach
 	void setUp() throws Exception {
@@ -23,10 +24,13 @@ class ProfessorTest {
 
 	@Test
 	void testGetCourseList() {
+		// pro should be Greenberg
 		Professor pro = Professor.PROFESSORS.get(0);
-		
-		
-		
+		ArrayList<Course> givenCourses = pro.getCourseList();
+		// the lecturer of course in list is equal to Clayton Greenberg
+		assertEquals("Clayton Greenberg", givenCourses.get(0).getLecturer());
+		// the first course should be CIT592
+		assertEquals("CIT592", givenCourses.get(0).getId());
 		
 		Student.STUDENTS.clear();
 		Professor.PROFESSORS.clear();

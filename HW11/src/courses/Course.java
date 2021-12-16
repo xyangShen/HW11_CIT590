@@ -546,5 +546,9 @@ public class Course {
 		}
 	
 	
+		public static void initilizeAddStudent() {
+			
+		}
+		
 
 }

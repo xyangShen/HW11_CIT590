@@ -140,24 +140,7 @@ public class Controller {
 											
 											// call the add course method in the student class
 											student.addCourse(inputCourse);
-											
-//											
-//											// create an instance
-//											Course courseToAdd = null;											
-//											for (int c = 0; c < student.getEnrolledCourses().size(); c++) {
-//												if (inputCourse.equals(student.getEnrolledCourses().get(c).getId())) {
-//											    // convert the string to course class
-//											    courseToAdd = student.getEnrolledCourses().get(c);
-//													}
-//											
-//											// if the student is not in the arrayList
-//											if (!courseToAdd.addStudent.contains(student)) {
-//												courseToAdd.addStudent.add(student);
-//												// update the arrayList
-//												courseToAdd.setAddStudent(courseToAdd.addStudent);
-//											}
-//											}
-											
+																					
 											}
 										}
 									
@@ -661,10 +644,7 @@ public class Controller {
 									System.out.println("Unable to add new course: " + newCourse);
 								}			
 							}else {	
-								// After adding a new course, we can see the newly added course in the system.
-								Course.COURSELIST.add(newCourse);
-								// print the course
-								System.out.println("Successfully added the course: " + newCourse);
+								Admin.addCourse(newCourse);
 
 							}	
 																			
