@@ -64,6 +64,8 @@ class StudentTest {
 		
 		student = Student.STUDENTS.get(0);
 
+		
+		
 
 		student.addEnrolledCourse();
 		
