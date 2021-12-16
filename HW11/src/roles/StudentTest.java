@@ -75,7 +75,6 @@ class StudentTest {
 		
 		// test whether the list of enrolled student is +1
 		
-		
 		//add a course that dose not exist, should not get enrolled
 		student.addCourse("CBE554");
 		assertEquals(2, student.getEnrolledCourses().size());
