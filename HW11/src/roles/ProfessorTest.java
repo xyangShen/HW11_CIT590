@@ -5,23 +5,79 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import courses.Course;
 import files.FileInfoReader;
 
 class ProfessorTest {
 	
-	//declare a Professor for testing
 	Professor professor; 
 
-	//run before each unit test method
 	@BeforeEach
 	void setUp() throws Exception {
-		//load the professor to the arrayList
-		FileInfoReader.setProfessorInfo();
+		
+		FileInfoReader.setAdminInfo();
+		 FileInfoReader.setCourseInfo();
+		 FileInfoReader.setStudentInfo();
+		 FileInfoReader.setProfessorInfo();
 	}
 
 	@Test
-	void test() {
-		fail("Not yet implemented"); // TODO
+	void testGetCourseList() {
+		Professor pro = Professor.PROFESSORS.get(0);
+		
+		
+		
+		
+		Student.STUDENTS.clear();
+		Professor.PROFESSORS.clear();
+		Admin.ADMINS.clear();
+		Course.COURSELIST.clear();
+		
 	}
+	
+	
+	
+	
+	@Test
+	void testIsIDOccupied() {
+		
+		// 001 is occupied
+		assertTrue(Professor.isIDOccupied("001"));
+	
+		// 12345 is not occupied
+		assertFalse(Professor.isIDOccupied("12345"));
+		
+
+		Student.STUDENTS.clear();
+		Professor.PROFESSORS.clear();
+		Admin.ADMINS.clear();
+		Course.COURSELIST.clear();
+		
+	}
+	
+	
+	@Test
+	void testIsUserNameOccupied() {
+		
+		// testStudent01 is occupied
+		assertTrue(Professor.isUserNameOccupied("Greenberg"));
+		
+		// curry is not occupied
+		assertFalse(Professor.isUserNameOccupied("curry"));
+		
+		Student.STUDENTS.clear();
+		Professor.PROFESSORS.clear();
+		Admin.ADMINS.clear();
+		Course.COURSELIST.clear();
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
 
 }

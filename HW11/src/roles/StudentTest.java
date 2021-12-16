@@ -16,7 +16,7 @@ import files.FileInfoReader;
 
 class StudentTest {
 
-	
+
 	Student student;
 	
 	 @BeforeEach
@@ -32,7 +32,7 @@ class StudentTest {
 	 
 
 	@Test
-	void addEnrolledCourse() {
+	void testAddEnrolledCourse() {
 		
 		
 		Map<String, String> courseList = new HashMap<String, String>();

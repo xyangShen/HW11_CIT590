@@ -143,8 +143,8 @@ public class Professor {
 	
 	
 	/**
-	 * get the Professor a
-	 * @return
+	 * get the professor's list of given courses
+	 * @return ArrayList<Course> courseList
 	 */
 	public ArrayList<Course> getCourseList() {
 	
