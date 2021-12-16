@@ -67,7 +67,6 @@ class StudentTest {
 
 		student.addEnrolledCourse();
 		
-		
 		// add a course which had been selected before, should not get enrolled
 		
 		System.out.println(Course.COURSELIST.get(12).getAddStudent().size());
