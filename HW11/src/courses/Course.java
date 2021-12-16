@@ -527,10 +527,23 @@ public class Course {
 			
 			return isCourseInList;
 			
+			
+			
+			
 		}
 		
+		/**
+		 * check whether the course is full of students
+		 * @return boolean true if the course is full
+		 */
 		
-	
+		public boolean CourseIsFull() {
+			// cast the string Capacity to int Capacity
+			int c = Integer.parseInt(this.getCapacity());  
+			if(this.getEnrolledNum() >= c) {
+				return true;		
+			}return false; 	
+		}
 	
 	
 

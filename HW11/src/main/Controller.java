@@ -1,5 +1,6 @@
 package main;
 
+import java.text.SimpleDateFormat;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
@@ -137,24 +138,27 @@ public class Controller {
 											}
 								
 										else {
-											// create an instance
-											Course courseToAdd = null;
+											
 											// call the add course method in the student class
 											student.addCourse(inputCourse);
-																						
-											for (int c = 0; c < student.getEnrolledCourses().size(); c++) {
-												if (inputCourse.equals(student.getEnrolledCourses().get(c).getId())) {
-											    // convert the string to course class
-											    courseToAdd = student.getEnrolledCourses().get(c);
-													}
-											}
-											// if the student is not in the arrayList
-											if (!courseToAdd.addStudent.contains(student)) {
-												courseToAdd.addStudent.add(student);
-												// update the arrayList
-												courseToAdd.setAddStudent(courseToAdd.addStudent);
-											}
-											continue;
+											
+//											
+//											// create an instance
+//											Course courseToAdd = null;											
+//											for (int c = 0; c < student.getEnrolledCourses().size(); c++) {
+//												if (inputCourse.equals(student.getEnrolledCourses().get(c).getId())) {
+//											    // convert the string to course class
+//											    courseToAdd = student.getEnrolledCourses().get(c);
+//													}
+//											
+//											// if the student is not in the arrayList
+//											if (!courseToAdd.addStudent.contains(student)) {
+//												courseToAdd.addStudent.add(student);
+//												// update the arrayList
+//												courseToAdd.setAddStudent(courseToAdd.addStudent);
+//											}
+//											}
+											
 											}
 										}
 									
@@ -450,26 +454,22 @@ public class Controller {
 									continue;
 									
 								}else {
-					
-								for (int b = 0; b < Course.COURSELIST.size(); b++) {
-									if (!Course.COURSELIST.get(b).getId().equals(idInput)) {
+									
+									if (Course.isIDOccupied(idInput)) {
+										flag = false;
+										System.out.println("The course already exist");
+									}else {
 										// the course doesn't exist in the system and leave the loop
 										id = idInput;
 									    flag = true;
-									}else {
-										flag = false;
-										System.out.println("The course already exist");
-										break;
 									}
-								}
-								   
+																		   
 								}
 								
 								}
-								if(okToExit == true) {
-									
-									continue;
-									
+								
+								if(okToExit == true) {				
+									continue;					
 								}
 													
 
@@ -510,8 +510,19 @@ public class Controller {
 									continue;
 									}
 								else {
-								// get the course endTime
-								endTime = endInput;																		
+									
+								// check whether the endTime is later than the startTime
+                                while (true) {
+                                	if (admin.checkEndTime(startTime, endInput)) {
+                                		// get the course endTime
+        								endTime = endInput;
+        								break;
+                                	}
+                                	else {
+                                	 System.out.println("Your input_endTime is illegal, please enter again");
+                                	 endInput = sc.next();
+                                	}
+                                }	
 								}
 								
 											
@@ -1065,8 +1076,7 @@ public class Controller {
 				// break the while loop
 				break;				
 			}
-				// break the while loop
-				break;
+				continue;
 			} 
 												
 			

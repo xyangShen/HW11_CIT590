@@ -166,7 +166,8 @@ public class Student {
 	 * @param courseID, the id of a course to add
 	 */
 	public void addCourse(String courseID) {
-	
+		
+		
 	
 		// set a boolean value to track if a course exist or not
 		boolean isCourseExist = false;
@@ -183,6 +184,12 @@ public class Student {
 				
 				// use a boolean value to track if the course had already been takes
 				boolean isCourseTaken = false;
+				
+				//use a boolean value to track if the course is overloaded
+				boolean isCourseFull = false;
+				
+				// check the course Capacity 
+				isCourseFull = addCourse.CourseIsFull();
 				
 				// iterate over the enrolled course arraylist to check if the course has been enrolled before
 				for (int j = 0; j < this.enrolledCourses.size(); j++) {
@@ -215,6 +222,12 @@ public class Student {
 					
 						
 						else {
+							// check the courseCapacity
+							if (isCourseFull) {
+								System.out.println("This course is overloaded, so you can not register for it");
+								
+							}else {
+							
 							// if there's no time conflict
 							System.out.println("Course added successfully.");
 							
@@ -222,12 +235,21 @@ public class Student {
 							
 							// update the courseMap
 							this.courseMap.put(courseID, null);
+							
 							//update the enrolled students number
+							
 							addCourse.addEnrolledNum();
 							//update the AddStudent arrayList
+							
+							// if the student is not in the arrayList
+							if (addCourse.addStudent.contains(this)) {
+								addCourse.addStudent.add(this);
+								// update the arrayList
+								addCourse.setAddStudent(addCourse.addStudent);
+							}
 						
 							break;
-
+							}
 						}
 				
 						

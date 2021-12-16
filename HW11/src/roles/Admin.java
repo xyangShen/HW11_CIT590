@@ -1,6 +1,10 @@
 package roles;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+
 import courses.Course;
 
 /**
@@ -213,11 +217,33 @@ public class Admin{
 		
 	}
 	
+	/**
+	 * check whether the endTime is later than the startTime
+	 * @param start course start time
+	 * @param end course end time
+	 * @return true if the endTime is later than the startTime
+	 */
 	
+	public boolean checkEndTime(String start, String end) {
+		//create a dateFormatTranslator
+		SimpleDateFormat sdf=new SimpleDateFormat("hh:mm");			
+		Date startTime = null;
+		Date endTime = null;
+		try {
+			//change the end_time string to the date
+			startTime = sdf.parse(start);
+			//change the end_time string to the date
+			endTime = sdf.parse(end);
+		if (endTime.getTime() > startTime.getTime()) {
+			return true;
+		}return false;
+		
+	} catch (ParseException e) {
+		e.printStackTrace();
+	}
+		return false;
 	
-	
-	
-	
+}	
 	
 	
 	
