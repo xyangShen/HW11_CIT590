@@ -56,26 +56,10 @@ public class Professor {
 	this.password = password;
 	}
 	
-    
+   	
 	
+	//getter and setter
 	
-	
-	//methods
-	// return the list of given courses names
-	public ArrayList<String> getTeachingCourses(){
-		return null;
-		
-	}
-	
-	// return the list of student names from one given course
-	public ArrayList<String> getStudentInvolved(){
-		return null;
-		
-	}
-
-
-
-
 	/**
 	 * get the professor name
 	 * @return professor name
@@ -118,7 +102,6 @@ public class Professor {
 	}
 
 
-
 	/**
 	 * get the professor userName
 	 * @return userName of professor
@@ -127,7 +110,6 @@ public class Professor {
 	public String getUserName() {
 		return userName;
 	}
-
 
 
 	/**
@@ -160,7 +142,10 @@ public class Professor {
 	}
 	
 	
-	
+	/**
+	 * get the Professor a
+	 * @return
+	 */
 	public ArrayList<Course> getCourseList() {
 	
 	//create an arrayList of given courses

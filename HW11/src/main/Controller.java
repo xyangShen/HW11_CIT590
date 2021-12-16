@@ -546,7 +546,7 @@ public class Controller {
 									continue;
 									}
 								
-								else if (admin.checkProfessorId(lectureIdInput)) {
+								else if (Professor.isIDOccupied(lectureIdInput)) {
 									// get the course lecturer id
 								    lecturerId = lectureIdInput;
 								}
@@ -554,7 +554,7 @@ public class Controller {
 								
 								//If the lecturer of the course we want to add does not exist in the system
 								//we add the new lecturer to the arrayList
-								else if (!admin.checkProfessorId(lectureIdInput)) {
+								else if (!Professor.isIDOccupied(lectureIdInput)) {
 									System.out.println("The professor isn't in the system, please add this professor first");
 									
 									

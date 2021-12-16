@@ -189,28 +189,7 @@ public class Admin{
 	}
 	
 
-	/**
-	 * check whether the input profID is in the profInfo
-	 * @param lecturerId
-	 * @return boolean if the input exists, return true
-	 */
-	public boolean checkProfessorId(String lecturerId){
-		// get the lecture name with the lecturerId
-		for (int i = 0; i < Professor.PROFESSORS.size(); i++) {
-			// get the i professor
-			Professor p = Professor.PROFESSORS.get(i);
-			if (p.getId().equals(lecturerId)) {
-				return true;
-			}else {
-				continue;
-			}
-				}return false;
-		
-		
-		
-		
-		
-	}
+	
 	
 	/**
 	 * delete the course in the system
