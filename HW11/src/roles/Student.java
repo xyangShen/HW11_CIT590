@@ -154,6 +154,12 @@ public class Student {
 					
 					// add the course into the enrolledcourse list
 					this.enrolledCourses.add(course);
+					
+					// add this student to the student list of this course
+					course.addStudent.add(this);
+					
+					// add one enrolled number to this course
+					course.addEnrolledNum();
 					}
 				}
 			}
@@ -211,7 +217,7 @@ public class Student {
 				if(isCourseTaken == false) {
 					
 					// check if there's a time conflict with other course					
-					if (addCourse.noTimeConflict(this, addCourse, this.enrolledCourses) == false) {
+					if (addCourse.noTimeConflict(this, addCourse) == false) {
 						System.out.println("The course you selected has time conflict with other courses: ");
 						
 						// iterate over time conflict courses and print the course id and name

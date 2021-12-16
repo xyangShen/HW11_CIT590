@@ -69,18 +69,6 @@ public class Professor {
 	}
 
 
-
-	/**
-	 * set the professor name
-	 * @param name of professor
-	 */
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-
-
 	/**
 	 * get the professor id
 	 * @return id of professor
@@ -88,17 +76,6 @@ public class Professor {
 
 	public String getId() {
 		return id;
-	}
-
-
-
-	/**
-	 * set the professor id
-	 * @param id of professor
-	 */
-
-	public void setId(String id) {
-		this.id = id;
 	}
 
 
@@ -112,15 +89,6 @@ public class Professor {
 	}
 
 
-	/**
-	 * set the professor userName
-	 * @param userName of professor
-	 */
-
-	public void setUserName(String userName) {
-		this.userName = userName;
-	}
-
 
 	/**
 	 * get the professor password
@@ -131,16 +99,6 @@ public class Professor {
 		return password;
 	}
 
-
-	/**
-	 * set the professor password
-	 * @param password of professor
-	 */
-
-	public void setPassword(String password) {
-		this.password = password;
-	}
-	
 	
 	/**
 	 * get the professor's list of given courses

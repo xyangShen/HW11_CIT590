@@ -636,7 +636,7 @@ public class Controller {
 							
 							//the program needs to check if the course has a time conflict with all of the lecturers other courses.
 							// check if there's a time conflict with other course					
-							if (newCourse.noTimeConflict(p, newCourse, p.getCourseList()) == false) {							
+							if (newCourse.noTimeConflict(p, newCourse) == false) {							
 								// iterate over time conflict courses and print the conflict course(s)
 								for(int a = 0; a < newCourse.getConflictCourses().size(); a++) {
 									System.out.print("The course you selected has time conflict with other courses: " +newCourse.getConflictCourses().get(a));
@@ -955,7 +955,7 @@ public class Controller {
 									else {
 											
 										// check if the course is in list
-										if(Course.isCourseInList(courseID) == true) {
+										if(Course.isIDOccupied(courseID) == true) {
 											// if the course is valid
 								            System.out.println("Please enter the grade, eg 'A'");
 								            String courseGrade = sc.next();
