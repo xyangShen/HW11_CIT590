@@ -76,6 +76,7 @@ public class Course {
 
 
 	// constructor
+	
 	/**
 	 * set the course with its information
 	 * @param id
@@ -108,16 +109,6 @@ public class Course {
 		return conflictCourses;
 	}
 
-
-	/**
-	 * sets the list of conflict courses
-	 * @param conflictCourses
-	 */
-	public void setConflictCourses(ArrayList<Course> conflictCourses) {
-		this.conflictCourses = conflictCourses;
-	}
-
-	
 	/**
 	 * get the course id
 	 * @return course id
@@ -126,13 +117,6 @@ public class Course {
 		return id;
 	}
 
-	/**
-	 * set the course id
-	 * @param id course id from file or input
-	 */
-	public void setId(String id) {
-		this.id = id;
-	}
 
 	/**
 	 * get the course name
@@ -140,14 +124,6 @@ public class Course {
 	 */
 	public String getName() {
 		return name;
-	}
-
-	/**
-	 * set the course name
-	 * @param name course name from file or input
-	 */
-	public void setName(String name) {
-		this.name = name;
 	}
 
 	/**
@@ -159,28 +135,11 @@ public class Course {
 	}
 
 	/**
-	 * set the course lecturer
-	 * @param lecturer the course lecturer from file or input
-	 */
-	public void setLecturer(String lecturer) {
-		this.lecturer = lecturer;
-	}
-
-
-	/**
 	 * get the course days
 	 * @return course days
 	 */
 	public String getDays() {
 		return days;
-	}
-
-	/**
-	 * set the course days
-	 * @param days the course days from file or input
-	 */
-	public void setDays(String days) {
-		this.days = days;
 	}
 
 	/**
@@ -192,14 +151,6 @@ public class Course {
 	}
 
 	/**
-	 * set the startTime of the course
-	 * @param startTime the course's startTime from file or input
-	 */
-	public void setStartTime(String startTime) {
-		this.startTime = startTime;
-	}
-
-	/**
 	 * get the endTime of the course
 	 * @return the course's endTime
 	 */
@@ -207,14 +158,6 @@ public class Course {
 		return endTime;
 	}
 
-	
-	/**
-	 * set the endTime of the course
-	 * @param endTime the course's endTime from file or input
-	 */
-	public void setEndTime(String endTime) {
-		this.endTime = endTime;
-	}
 
 	/**
 	 * get the capacity of the course
@@ -224,14 +167,6 @@ public class Course {
 		return capacity;
 	}
 
-	/**
-	 * set the capacity of the course
-	 * @param capacity course's capacity from file or input
-	 */
-	public void setCapacity(String capacity) {
-		this.capacity = capacity;
-	}
-	
 	
 	/**
 	 * get the enrolled number of the course
@@ -240,9 +175,29 @@ public class Course {
 	public int getEnrolledNum() {
 		return enrolledNum;
 	}
+	
+	public void setEnrolledNum(int enrolledNum) {
+		this.enrolledNum = enrolledNum;
+	}
+	
+	/**
+	 * get the arrayList of enrolled students
+	 * @return a list of enrolled students
+	 */
+	public ArrayList<Student> getAddStudent() {
+		return addStudent;
+	}
 
-	
-	
+	/**
+	 * updates the arrayList
+	 * @param addStudent the list of enrolled students
+	 */
+	public void setAddStudent(ArrayList<Student> addStudent) {
+		this.addStudent = addStudent;
+	}
+
+
+
 	
 	// other method
 	
@@ -261,7 +216,7 @@ public class Course {
 	 * @param enrolledCourses means the user's enrolled course
 	 * @return if there is no time conflict, returns true; else returns false;
 	 */
-	public boolean noTimeConflict(Student student, Course addCourse, ArrayList<Course> enrolledCourses) {
+	public boolean noTimeConflict(Student student, Course addCourse) {
 	
 			
 		// get all the course in the same day
@@ -353,31 +308,9 @@ public class Course {
 		
         
 		/**
-		 * get the arrayList of enrolled students
-		 * @return a list of enrolled students
-		 */
-		public ArrayList<Student> getAddStudent() {
-			return addStudent;
-		}
-
-		
-		/**
-		 * updates the arrayList
-		 * @param addStudent the list of enrolled students
-		 */
-		public void setAddStudent(ArrayList<Student> addStudent) {
-			this.addStudent = addStudent;
-		}
-
-		
-			//if (!this.addStudent.contains(student)) {
-			//	this.addStudent.add(student);}
-		
-
-		/**
 		 * print the course with given format
 		 */
-
+		@Override
 		public String toString() {
 			return this.getId()  + "|" + this.getName() + ", " + this.getStartTime() + "-" + this.getEndTime() + " on " + this.getDays() + ", " + "with course capacity: " + this.getCapacity() + ", students: " + this.getEnrolledNum() + ", lecturer: Professior " + this.getLecturer(); 
 			
@@ -392,7 +325,7 @@ public class Course {
 		 */
 		
 
-		public boolean noTimeConflict(Professor p, Course newCourse, ArrayList<Course> courseList) {
+		public boolean noTimeConflict(Professor p, Course newCourse) {
 				// get all the course in the same day
 				ArrayList<Course> sameDayCourse = new ArrayList<Course>();
 					
@@ -505,32 +438,7 @@ public class Course {
 			
 		}
 		
-		/**
-		 * to check if a given course is in the course list
-		 * @param CourseID to check
-		 * @return true if the course is in list, otherwise false
-		 */
-		public static boolean isCourseInList(String CourseID) {
-			
-			boolean isCourseInList = false;
-			
-			// iterate over the course list
-			for(int i = 0; i < Course.COURSELIST.size(); i++) {
-				
-				if(Course.COURSELIST.get(i).getId().equals(CourseID)) {
-					
-					isCourseInList = true;
-					break;
-					
-				}
-			}
-			
-			return isCourseInList;
-			
-			
-			
-			
-		}
+		
 		
 		/**
 		 * check whether the course is full of students

@@ -59,72 +59,7 @@ public class FileInfoReader {
 	}
 	
 	
-					
-	
-	/**
-	 * used to view all courses
-	 * @return all the information of the courses in the given format
-	 */
-	
-	public static ArrayList<String> getAllCoursesInfo(){
-		
-		// create file
-		File file = new File("courseInfo.txt");
-		
-		// initialize FR and BR
-		FileReader fileReader = null;
-		BufferedReader bufferedReader = null;
-		
-		//create the ArrayList
-		ArrayList<String> allCoursesInfo = new ArrayList<String>();
-		
-		
-		
-		try {
-			fileReader = new FileReader(file);
-			bufferedReader = new BufferedReader(fileReader);
-			
-			// variable to store each lines
-			String line;
-			
-			// while there is a line to read
-			while((line = bufferedReader.readLine()) != null) {
-				
-				// iterate over each course
-				for(int i = 0; i < Course.COURSELIST.size(); i++) {
-					
-				
-				//update the line with the right format
-				String newLine = new String();	
-				
-				// count the number of enrolled students
-				int enrolled = 0;
-				
-				// get the instance of course(i)
-				Course c = Course.COURSELIST.get(i);
-				
-				// update the new line
-				newLine = c.getId()  + "|" + c.getName() + ", " + c.getStartTime() + "-" + c.getEndTime() + " on " + c.getDays() + ", " + "with course capacity: " + c.getCapacity() + ", students: " + enrolled + ", lecturer: Professior " + c.getLecturer(); 
-				
-				// add all the lines to the ArrayList
-				allCoursesInfo.add(newLine); 
-				
-				
-				}
-				}
-			
-		} catch (FileNotFoundException e) {
-		  System.out.println("No File Found");
-			e.printStackTrace();
-		} catch (IOException e) {
-			System.out.println("IOException");
-			e.printStackTrace();
-		}
-		
-		
-		return allCoursesInfo;
-		
-	}
+
 	
 	/**
 	 * load the file content to the ArrayList of course
