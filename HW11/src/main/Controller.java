@@ -62,7 +62,8 @@ public class Controller {
 				else {
 					// get the user name and password in the file as a map
 					Map<String, String> studentLoginInfo = new HashMap<String, String>();
-					studentLoginInfo = FileInfoReader.LoginInfo("studentInfo.txt");
+					// call the loginInfo method for log in
+					studentLoginInfo = FileInfoReader.LoginInfo();
 						
 					// if the input user name exist in the map
 						if(studentLoginInfo.containsKey(studentInput)) {							
@@ -235,7 +236,7 @@ public class Controller {
 				else {
 					// get the user name and password in the file as a map
 					Map<String, String> profLoginInfo = new HashMap<String, String>();
-					profLoginInfo = FileInfoReader.LoginInfo("profInfo.txt");
+					profLoginInfo = FileInfoReader.LoginInfo();
 						
 					// if the input user name exist in the map
 						if(profLoginInfo.containsKey(profInput)) {							
@@ -360,7 +361,7 @@ public class Controller {
 			else {
 				// get the user name and password in the file as a map
 				Map<String, String> adminLoginInfo = new HashMap<String, String>();
-				adminLoginInfo = FileInfoReader.LoginInfo("adminInfo.txt");
+				adminLoginInfo = FileInfoReader.LoginInfo();
 					
 				// if the input user name exist in the map
 					if(adminLoginInfo.containsKey(adminInput)) {							
@@ -434,14 +435,20 @@ public class Controller {
 								
 								//check whether the new course is already in the system
 								boolean flag = false;
+								boolean okToExit = false;
 								
-								while (!flag) {
+								
+								while (!flag && okToExit == false) {
+									
 									//get new course ID
 									System.out.println("Please enter the course ID, or type 'q' to end.");
 									idInput = sc.next();
 									
 								if (idInput == "q")	{
-									break;
+									
+									okToExit = true;
+									continue;
+									
 								}else {
 					
 								for (int b = 0; b < Course.COURSELIST.size(); b++) {
@@ -456,7 +463,13 @@ public class Controller {
 									}
 								}
 								   
-								}		
+								}
+								
+								}
+								if(okToExit == true) {
+									
+									continue;
+									
 								}
 													
 
@@ -687,8 +700,10 @@ public class Controller {
 								// use a boolean value to track is the id is invalid
 								boolean isIDValid = false;
 								
+								boolean okToExit = false;
+								
 							
-								while(isIDValid == false) {
+								while(isIDValid == false && okToExit == false) {
 									
 									// get the next token as the id of the professor
 									System.out.println("Please enter the professor's ID, or type 'q' to quit");
@@ -696,7 +711,10 @@ public class Controller {
 									String proID = sc.next();
 									
 									if(proID.equals("q")) {
+				
+										okToExit = true;
 										continue;
+										
 									}
 									else {
 										
@@ -710,6 +728,12 @@ public class Controller {
 											isIDValid = true;
 										}						
 										}
+								}
+								
+								if(okToExit == true) {
+									
+									// go back to the previous menu
+									continue;
 								}
 								
 								
@@ -730,12 +754,13 @@ public class Controller {
 								// boolean value to track if the user name is valid
 								boolean isUsernameValid = false;
 								
-								while(isUsernameValid == false) {
+								while(isUsernameValid == false && okToExit == false) {
 									
 									System.out.println("Please enter a username, or type 'q' to quit");
 									String proUN = sc.next();
 									
 									if(proUN.equals("q")) {
+										okToExit = true;
 										continue;
 									}
 									else {
@@ -751,23 +776,31 @@ public class Controller {
 										
 										}
 								}
+								
+								
+								if(okToExit == true) {
+									// go back to the previous menu
+									continue;
 									
-									// get the next token as the professor's password
-									System.out.println("Please enter a password, or type 'q' to quit");		
-									String professorPW = sc.next();
-									
-									if(professorPW.equals("q")) {
-										continue;	
-									}
-									
-									// create the new professor
-									Professor addProfessor = new Professor(professorName, professorID, professorUsername, professorPW);
-									
-									// add this professor into the professor list
-									Admin.addProfessor(addProfessor);
-									
-		
 								}
+								
+									
+								// get the next token as the professor's password
+								System.out.println("Please enter a password, or type 'q' to quit");		
+								String professorPW = sc.next();
+								
+								if(professorPW.equals("q")) {
+									continue;	
+								}
+								
+								// create the new professor
+								Professor addProfessor = new Professor(professorName, professorID, professorUsername, professorPW);
+								
+								// add this professor into the professor list
+								Admin.addProfessor(addProfessor);
+								
+	
+							}
 					
 							
 							//5--delete professor
@@ -810,9 +843,10 @@ public class Controller {
 								
 								// use a boolean value to track is the id is invalid
 								boolean isIDValid = false;
+								boolean okToExit = false;
 								
 							
-								while(isIDValid == false) {
+								while(isIDValid == false && okToExit == false) {
 									
 									// get the next token as the id of the professor
 									System.out.println("Please enter the student's ID, or type 'q' to quit");
@@ -820,7 +854,10 @@ public class Controller {
 									String stuID = sc.next();
 									
 									if(stuID.equals("q")) {
+										
+										okToExit = true;
 										continue;
+										
 									}
 									else {
 										
@@ -834,6 +871,11 @@ public class Controller {
 											isIDValid = true;
 										}						
 										}
+								}
+								
+								if(okToExit == true) {
+									
+									continue;
 								}
 								
 								
@@ -854,12 +896,13 @@ public class Controller {
 								// boolean value to track if the user name is valid
 								boolean isUsernameValid = false;
 								
-								while(isUsernameValid == false) {
+								while(isUsernameValid == false && okToExit == false) {
 									
 									System.out.println("Please enter a username, or type 'q' to quit");
 									String stuUN = sc.next();
 									
 									if(stuUN.equals("q")) {
+										okToExit = true;
 										continue;
 									}
 									else {
@@ -875,59 +918,83 @@ public class Controller {
 										
 										}
 								}
+								
+								if(okToExit == true) {
 									
-									// get the next token as the student's password
-									System.out.println("Please enter a password, or type 'q' to quit");		
-									String studentPW = sc.next();
+									continue;
 									
-									if(studentPW.equals("q")) {
-										continue;	
+								}
+									
+								
+								// get the next token as the student's password
+								System.out.println("Please enter a password, or type 'q' to quit");		
+								String studentPW = sc.next();
+								
+								if(studentPW.equals("q")) {
+									continue;	
+								}
+								
+								
+								
+								// get the information about the student's enrolled courses
+								Map<String, String> addCourseList = new HashMap<String, String>();
+								
+								// use boolean value to check is all courses are added
+								boolean isAddCourseOver = false;
+								
+								while(isAddCourseOver == false && okToExit == false) {
+									
+									System.out.println("Please enter ID of a course which this student already took, one in a time");
+									System.out.println("Type 'q' to quit, type 'n' to stop adding");
+									
+									String courseID = sc.next();
+									
+									// check if the course is in the list
+									
+									if(courseID.equals("q")) {
+										
+										okToExit = true;
+										continue;
+										
+									}else if(courseID.equals("n")){
+										
+										isAddCourseOver = true;
+										continue;
+										
 									}
-									
-									// get the information about the student's enrolled courses
-									Map<String, String> addCourseList = new HashMap<String, String>();
-									
-									// use boolean value to check is all courses are added
-									boolean isAddCourseOver = false;
-									
-									while(isAddCourseOver == false) {
+									else {
+											
+										// check if the course is in list
+										if(Course.isCourseInList(courseID) == true) {
+											// if the course is valid
+								            System.out.println("Please enter the grade, eg 'A'");
+								            String courseGrade = sc.next();
+								
+								            // put the course and the grade in the map
+								            addCourseList.put(courseID, courseGrade);
 										
-										System.out.println("Please enter ID of a course which this student already took, one in a time");
-										System.out.println("Type 'q' to quit, type 'n' to stop adding");
 										
-										String courseID = sc.next();
-										
-										// check if the course is in the list
-										
-										if(courseID.equals("q")) {
-											continue;
-										}else {
-											
-											// check if the course is in list
-											if(Course.isCourseInList(courseID) == true) {
-												// if the course is valid
-									            System.out.println("Please enter the grade, eg 'A'");
-									            String courseGrade = sc.next();
-									
-									            // put the course and the grade in the map
-									            addCourseList.put(courseID, courseGrade);
-											
-											
-										      }
-											else {
-												break;
-										}
-											
-											
-										}	
+									      }
+										else {
+											System.out.println("Course not in list!");
 									}
+										
+										
+									}	
+								}
+								
+								if(okToExit == true) {
 									
-									// create the new student
-									Student addStudent = new Student(studentID, studentName, studentUsername, studentPW, addCourseList);
+									continue;
 									
-									Admin.addStudent(addStudent);
-																			
-									}
+								}
+								
+								// create the new student
+								Student addStudent = new Student(studentID, studentName, studentUsername, studentPW, addCourseList);
+								
+								Admin.addStudent(addStudent);
+																		
+								}
 									
 									
 							
@@ -966,29 +1033,28 @@ public class Controller {
 							//8--return to the previous menu
 							if(inputA == 8) {
 								
-								continue;
+								isQuit = true;
+
 							}
 							
-						}}
+							}
+							
+							}
 					
 					else {
 						// if the password in not correct, get back to the previous menu
 						System.out.println("Password incorrect.");
-						continue;	
-					}
-				
-		}
+						continue;
+						}
+						}
 				else {
 					// if the student username is not in the file, get back to the previous menu
 					System.out.println("User not found.");
 					continue;		
-				}		
-							
-							
-	
-			}
-							
-				
+					}
+					
+					}
+			
 			}
 		
 		
@@ -1010,7 +1076,7 @@ public class Controller {
 	System.out.println("----------------------------");
 	sc.close();
 	}
-			}
+	}
 	
 
 
