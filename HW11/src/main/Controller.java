@@ -19,7 +19,6 @@ import roles.Student;
 public class Controller {
 	
 	
-	
 	public static void main(String[] args) {
 		
 		// load the file into the arrayLists of students/courses/professors/admin
