@@ -20,6 +20,7 @@ import roles.Student;
  */
 public class FileInfoReader {
 	
+	
 	/**
 	 * to see if the username is already in the user's list
 	 * get the username and password as map for a user class
@@ -107,7 +108,6 @@ public class FileInfoReader {
      
      /**
  	  * load the file content to the ArrayList of students
- 	  * @param fileName
  	  */
       public static void setStudentInfo(){
  		

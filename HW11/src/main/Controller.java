@@ -9,6 +9,7 @@ import files.FileInfoReader;
 import roles.Admin;
 import roles.Professor;
 import roles.Student;
+import roles.User;
 
 
 /**
@@ -117,8 +118,8 @@ public class Controller {
 									// view course information
 									if (inputS == 1) {
 										
-								        // print all the information line by line
-										Course.COURSELIST.forEach(System.out::println);
+										student.viewAllCourses();
+								        
 									}
 									
 									// Add courses to your list
@@ -399,8 +400,7 @@ public class Controller {
 							// View all courses
 							if (inputA == 1) {
 								
-								// print all the information line by line
-								Course.COURSELIST.forEach(System.out::println);
+								admin.viewAllCourses();
 								
 							}	
 							

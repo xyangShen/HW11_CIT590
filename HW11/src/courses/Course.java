@@ -14,7 +14,9 @@ import roles.Student;
  */
 public class Course {
 	
+	
 	// instance variables
+	
 	
 	/**
 	 * use an ArrayList to contain all the courses in the system
@@ -27,45 +29,54 @@ public class Course {
 	 */
 	private String id;
 	
+	
 	/**
 	 * course name
 	 */
 	private String name;
+	
 	
 	/**
 	 * lecturer of the course
 	 */
 	private String lecturer;
 	
+	
 	/**
 	 * course days
 	 */
 	private String days;
+	
 	
 	/**
 	 * Start time
 	 */
 	private String startTime;
 	
+	
 	/**
 	 * end time
 	 */
 	private String endTime;
+	
 	
 	/**
 	 * capacity
 	 */
 	private String capacity;
 	
+	
 	/**
 	 * the enrolled number
 	 */
 	private int enrolledNum = 0;
 	
+	
 	/**
 	 * the arrayList of students who get enrolled in the class
 	 */
 	public ArrayList<Student> addStudent = new ArrayList<Student>();
+	
 	
 	/**
 	 * lists of conflict courses
@@ -73,7 +84,6 @@ public class Course {
 	 */
 	private ArrayList<Course> conflictCourses = new ArrayList<Course>();
 	
-
 
 	// constructor
 	
@@ -87,7 +97,6 @@ public class Course {
 	 * @param endTime
 	 * @param capacity
 	 */
-	
 	public Course(String id, String name, String lecturer, String days, String startTime, String endTime, String capacity){
 		this.id = id;	
 		this.name = name;
@@ -108,6 +117,7 @@ public class Course {
 	public ArrayList<Course> getConflictCourses() {
 		return conflictCourses;
 	}
+	
 
 	/**
 	 * get the course id
@@ -125,6 +135,7 @@ public class Course {
 	public String getName() {
 		return name;
 	}
+	
 
 	/**
 	 * get the course lecturer
@@ -133,6 +144,7 @@ public class Course {
 	public String getLecturer() {
 		return lecturer;
 	}
+	
 
 	/**
 	 * get the course days
@@ -141,6 +153,7 @@ public class Course {
 	public String getDays() {
 		return days;
 	}
+	
 
 	/**
 	 * get the startTime of the course
@@ -149,6 +162,7 @@ public class Course {
 	public String getStartTime() {
 		return startTime;
 	}
+	
 
 	/**
 	 * get the endTime of the course
@@ -176,9 +190,11 @@ public class Course {
 		return enrolledNum;
 	}
 	
+	
 	public void setEnrolledNum(int enrolledNum) {
 		this.enrolledNum = enrolledNum;
 	}
+	
 	
 	/**
 	 * get the arrayList of enrolled students
@@ -187,6 +203,7 @@ public class Course {
 	public ArrayList<Student> getAddStudent() {
 		return addStudent;
 	}
+	
 
 	/**
 	 * updates the arrayList
@@ -195,8 +212,6 @@ public class Course {
 	public void setAddStudent(ArrayList<Student> addStudent) {
 		this.addStudent = addStudent;
 	}
-
-
 
 	
 	// other method
@@ -301,9 +316,7 @@ public class Course {
 		else {
 			// if the conflict courses list is empty
 			return true;
-		}
-			
-		
+			}
 		}
 		
         
@@ -312,7 +325,11 @@ public class Course {
 		 */
 		@Override
 		public String toString() {
-			return this.getId()  + "|" + this.getName() + ", " + this.getStartTime() + "-" + this.getEndTime() + " on " + this.getDays() + ", " + "with course capacity: " + this.getCapacity() + ", students: " + this.getEnrolledNum() + ", lecturer: Professior " + this.getLecturer(); 
+			
+			return this.getId()  + "|" + this.getName() + ", " + this.getStartTime() + 
+					"-" + this.getEndTime() + " on " + this.getDays() + ", " + 
+					"with course capacity: " + this.getCapacity() + ", students: " + 
+					this.getEnrolledNum() + ", lecturer: Professior " + this.getLecturer(); 
 			
 		}
 
@@ -323,8 +340,6 @@ public class Course {
 		 * @param courseList means the professor's given course
 		 * @return if there is no time conflict, returns true; else returns false;
 		 */
-		
-
 		public boolean noTimeConflict(Professor p, Course newCourse) {
 				// get all the course in the same day
 				ArrayList<Course> sameDayCourse = new ArrayList<Course>();
@@ -453,10 +468,6 @@ public class Course {
 			}return false; 	
 		}
 	
-	
-		public static void initilizeAddStudent() {
-			
-		}
 		
 
 }

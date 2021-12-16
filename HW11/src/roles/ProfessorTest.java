@@ -39,9 +39,6 @@ class ProfessorTest {
 		
 	}
 	
-	
-	
-	
 	@Test
 	void testIsIDOccupied() {
 		
@@ -76,12 +73,6 @@ class ProfessorTest {
 	}
 	
 	
-	
-	
-	
-	
-	
-	
-	
+
 
 }

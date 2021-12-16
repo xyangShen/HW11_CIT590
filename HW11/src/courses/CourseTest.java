@@ -82,7 +82,6 @@ class CourseTest {
 		assertEquals("CIS620|Advanced Topics in Machine Learning, 15:00-18:00 on M, with course capacity: 40, students: 0, lecturer: Professior Dan Roth",
 				CIS620.toString());
 		
-		
 		assertEquals("CIT590|Programming Languages and Techniques, 16:30-18:00 on MW, with course capacity: 110, students: 0, lecturer: Professior Brandon L Krakowsky",
 				CIT590.toString());
 		
@@ -140,8 +139,7 @@ class CourseTest {
 		Professor.PROFESSORS.clear();
 		Admin.ADMINS.clear();
 		Course.COURSELIST.clear();
-	
-		
+
 	}
 
 	
@@ -167,5 +165,7 @@ class CourseTest {
 		Admin.ADMINS.clear();
 		Course.COURSELIST.clear();
 	}
+	
+	
 
 }

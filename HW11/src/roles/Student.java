@@ -11,7 +11,7 @@ import courses.Course;
  * Represents a student
  * @author Xinyang Shen
  */
-public class Student {
+public class Student extends User {
 	
 	// instance variables
 	
@@ -20,37 +20,18 @@ public class Student {
 	 */
 	public static ArrayList<Student> STUDENTS = new ArrayList<Student>();
 	
-	/**
-	 * student ID
-	 */
-	private String id;
-	
-	/**
-	 * student name
-	 */
-	private String name;
-	
-	/**
-	 * student userName
-	 */
-	private String userName;
-	
-	/**
-	 * student password
-	 */
-	private String password;
 		
 	/**
 	 * the course and its grade
 	 */
 	private Map<String, String> courseMap;
 	
+	
 	/**
-	 * 
+	 * enrolled courses of a student as a list
 	 */
 	private ArrayList<Course> enrolledCourses = new ArrayList<Course>();
-	
-	
+
 	
 	// constructor
 	
@@ -63,51 +44,19 @@ public class Student {
 	 * @param courseMap
 	 */
 	public Student(String id, String name, String userName, String password, Map<String, String> courseMap) {
+		
 		this.id = id;
 		this.name = name;
 		this.userName = userName;
 		this.password = password;
 		this.courseMap = courseMap;
+		
 	}
 
 
 	// getter methods
 	
-	/**
-	 * get the student id
-	 * @return student id
-	 */
-	public String getId() {
-		return id;
-	}
-
 	
-	/**
-	 * get the student name
-	 * @return student's name
-	 */
-	public String getName() {
-		return this.name;
-	}
-
-
-	/**
-	 * get the student's userName
-	 * @return userName of student
-	 */
-	public String getUserName() {
-		return userName;
-	}
-
-
-	/**
-	 * get the student's password
-	 * @return the password of student
-	 */
-	public String getPassword() {
-		return password;
-	}
-
 
 	/**
 	 * get the student's courseMap
@@ -172,7 +121,6 @@ public class Student {
 	 * @param courseID, the id of a course to add
 	 */
 	public void addCourse(String courseID) {
-		
 		
 	
 		// set a boolean value to track if a course exist or not
@@ -316,6 +264,9 @@ public class Student {
 						
 						System.out.println("Course dropped successfully.");
 						
+						// delete this student in the course's student list
+						
+						
 						//change the isCourseTaken value to true
 						isCourseTaken = true;
 						
@@ -422,7 +373,7 @@ public class Student {
 				return isUserNameOccupied;	
 	}
 	
-
+	
 
 }
 

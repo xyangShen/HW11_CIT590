@@ -7,7 +7,7 @@ import courses.Course;
  * Represents a professor
  * @author Xinyang Shen
  */
-public class Professor {
+public class Professor extends User {
 	
 	//instance variables
 	
@@ -15,27 +15,6 @@ public class Professor {
 	 * use an ArrayList to contain all the professors in the system
 	 */
 	public static ArrayList<Professor> PROFESSORS = new ArrayList<Professor>();
-	
-	
-	/**
-	 * professor's name
-	 */
-	private String name;
-	
-	/**
-	 * professor's id
-	 */
-	private String id;
-	
-	/**
-	 * professor's userName
-	 */
-	private String userName;
-	
-	/**
-	 * professor's password
-	 */
-	private String password;
 	
 
 	
@@ -50,55 +29,15 @@ public class Professor {
 	 */
 	
 	public Professor(String name, String id, String userName, String password) {
-	this.name = name;
-	this.id = id;
-	this.userName = userName;
-	this.password = password;
+		this.name = name;
+		this.id = id;
+		this.userName = userName;
+		this.password = password;
 	}
 	
    	
+	// methods
 	
-	//getter and setter
-	
-	/**
-	 * get the professor name
-	 * @return professor name
-	 */
-	public String getName() {
-		return name;
-	}
-
-
-	/**
-	 * get the professor id
-	 * @return id of professor
-	 */
-
-	public String getId() {
-		return id;
-	}
-
-
-	/**
-	 * get the professor userName
-	 * @return userName of professor
-	 */
-
-	public String getUserName() {
-		return userName;
-	}
-
-
-
-	/**
-	 * get the professor password
-	 * @return password of professor
-	 */
-
-	public String getPassword() {
-		return password;
-	}
-
 	
 	/**
 	 * get the professor's list of given courses
@@ -116,11 +55,10 @@ public class Professor {
 		  if (this.getName().equals(prof)) {
 			  Course givenCourse = Course.COURSELIST.get(j);
 			  courseList.add(givenCourse);
+			  }
 		  }
-	
-	}
 	return courseList;	  
-		  }	
+	}	
 	
 	
 	/**
@@ -171,8 +109,11 @@ public class Professor {
 
 				return isUserNameOccupied;	
 	}
+
+
 	
 
+	
 	
 	
 }

@@ -153,8 +153,6 @@ class StudentTest {
 		
 	}
 	
-	
-
 	@Test
 	void testIsIDOccupied() {
 		
@@ -187,5 +185,8 @@ class StudentTest {
 		Admin.ADMINS.clear();
 		Course.COURSELIST.clear();
 	}
+	
+	
+
 
 }
