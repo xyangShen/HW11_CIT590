@@ -1,2 +1,2 @@
-# HW11_CIT590
+# Student Management System
 HW11
